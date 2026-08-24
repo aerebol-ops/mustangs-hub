@@ -131,21 +131,32 @@ var BOARD_URL = "https://claude.ai/code/artifact/3f6b186b-8156-40bf-ba92-a5f0579
 var FAMILIES = ["Lyons","Schlaht","Aubin","Novlesky"];
 var CLAIMS_API = "https://mustangs-claims.mlyons-b47.workers.dev";
 var SESSIONS = [
-{id:"s1", d:"2026-09-09",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
-{id:"s7", d:"2026-09-12",dow:"Sat",rink:"Lethbridge",venue:"Logan Boulet",kind:"practice",time:"5:00–6:30 + 6:45–7:45 w/ U17"},
-{id:"s2", d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
-{id:"s3", d:"2026-09-16",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
-{id:"s8", d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"10:00–11:30 + 1:00–2:00"},
-{id:"s9", d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30"},
-{id:"s4", d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
-{id:"s5", d:"2026-09-23",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
-{id:"s10",d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:""},
-{id:"s6", d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
-{id:"s11",d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45"},
-{id:"s12",d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45"},
-{id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:""},
-{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:""}
+{id:"s1", d:"2026-09-09",dow:"Wed",rink:"Lethbridge",kind:"skate",time:"",gd:"20260909/20260910"},
+{id:"s7", d:"2026-09-12",dow:"Sat",rink:"Lethbridge",venue:"Logan Boulet",kind:"practice",time:"5:00–6:30 + 6:45–7:45 w/ U17",gd:"20260912T230000Z/20260913T014500Z"},
+{id:"s2", d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:"",gd:"20260914/20260915"},
+{id:"s3", d:"2026-09-16",dow:"Wed",rink:"Lethbridge",kind:"skate",time:"",gd:"20260916/20260917"},
+{id:"s8", d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"10:00–11:30 + 1:00–2:00",gd:"20260919T160000Z/20260919T200000Z"},
+{id:"s9", d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20260920T153000Z/20260920T193000Z"},
+{id:"s4", d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:"",gd:"20260921/20260922"},
+{id:"s5", d:"2026-09-23",dow:"Wed",rink:"Lethbridge",kind:"skate",time:"",gd:"20260923/20260924"},
+{id:"s10",d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:"",gd:"20260925/20260928"},
+{id:"s6", d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:"",gd:"20260928/20260929"},
+{id:"s11",d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45",gd:"20261003T174500Z/20261003T214500Z"},
+{id:"s12",d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45",gd:"20261004T213000Z/20261004T234500Z"},
+{id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:"",gd:"20261009/20261012"},
+{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116"}
 ];
+var ICS_HTTPS = "https://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
+var ICS_WEBCAL = "webcal://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
+function calUrl(s){
+  var title = "Mustangs U16 — " + (KIND[s.kind]||"Ice") + " · " + s.rink + (s.kind==="skate" ? " (time TBC)" : "");
+  var r = RINKS[s.rink] || {};
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" + encodeURIComponent(title) +
+    "&dates=" + s.gd +
+    "&location=" + encodeURIComponent(r.map || s.rink) +
+    "&details=" + encodeURIComponent("Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/");
+}
 var CLAIMS = {}; var CLAIMS_OK = false;
 var RINKS = {
   "Stavely":     {km:65,  time:"45 min", tier:1, venue:"Stavely Arena",             map:"Stavely Arena, 5004 51 Ave, Stavely, AB"},
@@ -247,6 +258,7 @@ function renderSessions(){
         '<span class="date">'+esc(s.dow)+" "+esc(s.label||fmtDate(s.d))+'</span>'+
         '<span class="rink">'+esc(s.rink)+'</span>'+
         pinLink(r.map,s.rink)+
+        '<a class="pin" href="'+esc(calUrl(s))+'" target="_blank" rel="noopener" aria-label="Add to calendar">&#128197;&#xFE0E; cal</a>'+
         (cd?'<span class="chip count">'+esc(cd)+'</span>':'')+
         '<span class="chip drive">'+esc(r.time)+' each way</span>'+
         '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team — game times land closer to the date.</span>'+
@@ -257,6 +269,7 @@ function renderSessions(){
         '<span class="date">'+esc(s.dow)+" "+fmtDate(s.d)+'</span>'+
         '<span class="rink">'+esc(s.rink)+(s.venue?' <span class="tiny">('+esc(s.venue)+')</span>':'')+'</span>'+
         pinLink(s.venue&&s.rink==="Lethbridge"?s.venue+", Lethbridge, AB":r.map,s.rink)+
+        '<a class="pin" href="'+esc(calUrl(s))+'" target="_blank" rel="noopener" aria-label="Add to calendar">&#128197;&#xFE0E; cal</a>'+
         '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
         '<span class="chip drive">'+esc(r.time)+' each way</span>'+
         (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
@@ -332,7 +345,11 @@ document.getElementById("app").innerHTML =
 '</header>'+
 renderGlance()+
 '<nav class="nav" id="mainnav" aria-label="Sections"></nav>'+
-'<section class="sec view" id="v-schedule"><h2>Every U16 date on the books</h2>'+renderSessions()+
+'<section class="sec view" id="v-schedule"><h2>Every U16 date on the books</h2>'+
+  '<div class="gt c-ice"><span class="gk">&#128197; The whole season, in your family calendar</span>'+
+  '<span class="gv"><a href="https://calendar.google.com/calendar/r?cid='+encodeURIComponent(ICS_WEBCAL)+'" target="_blank" rel="noopener">Subscribe in Google Calendar</a> &nbsp;&middot;&nbsp; <a href="'+esc(ICS_WEBCAL)+'">Apple / Outlook</a></span>'+
+  '<span class="gs">Subscribe once and every date lands in your calendar — and when Jesse’s Oct/Nov schedule drops or times firm up, your calendar updates itself. Or grab single dates with the &#128197;&#xFE0E; cal button on any card below.</span></div>'+
+  renderSessions()+
   '<p class="tiny">Practice times from Jesse’s Sept schedule PDF; weeknight skate times TBC. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p>'+
   '<div><a class="btnlink" href="'+esc(BOARD_URL)+'" target="_blank" rel="noopener">Open the live board → claim drives &amp; breakroom</a>'+
   '<p class="tiny" style="margin-top:.5rem">The live board is where drives get claimed, payments get ticked, and the breakroom wall lives — it needs a free claude.ai sign-in to edit. This hub is the fast read-only front door.</p></div>'+
