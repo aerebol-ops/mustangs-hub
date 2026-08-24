@@ -1,0 +1,7 @@
+name = "mustangs-claims"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+[[kv_namespaces]]
+binding = "CLAIMS"
+id = "a925d0d19129401480a16e3eb0436cb0"

@@ -94,6 +94,12 @@ p{margin:0}
 .drill .dd{font-size:.9rem;color:var(--ink2);line-height:1.5}
 .trlead{font-family:var(--sans);font-size:.95rem;color:var(--ink2);border-left:3px solid var(--accent);padding-left:.75rem}
 .nav{position:sticky;top:0;z-index:5;display:flex;gap:.4rem;flex-wrap:wrap;background:var(--ground);padding:.65rem 0;border-bottom:2px solid var(--line);margin:0 -0.25rem;padding-left:.25rem;padding-right:.25rem}
+.assign{flex-basis:100%;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;padding-top:.35rem;border-top:1px dashed var(--line)}
+.who{font-family:var(--sans);font-weight:700;font-size:.92rem;color:var(--ink3);font-style:italic}
+.who.set{color:var(--good);font-style:normal}
+.assign select{font-family:var(--sans);font-size:.88rem;color:var(--ink);background:var(--sunk);border:1px solid var(--line2);border-radius:3px;padding:.35rem .45rem;cursor:pointer}
+.assign select:disabled{opacity:.5}
+.claimnote{font-family:var(--sans);font-size:.75rem;color:var(--ink3)}
 .nav .tab{font-size:.82rem;padding:.5rem .9rem}
 .view[hidden]{display:none}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -118,22 +124,24 @@ a{color:var(--accent2)}
 var FUEL = {price:1.80, costco:1.58, asOf:"Aug 23"};
 var BOARD_URL = "https://claude.ai/code/artifact/3f6b186b-8156-40bf-ba92-a5f0579112e1";
 var FAMILIES = ["Lyons","Schlaht","Aubin","Novlesky"];
+var CLAIMS_API = "https://mustangs-claims.mlyons-b47.workers.dev";
 var SESSIONS = [
-{d:"2026-09-09",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
-{d:"2026-09-12",dow:"Sat",rink:"Lethbridge",venue:"Logan Boulet",kind:"practice",time:"5:00–6:30 + 6:45–7:45 w/ U17"},
-{d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
-{d:"2026-09-16",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
-{d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"10:00–11:30 + 1:00–2:00"},
-{d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30"},
-{d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
-{d:"2026-09-23",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
-{d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:""},
-{d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
-{d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45"},
-{d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45"},
-{d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:""},
-{d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:""}
+{id:"s1", d:"2026-09-09",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
+{id:"s7", d:"2026-09-12",dow:"Sat",rink:"Lethbridge",venue:"Logan Boulet",kind:"practice",time:"5:00–6:30 + 6:45–7:45 w/ U17"},
+{id:"s2", d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
+{id:"s3", d:"2026-09-16",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
+{id:"s8", d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"10:00–11:30 + 1:00–2:00"},
+{id:"s9", d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30"},
+{id:"s4", d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
+{id:"s5", d:"2026-09-23",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
+{id:"s10",d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:""},
+{id:"s6", d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
+{id:"s11",d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45"},
+{id:"s12",d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45"},
+{id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:""},
+{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:""}
 ];
+var CLAIMS = {}; var CLAIMS_OK = false;
 var RINKS = {
   "Stavely":     {km:65,  time:"45 min", tier:1, venue:"Stavely Arena",             map:"Stavely Arena, 5004 51 Ave, Stavely, AB"},
   "Lethbridge":  {km:165, time:"1 h 45", tier:2, venue:"Logan Boulet Arena",        map:"Logan Boulet Arena, 1302 9 Ave N, Lethbridge, AB"},
@@ -169,8 +177,21 @@ function renderStrip(){
   '</div>';
 }
 var MONTHFULL=["","January","February","March","April","May","June","July","August","September","October","November","December"];
+function claimRow(s){
+  if(!CLAIMS_OK) return "";
+  var c=CLAIMS[s.id];
+  var who=c&&c.family?'<span class="who set">'+esc(c.family)+" driving</span>":'<span class="who">Nobody yet — take it:</span>';
+  var o='<option value="">— open —</option>';
+  for(var i=0;i<FAMILIES.length;i++){
+    o+='<option value="'+esc(FAMILIES[i])+'"'+((c&&c.family)===FAMILIES[i]?" selected":"")+'>'+esc(FAMILIES[i])+'</option>';
+  }
+  return '<div class="assign">'+who+
+    '<select data-claim="'+esc(s.id)+'" aria-label="Driver for '+esc(s.dow)+' '+fmtDate(s.d)+'">'+o+'</select>'+
+    '<span class="claimnote" id="cn-'+esc(s.id)+'"></span>'+
+  '</div>';
+}
 function renderSessions(){
-  var h='<div class="cards">',curMonth="";
+  var h='<div class="cards" id="schedcards">',curMonth="";
   for(var i=0;i<SESSIONS.length;i++){
     var s=SESSIONS[i],r=RINKS[s.rink]||{time:"?",tier:0,map:s.rink};
     if(daysUntil(s.d)<0 && s.kind!=="showcase") continue; /* past days drop off */
@@ -191,6 +212,7 @@ function renderSessions(){
         (cd?'<span class="chip count">'+esc(cd)+'</span>':'')+
         '<span class="chip drive">'+esc(r.time)+' each way</span>'+
         '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team — game times land closer to the date.</span>'+
+        claimRow(s)+
       '</div></div>';
     } else {
       h+='<div class="card"><div class="tier t'+r.tier+'"></div><div class="cbody">'+
@@ -200,11 +222,47 @@ function renderSessions(){
         '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
         '<span class="chip drive">'+esc(r.time)+' each way</span>'+
         (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
+        claimRow(s)+
       '</div></div>';
     }
   }
   return h+'</div>';
 }
+function refreshSched(){
+  var el=document.getElementById("schedcards");
+  if(el) el.outerHTML=renderSessions();
+}
+function fetchClaims(){
+  if(!CLAIMS_API) return;
+  fetch(CLAIMS_API+"/claims").then(function(r){
+    if(!r.ok) throw new Error(r.status);
+    return r.json();
+  }).then(function(data){
+    CLAIMS=data||{}; CLAIMS_OK=true; refreshSched();
+  })["catch"](function(){ /* worker unreachable — cards stay read-only */ });
+}
+document.addEventListener("change",function(e){
+  var t=e.target,id=t.getAttribute&&t.getAttribute("data-claim");
+  if(!id) return;
+  var note=document.getElementById("cn-"+id);
+  t.disabled=true; if(note) note.textContent="saving…";
+  fetch(CLAIMS_API+"/claim",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","X-Team":"mustangs-2026"},
+    body:JSON.stringify({id:id,family:t.value})
+  }).then(function(r){
+    if(!r.ok) throw new Error(r.status);
+    return r.json();
+  }).then(function(board){
+    CLAIMS=board; refreshSched();
+  })["catch"](function(){
+    t.disabled=false;
+    if(note) note.textContent="didn’t save — try again";
+  });
+});
+document.addEventListener("visibilitychange",function(){ if(!document.hidden) fetchClaims(); });
+setInterval(fetchClaims, 90000);
+fetchClaims();
 function renderRinks(){
   var order=["Stavely","Three Hills","Lethbridge","Kainai","Penhold","Raymond","Warner","Elkford BC"],h="";
   for(var i=0;i<order.length;i++){var r=RINKS[order[i]];
