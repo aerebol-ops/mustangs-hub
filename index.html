@@ -87,6 +87,12 @@ p{margin:0}
 .shopcard .sn{font-family:var(--sans);font-weight:700}
 .shopcard .sd{font-size:.85rem;color:var(--ink2);line-height:1.45}
 .shopcard .su{font-family:var(--mono);font-size:.72rem;color:var(--accent2)}
+.drills{display:grid;grid-template-columns:repeat(auto-fill,minmax(16rem,1fr));gap:.7rem}
+.drill{display:flex;flex-direction:column;gap:.35rem;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:.9rem .95rem;box-shadow:0 1px 2px var(--shadow)}
+.drill .dn{font-family:var(--sans);font-weight:700;display:flex;gap:.5rem;align-items:baseline}
+.drill .dnum{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--accent2);border:1px solid var(--line2);border-radius:100px;padding:.05rem .45rem}
+.drill .dd{font-size:.9rem;color:var(--ink2);line-height:1.5}
+.trlead{font-family:var(--sans);font-size:.95rem;color:var(--ink2);border-left:3px solid var(--accent);padding-left:.75rem}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:26rem}
 th{text-align:left;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:.4rem .6rem .4rem 0;border-bottom:1px solid var(--line2);white-space:nowrap}
@@ -235,6 +241,12 @@ renderStrip()+
   '<p class="muted">Figured at <span class="num">16.8 L/100 km</span> (14 MPG — honest truck economy with four players and their bags) at the Okotoks street price above, refreshed each morning. Split it, or buy the driver’s next tank.</p>'+
   '<div class="scroll"><table><thead><tr><th>Round trip to</th><th>Distance</th><th>Fuel</th><th>Cost</th><th>Split 4 ways</th></tr></thead><tbody>'+renderFuel()+'</tbody></table></div>'+
   '<p class="tiny">Fuel only — no wear, no coffee, no chicken strips at the Claresholm A&amp;W.</p></section>'+
+'<section class="sec"><h2>&#128170; The training room — for the boys</h2>'+
+  '<div class="trlead" id="trlead"></div>'+
+  '<div class="tabs" role="tablist" id="traintabs"></div>'+
+  '<div class="drills" id="trainpanel"></div>'+
+  '<p class="tiny">General age-appropriate training info, not medical advice — anything that hurts (not burns, hurts) gets shut down and mentioned to a parent or coach. Coach’s systems come first; this is the extra 1%.</p>'+
+'</section>'+
 '<section class="sec"><h2>The gear locker</h2>'+
   '<p class="muted">Season-long truth: somebody needs tape, a kid outgrows skates in October, and the garage needs a shooting pad by Christmas. Shop from the couch.</p>'+
   '<div class="tabs" role="tablist" id="geartabs"></div>'+
@@ -245,6 +257,68 @@ renderStrip()+
   '<p class="muted"><span class="num">$1,000</span>/player due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Credit card possible (+3.15%): ask Jesse — 403-915-2051.</p></section>'+
 '<footer>Okotoks Mustangs carpool hub &middot; built from Jesse’s Aug 23 season email, the Sept practice PDF, and the 2026 showcase poster. Pin this page: iPhone — Safari, Share, Add to Home Screen. Android — Chrome menu, Add to Home screen.</footer>'+
 '</div>';
+
+/* ==== Training room tabs ==== */
+var TRAIN = {
+  "🥅 Shooting": {
+    lead: "“See what the puck sees.” Your eyes are five feet up — the puck’s are on the ice. Lanes that look closed from your eyes are wide open at blade height. Every tip here comes back to that one idea.",
+    items: [
+      {n:"Shoot the puck’s picture, not yours", d:"Before you shoot, read the net from ice level: under the triangle, beside the post, through the legs. If the puck can see mesh, it can get there — even when all you can see is goalie."},
+      {n:"Change the angle, change the picture", d:"A six-inch toe pull before release gives the puck a brand-new view of the net. The goalie set up for where the puck was — you’re shooting from where it is now."},
+      {n:"The blade tells the story", d:"Wherever the blade face points at release is where the puck goes. Cupped and closed = low and hard. Open a touch = upstairs. Know what your blade is saying."},
+      {n:"Quick beats hard", d:"The best shot isn’t the hardest — it’s the one the goalie never set for. Catch and shoot in one motion. If you need two touches, you needed one."},
+      {n:"Traffic is a door, not a wall", d:"From puck height, a screen is full of daylight. Shoot low through legs and sticks — tips, rebounds, and chaos are how showcase games get won."},
+      {n:"Eyes early, eyes off", d:"Find your target early, then look away before you shoot. The last place you stare is the first place the goalie covers."},
+      {n:"The 100-puck rule", d:"Driveway reps: 25 wrist, 25 snap, 25 backhand, 25 quick-release off a pass. Every day the schedule says nothing. The Garage Training tab below has the tarps and pads."}
+    ]
+  },
+  "💪 Pre-Game Warm-Up": {
+    lead: "Dynamic before the game, static after — muscles want to be woken up, not put to sleep. Ten minutes, done 15 before you gear up. In a Stavely parking lot, this is the show.",
+    items: [
+      {n:"1 · Get warm", d:"Two minutes: jog, skip rope, or quick feet on the spot. You should be breathing, not sweating."},
+      {n:"2 · Leg swings", d:"Ten front-to-back and ten side-to-side, each leg. Hold the truck if you need to — that’s what it’s for."},
+      {n:"3 · Walking lunges with a twist", d:"Ten total, turning your chest over the front leg. Hips and core in one move."},
+      {n:"4 · Lateral lunges", d:"Eight per side, sitting into the hip. This is your skating stride waking up."},
+      {n:"5 · Gate swings", d:"Ten hip openers and closers per leg. Groins get hurt cold — don’t skate cold."},
+      {n:"6 · Inchworms", d:"Six slow ones — hands walk out to a plank, walk back. Hamstrings and shoulders."},
+      {n:"7 · High knees + butt kicks", d:"Twenty metres of each. Fast feet, tall chest."},
+      {n:"8 · Squats to jumps", d:"Ten bodyweight squats, then five jump squats. Land quiet like landing on ice."},
+      {n:"9 · Three bursts", d:"Three five-second sprints or quick-feet bursts. First shift starts here, not at puck drop."},
+      {n:"Save the stretching", d:"Long static holds are for after the game and before bed — that’s when they make you more flexible instead of slower."}
+    ]
+  },
+  "🧠 Active Mind": {
+    lead: "The truck ride is the prep room — 1 h 45 to Lethbridge is the longest pre-game routine in the league. Use it.",
+    items: [
+      {n:"Box breathing", d:"In for 4, hold 4, out 4, hold 4. Five rounds somewhere south of High River. Slows the heart, sharpens the eyes."},
+      {n:"Script your first three shifts", d:"Decide your first touch before warm-up: chip it deep, finish a check, make the easy pass. Players who’ve already decided play faster than players still deciding."},
+      {n:"Five pucks, your eyes", d:"Visualize five plays from your own eyes — not the TV view: two shots going in, one clean breakout pass, one battle won on the wall, one hard backcheck. Your brain banks it like it happened."},
+      {n:"One cue word", d:"Pick one — “feet,” “low,” “early.” Say it on the bench between shifts. One word resets a whole game."},
+      {n:"The five-second flush", d:"Mistakes get five seconds of mad, then they’re gone. Goldfish memory — the next shift never heard about the last one."},
+      {n:"Be loud", d:"Talk on the bench, call for pucks, name your D partner’s check. The loudest team is the hardest team to play against — and it’s free."}
+    ]
+  }
+};
+function renderTrain(cat){
+  var tabs=document.getElementById("traintabs"),panel=document.getElementById("trainpanel"),lead=document.getElementById("trlead");
+  var names=Object.keys(TRAIN),th="";
+  for(var i=0;i<names.length;i++){
+    th+='<button class="tab" role="tab" aria-selected="'+(names[i]===cat)+'" data-tcat="'+esc(names[i])+'">'+esc(names[i])+'</button>';
+  }
+  tabs.innerHTML=th;
+  lead.textContent=TRAIN[cat].lead;
+  var items=TRAIN[cat].items,ph="";
+  for(var j=0;j<items.length;j++){
+    var it=items[j];
+    ph+='<div class="drill"><span class="dn"><span class="dnum">'+(j+1)+'</span>'+esc(it.n)+'</span><span class="dd">'+esc(it.d)+'</span></div>';
+  }
+  panel.innerHTML=ph;
+}
+document.getElementById("traintabs").addEventListener("click",function(e){
+  var b=e.target.closest("[data-tcat]");
+  if(b) renderTrain(b.getAttribute("data-tcat"));
+});
+renderTrain(Object.keys(TRAIN)[0]);
 
 /* ==== Gear locker tabs ==== */
 var SHOP = {
