@@ -50,9 +50,14 @@ p{margin:0}
 .mast .mtxt{display:flex;flex-direction:column;gap:.55rem}
 .eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 .sub{color:var(--ink2);font-size:.95rem}
-.strip{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:baseline;background:var(--accentWash);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:3px;padding:.8rem .95rem}
-.strip .k{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2)}
-.strip .v{font-size:.95rem;color:var(--ink)}
+.glance{display:grid;grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr));gap:.7rem}
+.gt{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:4px;padding:.8rem .9rem;display:flex;flex-direction:column;gap:.3rem;box-shadow:0 1px 2px var(--shadow)}
+.gt.c-ice{border-left-color:var(--ice)}
+.gt.c-money{border-left-color:var(--good)}
+.gt.c-road{border-left-color:var(--far)}
+.gt .gk{font-family:var(--sans);font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.gt .gv{font-family:var(--sans);font-weight:700;font-size:1rem;line-height:1.4}
+.gt .gs{font-size:.78rem;color:var(--ink3);font-family:var(--sans);line-height:1.45}
 .btnlink{display:inline-block;background:var(--ink);color:var(--ground);text-decoration:none;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;border-radius:3px;padding:.65rem 1rem}
 .btnlink:hover{opacity:.85}
 .cards{display:flex;flex-direction:column;gap:.7rem}
@@ -164,17 +169,50 @@ function pinLink(q,label){return '<a class="pin" href="'+esc(mapUrl(q))+'" targe
 function money(v){return "$"+(Math.round(v*100)/100).toFixed(2)}
 function roundTrip(t){var m=0;if(t.indexOf("h")>-1){var p=t.split("h");m=(+p[0])*60+(parseInt(p[1],10)||0)}else{m=parseInt(t,10)||0}m*=2;var h=Math.floor(m/60),r=m%60;return h?(h+" h "+(r<10?"0"+r:r)):(m+" min")}
 
-function renderStrip(){
+var WEATHER_TOWN = {"Kainai":"Stand Off AB","Elkford BC":"Elkford BC"};
+function renderGlance(){
   var next=null;for(var i=0;i<SESSIONS.length;i++){if(daysUntil(SESSIONS[i].d)>=0){next=SESSIONS[i];break}}
-  var nextTxt=next?esc(next.dow)+" "+(next.label?esc(next.label):fmtDate(next.d))+" &middot; "+esc(next.rink):"Season schedule complete — check the live board";
+  var h='<section class="sec" id="glancewrap"><h2>&#128204; Today at a glance</h2><div class="glance">';
+
+  /* Next ice */
+  if(next){
+    var du=daysUntil(next.d);
+    var when=du===0?"Today":(du===1?"Tomorrow":"In "+du+" days");
+    var c=CLAIMS[next.id];
+    var driver=CLAIMS_OK?(c&&c.family?c.family+" is driving":"No driver yet — claim it on the Schedule tab"):"";
+    h+='<div class="gt c-ice"><span class="gk">&#127954; Next ice &middot; '+esc(when)+'</span>'+
+      '<span class="gv">'+esc(next.dow)+" "+(next.label?esc(next.label):fmtDate(next.d))+' &middot; '+esc(next.rink)+'</span>'+
+      '<span class="gs">'+esc(KIND[next.kind]||"Ice")+(next.time?' &middot; '+esc(next.time):' &middot; time TBC')+(driver?' &middot; '+esc(driver):'')+'</span></div>';
+  } else {
+    h+='<div class="gt c-ice"><span class="gk">&#127954; Next ice</span><span class="gv">Schedule complete</span><span class="gs">Waiting on Jesse’s next batch of dates.</span></div>';
+  }
+
+  /* Payment */
   var dp=daysUntil("2026-09-01");
-  var due=dp>1?dp+" days":(dp===1?"tomorrow":(dp===0?"today":"past — check the board"));
-  return '<div class="strip">'+
-    '<div><span class="k">Next ice</span><br><span class="v">'+nextTxt+'</span></div>'+
-    '<div><span class="k">Sept payment</span><br><span class="v"><span class="num">$1,000</span>/player &middot; due '+esc(due)+'</span></div>'+
-    '<div><span class="k">Pump in Okotoks</span><br><span class="v"><span class="num">$'+FUEL.price.toFixed(2)+'</span>/L &middot; Costco <span class="num">$'+FUEL.costco.toFixed(2)+'</span> <span class="tiny">(checked '+esc(FUEL.asOf)+')</span></span></div>'+
-    '<div><span class="k">Roads</span><br><span class="v"><a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta</a> before you roll &mdash; Highway 2 south writes its own weather</span></div>'+
-  '</div>';
+  var due=dp>1?"due in "+dp+" days":(dp===1?"due tomorrow":(dp===0?"due today":"was due Sept 1 — check the Team tab"));
+  h+='<div class="gt c-money"><span class="gk">&#128181; September payment</span>'+
+    '<span class="gv"><span class="num">$1,000</span>/player &middot; '+esc(due)+'</span>'+
+    '<span class="gs">E-transfer to Jesse — no invoice is coming. Details on the Team tab.</span></div>';
+
+  /* Fuel */
+  h+='<div class="gt"><span class="gk">&#9981; Pump price &middot; Okotoks</span>'+
+    '<span class="gv"><span class="num">$'+FUEL.price.toFixed(2)+'</span>/L street &middot; <span class="num">$'+FUEL.costco.toFixed(2)+'</span> Costco</span>'+
+    '<span class="gs">Checked '+esc(FUEL.asOf)+' &middot; updates itself every morning. Trip costs on the Fuel tab.</span></div>';
+
+  /* Roads */
+  h+='<div class="gt c-road"><span class="gk">&#128678; Road conditions</span>'+
+    '<span class="gv"><a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta — live map</a></span>'+
+    '<span class="gs">Check before every run south. Highway 2 writes its own weather in winter.</span></div>';
+
+  /* Rink weather */
+  if(next){
+    var town=WEATHER_TOWN[next.rink]||next.rink+" AB";
+    h+='<div class="gt c-road"><span class="gk">&#127780;&#65039; Weather at the rink</span>'+
+      '<span class="gv"><a href="https://www.google.com/search?q='+encodeURIComponent("weather "+town)+'" target="_blank" rel="noopener">'+esc(next.rink)+' forecast</a></span>'+
+      '<span class="gs">Where the next drive is headed — not what it looks like from the driveway.</span></div>';
+  }
+
+  return h+'</div></section>';
 }
 var MONTHFULL=["","January","February","March","April","May","June","July","August","September","October","November","December"];
 function claimRow(s){
@@ -239,6 +277,8 @@ function fetchClaims(){
     return r.json();
   }).then(function(data){
     CLAIMS=data||{}; CLAIMS_OK=true; refreshSched();
+    var g=document.getElementById("glancewrap");
+    if(g) g.outerHTML=renderGlance();
   })["catch"](function(){ /* worker unreachable — cards stay read-only */ });
 }
 document.addEventListener("change",function(e){
@@ -290,7 +330,7 @@ document.getElementById("app").innerHTML =
   '</div>'+
   '<img class="crest" src="mustangs-logo.png" alt="Mustangs Hockey crest" width="104" height="104">'+
 '</header>'+
-renderStrip()+
+renderGlance()+
 '<nav class="nav" id="mainnav" aria-label="Sections"></nav>'+
 '<section class="sec view" id="v-schedule"><h2>Every U16 date on the books</h2>'+renderSessions()+
   '<p class="tiny">Practice times from Jesse’s Sept schedule PDF; weeknight skate times TBC. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p>'+
