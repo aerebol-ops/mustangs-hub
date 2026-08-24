@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0F1720">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mustangs">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>Mustangs Carpool Hub</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+:root{
+  --ground:#EFF2F6; --panel:#FFFFFF; --sunk:#F6F8FB;
+  --ink:#0F1720; --ink2:#485665; --ink3:#71808F;
+  --line:#D2DAE4; --line2:#BCC7D4;
+  --accent:#B85F12; --accent2:#8C4709; --accentWash:#F7EADB;
+  --ice:#2F6E93; --good:#26714F; --warn:#8A6A0B; --far:#9C3520;
+  --shadow:rgba(15,23,32,.10);
+  --sans:ui-sans-serif,"Segoe UI",-apple-system,system-ui,sans-serif;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",serif;
+  --mono:ui-monospace,"Cascadia Mono",Consolas,"SF Mono",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --ground:#0C131A; --panel:#131C25; --sunk:#0F1922;
+  --ink:#E9EEF3; --ink2:#A7B5C3; --ink3:#7C8B9A;
+  --line:#243141; --line2:#2F3F4F;
+  --accent:#E5952F; --accent2:#F2B978; --accentWash:#2A2015;
+  --ice:#6FA8CE; --good:#54B98C; --warn:#D2AC42; --far:#E37257;
+  --shadow:rgba(0,0,0,.45);
+}}
+body{background:var(--ground);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.6}
+#app{max-width:52rem;margin:0 auto;padding:1.25rem 1rem 5rem}
+h1,h2,.eyebrow,th,.btnlink{font-family:var(--sans)}
+h1{font-size:clamp(1.6rem,6vw,2.4rem);line-height:1.05;margin:0;font-weight:800;letter-spacing:-.02em;text-transform:uppercase;text-wrap:balance}
+h2{font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0;padding-bottom:.5rem;border-bottom:2px solid var(--line)}
+p{margin:0}
+.stack{display:flex;flex-direction:column;gap:2.25rem}
+.sec{display:flex;flex-direction:column;gap:.9rem}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.mast{display:flex;flex-direction:column;gap:.55rem;padding-bottom:1.1rem;border-bottom:3px solid var(--ink)}
+.eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.sub{color:var(--ink2);font-size:.95rem}
+.strip{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:baseline;background:var(--accentWash);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:3px;padding:.8rem .95rem}
+.strip .k{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2)}
+.strip .v{font-size:.95rem;color:var(--ink)}
+.btnlink{display:inline-block;background:var(--ink);color:var(--ground);text-decoration:none;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;border-radius:3px;padding:.65rem 1rem}
+.btnlink:hover{opacity:.85}
+.cards{display:flex;flex-direction:column;gap:.7rem}
+.card{display:grid;grid-template-columns:5px 1fr;background:var(--panel);border:1px solid var(--line);border-radius:4px;overflow:hidden;box-shadow:0 1px 2px var(--shadow)}
+.tier{background:var(--ice)}
+.tier.t1{background:var(--good)}.tier.t2{background:var(--warn)}.tier.t3{background:var(--accent)}.tier.t4{background:var(--far)}
+.cbody{padding:.85rem .95rem;display:flex;flex-wrap:wrap;gap:.35rem .75rem;align-items:baseline}
+.date{font-family:var(--mono);font-size:1.05rem;font-weight:700;letter-spacing:-.02em}
+.rink{font-family:var(--sans);font-weight:700;font-size:1.05rem}
+.chip{font-family:var(--sans);font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line2);border-radius:100px;padding:.13rem .5rem;color:var(--ink3);white-space:nowrap}
+.chip.tbc{border-color:var(--warn);color:var(--warn)}
+.chip.drive{font-family:var(--mono);letter-spacing:0;text-transform:none;color:var(--ink2)}
+.pin{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent2);text-decoration:none;border:1px solid var(--line2);border-radius:100px;padding:.13rem .5rem;white-space:nowrap}
+.pin:hover{border-color:var(--accent);color:var(--accent)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:26rem}
+th{text-align:left;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:.4rem .6rem .4rem 0;border-bottom:1px solid var(--line2);white-space:nowrap}
+td{padding:.5rem .6rem .5rem 0;border-bottom:1px solid var(--line);vertical-align:top}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.muted{color:var(--ink2);font-size:.92rem}
+.tiny{font-size:.78rem;color:var(--ink3);font-family:var(--sans)}
+footer{border-top:1px solid var(--line);padding-top:1rem;font-size:.85rem;color:var(--ink3);font-family:var(--sans)}
+a{color:var(--accent2)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ==== DATA (the fuel sweep rewrites the FUEL line only) ==== */
+var FUEL = {price:1.76, costco:1.58, asOf:"Aug 23"};
+var BOARD_URL = "https://claude.ai/code/artifact/3f6b186b-8156-40bf-ba92-a5f0579112e1";
+var FAMILIES = ["Lyons","Schlaht","Aubin","Novlesky"];
+var SESSIONS = [
+{d:"2026-09-09",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
+{d:"2026-09-12",dow:"Sat",rink:"Lethbridge",venue:"Logan Boulet",kind:"practice",time:"5:00–6:30 + 6:45–7:45 w/ U17"},
+{d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
+{d:"2026-09-16",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
+{d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"10:00–11:30 + 1:00–2:00"},
+{d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30"},
+{d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
+{d:"2026-09-23",dow:"Wed",rink:"Lethbridge",kind:"skate",time:""},
+{d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:""},
+{d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:""},
+{d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45"},
+{d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45"},
+{d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:""},
+{d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:""}
+];
+var RINKS = {
+  "Stavely":     {km:65,  time:"45 min", tier:1, venue:"Stavely Arena",             map:"Stavely Arena, 5004 51 Ave, Stavely, AB"},
+  "Lethbridge":  {km:165, time:"1 h 45", tier:2, venue:"Logan Boulet Arena",        map:"Logan Boulet Arena, 1302 9 Ave N, Lethbridge, AB"},
+  "Kainai":      {km:175, time:"1 h 50", tier:2, venue:"Kainai Sports Centre",      map:"Kainai Sports Centre, Stand Off, AB"},
+  "Three Hills": {km:160, time:"1 h 45", tier:2, venue:"Centennial Place Arena",    map:"Centennial Place Arena, Three Hills, AB"},
+  "Penhold":     {km:175, time:"1 h 50", tier:2, venue:"Penhold Regional Multiplex",map:"Penhold Regional Multiplex, 1 Waskasoo Ave, Penhold, AB"},
+  "Raymond":     {km:200, time:"2 h 05", tier:3, venue:"Raymond Ice Arena",         map:"Raymond Ice Arena, Raymond, AB"},
+  "Warner":      {km:235, time:"2 h 25", tier:3, venue:"Warner Arena",              map:"Warner Arena, Warner, AB"},
+  "Elkford BC":  {km:290, time:"3 h 15", tier:4, venue:"Elkford Arena",             map:"Elkford Arena, Elkford, BC"}
+};
+var KIND = {skate:"Weeknight skate", practice:"Practice", showcase:"Showcase"};
+var MONTH = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var LP100 = 16.8;
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function fmtDate(iso){var p=iso.split("-");return MONTH[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)}
+function daysUntil(iso){var t=new Date();t.setHours(0,0,0,0);var p=iso.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]);return Math.round((d-t)/86400000)}
+function mapUrl(q){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q)}
+function pinLink(q,label){return '<a class="pin" href="'+esc(mapUrl(q))+'" target="_blank" rel="noopener" aria-label="Map: '+esc(label||q)+'">&#9906;&#xFE0E; map</a>'}
+function money(v){return "$"+(Math.round(v*100)/100).toFixed(2)}
+function roundTrip(t){var m=0;if(t.indexOf("h")>-1){var p=t.split("h");m=(+p[0])*60+(parseInt(p[1],10)||0)}else{m=parseInt(t,10)||0}m*=2;var h=Math.floor(m/60),r=m%60;return h?(h+" h "+(r<10?"0"+r:r)):(m+" min")}
+
+function renderStrip(){
+  var next=null;for(var i=0;i<SESSIONS.length;i++){if(daysUntil(SESSIONS[i].d)>=0){next=SESSIONS[i];break}}
+  var nextTxt=next?esc(next.dow)+" "+(next.label?esc(next.label):fmtDate(next.d))+" &middot; "+esc(next.rink):"Season schedule complete — check the live board";
+  var dp=daysUntil("2026-09-01");
+  var due=dp>1?dp+" days":(dp===1?"tomorrow":(dp===0?"today":"past — check the board"));
+  return '<div class="strip">'+
+    '<div><span class="k">Next ice</span><br><span class="v">'+nextTxt+'</span></div>'+
+    '<div><span class="k">Sept payment</span><br><span class="v"><span class="num">$1,000</span>/player &middot; due '+esc(due)+'</span></div>'+
+    '<div><span class="k">Pump in Okotoks</span><br><span class="v"><span class="num">$'+FUEL.price.toFixed(2)+'</span>/L &middot; Costco <span class="num">$'+FUEL.costco.toFixed(2)+'</span> <span class="tiny">(checked '+esc(FUEL.asOf)+')</span></span></div>'+
+    '<div><span class="k">Roads</span><br><span class="v"><a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta</a> before you roll &mdash; Highway 2 south writes its own weather</span></div>'+
+  '</div>';
+}
+function renderSessions(){
+  var h='<div class="cards">';
+  for(var i=0;i<SESSIONS.length;i++){
+    var s=SESSIONS[i],r=RINKS[s.rink]||{time:"?",tier:0,map:s.rink};
+    if(daysUntil(s.label?s.d:s.d)< -1 && s.kind!=="showcase" && daysUntil(s.d)<0) continue; /* hide long-past days */
+    h+='<div class="card"><div class="tier t'+r.tier+'"></div><div class="cbody">'+
+      '<span class="date">'+(s.label?esc(s.dow)+" "+esc(s.label):esc(s.dow)+" "+fmtDate(s.d))+'</span>'+
+      '<span class="rink">'+esc(s.rink)+(s.venue?' <span class="tiny">('+esc(s.venue)+')</span>':'')+'</span>'+
+      pinLink(s.venue&&s.rink==="Lethbridge"?s.venue+", Lethbridge, AB":r.map,s.rink)+
+      '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
+      '<span class="chip drive">'+esc(r.time)+' each way</span>'+
+      (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
+    '</div></div>';
+  }
+  return h+'</div>';
+}
+function renderRinks(){
+  var order=["Stavely","Three Hills","Lethbridge","Kainai","Penhold","Raymond","Warner","Elkford BC"],h="";
+  for(var i=0;i<order.length;i++){var r=RINKS[order[i]];
+    h+='<tr><td>'+esc(order[i])+'</td><td>'+esc(r.venue)+'</td><td class="n">~'+r.km+' km</td><td class="n">'+esc(r.time)+'</td><td class="n">'+esc(roundTrip(r.time))+'</td><td>'+pinLink(r.map,order[i])+'</td></tr>';}
+  return h;
+}
+function renderFuel(){
+  var order=["Stavely","Three Hills","Lethbridge","Kainai","Penhold","Raymond","Warner","Elkford BC"],h="";
+  for(var i=0;i<order.length;i++){var r=RINKS[order[i]],rt=r.km*2,L=rt*LP100/100,c=L*FUEL.price;
+    h+='<tr><td>'+esc(order[i])+'</td><td class="n">~'+rt+' km</td><td class="n">'+L.toFixed(1)+' L</td><td class="n">'+money(c)+'</td><td class="n">'+money(c/4)+'</td></tr>';}
+  var km=0,n=0;
+  for(var j=0;j<SESSIONS.length;j++){var s=SESSIONS[j];if(s.kind==="showcase")continue;if(s.d.indexOf("2026-09-")!==0)continue;var rk=RINKS[s.rink];if(!rk)continue;km+=rk.km*2;n++;}
+  var L2=km*LP100/100,c2=L2*FUEL.price;
+  h+='<tr><td><strong>September, one truck covers all '+n+' skates + practices</strong></td><td class="n">~'+km+' km</td><td class="n">'+L2.toFixed(0)+' L</td><td class="n">'+money(c2)+'</td><td class="n"><strong>'+money(c2/4)+'</strong></td></tr>';
+  return h;
+}
+
+document.getElementById("app").innerHTML =
+'<div class="stack">'+
+'<header class="mast">'+
+  '<span class="eyebrow">Okotoks &middot; '+FAMILIES.join(" &middot; ")+'</span>'+
+  '<h1>Mustangs Carpool Hub</h1>'+
+  '<p class="sub">U16 AA &middot; 2026–27 season. The schedule, the rinks, the fuel math — no sign-in, loads from the driveway.</p>'+
+'</header>'+
+renderStrip()+
+'<div><a class="btnlink" href="'+esc(BOARD_URL)+'" target="_blank" rel="noopener">Open the live board → claim drives &amp; breakroom</a>'+
+'<p class="tiny" style="margin-top:.5rem">The live board is where drives get claimed, payments get ticked, and the breakroom wall lives — it needs a free claude.ai sign-in to edit. This hub is the fast read-only front door.</p></div>'+
+'<section class="sec"><h2>Every U16 date on the books</h2>'+renderSessions()+
+  '<p class="tiny">Practice times from Jesse’s Sept schedule PDF; weeknight skate times TBC. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p></section>'+
+'<section class="sec"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
+  '<thead><tr><th>Town</th><th>Rink</th><th>Distance</th><th>One way</th><th>Round trip</th><th>Pin</th></tr></thead><tbody>'+renderRinks()+'</tbody></table></div>'+
+  '<p class="tiny">Pins open in Google Maps. Lethbridge weeknight venue not confirmed yet — those default to Logan Boulet.</p></section>'+
+'<section class="sec"><h2>Fuel — what a drive really costs</h2>'+
+  '<p class="muted">Figured at <span class="num">16.8 L/100 km</span> (14 MPG — honest truck economy with four players and their bags) at the Okotoks street price above, refreshed each morning. Split it, or buy the driver’s next tank.</p>'+
+  '<div class="scroll"><table><thead><tr><th>Round trip to</th><th>Distance</th><th>Fuel</th><th>Cost</th><th>Split 4 ways</th></tr></thead><tbody>'+renderFuel()+'</tbody></table></div>'+
+  '<p class="tiny">Fuel only — no wear, no coffee, no chicken strips at the Claresholm A&amp;W.</p></section>'+
+'<section class="sec"><h2>Money &amp; team</h2>'+
+  '<p class="muted"><span class="num">$1,000</span>/player due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Credit card possible (+3.15%): ask Jesse — 403-915-2051.</p></section>'+
+'<footer>Okotoks Mustangs carpool hub &middot; built from Jesse’s Aug 23 season email, the Sept practice PDF, and the 2026 showcase poster. Pin this page: iPhone — Safari, Share, Add to Home Screen. Android — Chrome menu, Add to Home screen.</footer>'+
+'</div>';
+</script>
+</body>
+</html>
