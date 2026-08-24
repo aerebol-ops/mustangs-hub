@@ -146,6 +146,14 @@ var SESSIONS = [
 {id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:"",gd:"20261009/20261012"},
 {id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116"}
 ];
+var HOTELS = {
+  "s10": {name:"Best Western Diamond Inn", addr:"351 7th Ave NE, Three Hills", phone:"403-443-7889",
+    book:"https://www.bestwestern.com/en_US/book/three-hills/hotel-rooms/best-western-diamond-inn/propertyCode.61069.html",
+    inout:"Check-in Fri 3:00 PM · out Sun 11:00 AM", by:"The Schlahts are booked"},
+  "s13": {name:"Fairfield Inn & Suites by Marriott", addr:"Lethbridge", phone:"",
+    book:"https://www.marriott.com/en-us/hotels/yqlfi-fairfield-inn-and-suites-lethbridge/overview/",
+    inout:"Check-in Fri 3:00 PM · out Sun 12:00 PM", by:"The Schlahts are booked"}
+};
 var ICS_HTTPS = "https://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 var ICS_WEBCAL = "webcal://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 function calUrl(s){
@@ -262,6 +270,16 @@ function renderSessions(){
         (cd?'<span class="chip count">'+esc(cd)+'</span>':'')+
         '<span class="chip drive">'+esc(r.time)+' each way</span>'+
         '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team — game times land closer to the date.</span>'+
+        (function(){
+          var ht=HOTELS[s.id];
+          if(!ht) return '<span class="roadtrip">&#127976; <strong>Team hotel:</strong> not booked yet — watch this space.</span>';
+          return '<span class="roadtrip">&#127976; <strong>Team hotel: '+esc(ht.name)+'</strong> &middot; '+esc(ht.inout)+
+            (ht.phone?' &middot; <span class="num">'+esc(ht.phone)+'</span>':'')+
+            ' &middot; '+esc(ht.by)+' — grab a room to be down the hall: '+
+            '<a href="'+esc(ht.book)+'" target="_blank" rel="noopener">book at the hotel &#8599;</a> '+
+            pinLink(ht.name+", "+ht.addr+", AB", ht.name)+
+          '</span>';
+        })()+
         claimRow(s)+
       '</div></div>';
     } else {
