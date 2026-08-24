@@ -64,6 +64,26 @@ p{margin:0}
 .chip.drive{font-family:var(--mono);letter-spacing:0;text-transform:none;color:var(--ink2)}
 .pin{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent2);text-decoration:none;border:1px solid var(--line2);border-radius:100px;padding:.13rem .5rem;white-space:nowrap}
 .pin:hover{border-color:var(--accent);color:var(--accent)}
+.mdiv{display:flex;align-items:baseline;gap:.75rem;margin-top:.9rem}
+.mdiv:first-child{margin-top:0}
+.mdiv .mname{font-family:var(--sans);font-weight:800;font-size:1.15rem;letter-spacing:.05em;text-transform:uppercase}
+.mdiv .mrule{flex:1;height:2px;background:var(--line)}
+.mdiv .mcount{font-family:var(--mono);font-size:.75rem;color:var(--ink3);white-space:nowrap}
+.card.showcase{grid-template-columns:8px 1fr;border:1px solid var(--accent);background:linear-gradient(120deg,var(--accentWash),var(--panel) 65%);box-shadow:0 2px 8px var(--shadow)}
+.card.showcase .tier{background:linear-gradient(180deg,var(--accent),var(--far))}
+.card.showcase .cbody{padding:1rem .95rem}
+.showbadge{flex-basis:100%;font-family:var(--sans);font-weight:800;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent2)}
+.chip.count{border-color:var(--accent);color:var(--accent2);font-family:var(--mono);letter-spacing:0;text-transform:none}
+.roadtrip{font-family:var(--sans);font-size:.85rem;color:var(--ink2);flex-basis:100%}
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap}
+.tab{font-family:var(--sans);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--sunk);border:1px solid var(--line2);border-radius:100px;padding:.45rem .85rem;cursor:pointer;color:var(--ink2)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.shop{display:grid;grid-template-columns:repeat(auto-fill,minmax(13.5rem,1fr));gap:.7rem}
+.shopcard{display:flex;flex-direction:column;gap:.3rem;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:.85rem .95rem;text-decoration:none;color:var(--ink);box-shadow:0 1px 2px var(--shadow)}
+.shopcard:hover{border-color:var(--accent)}
+.shopcard .sn{font-family:var(--sans);font-weight:700}
+.shopcard .sd{font-size:.85rem;color:var(--ink2);line-height:1.45}
+.shopcard .su{font-family:var(--mono);font-size:.72rem;color:var(--accent2)}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:26rem}
 th{text-align:left;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:.4rem .6rem .4rem 0;border-bottom:1px solid var(--line2);white-space:nowrap}
@@ -136,19 +156,40 @@ function renderStrip(){
     '<div><span class="k">Roads</span><br><span class="v"><a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta</a> before you roll &mdash; Highway 2 south writes its own weather</span></div>'+
   '</div>';
 }
+var MONTHFULL=["","January","February","March","April","May","June","July","August","September","October","November","December"];
 function renderSessions(){
-  var h='<div class="cards">';
+  var h='<div class="cards">',curMonth="";
   for(var i=0;i<SESSIONS.length;i++){
     var s=SESSIONS[i],r=RINKS[s.rink]||{time:"?",tier:0,map:s.rink};
-    if(daysUntil(s.label?s.d:s.d)< -1 && s.kind!=="showcase" && daysUntil(s.d)<0) continue; /* hide long-past days */
-    h+='<div class="card"><div class="tier t'+r.tier+'"></div><div class="cbody">'+
-      '<span class="date">'+(s.label?esc(s.dow)+" "+esc(s.label):esc(s.dow)+" "+fmtDate(s.d))+'</span>'+
-      '<span class="rink">'+esc(s.rink)+(s.venue?' <span class="tiny">('+esc(s.venue)+')</span>':'')+'</span>'+
-      pinLink(s.venue&&s.rink==="Lethbridge"?s.venue+", Lethbridge, AB":r.map,s.rink)+
-      '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
-      '<span class="chip drive">'+esc(r.time)+' each way</span>'+
-      (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
-    '</div></div>';
+    if(daysUntil(s.d)<0 && s.kind!=="showcase") continue; /* past days drop off */
+    var mn=MONTHFULL[parseInt(s.d.split("-")[1],10)];
+    if(mn!==curMonth){
+      curMonth=mn;
+      var cnt=0;for(var j=0;j<SESSIONS.length;j++){if(MONTHFULL[parseInt(SESSIONS[j].d.split("-")[1],10)]===mn&&daysUntil(SESSIONS[j].d)>=0)cnt++;}
+      h+='<div class="mdiv"><span class="mname">'+esc(mn)+'</span><span class="mrule"></span><span class="mcount">'+cnt+' on the ice</span></div>';
+    }
+    var du=daysUntil(s.d);
+    var cd=du===0?"today!":(du===1?"tomorrow":(du>0?"in "+du+" days":""));
+    if(s.kind==="showcase"){
+      h+='<div class="card showcase"><div class="tier"></div><div class="cbody">'+
+        '<span class="showbadge">&#9733; Showcase Weekend &#9733;</span>'+
+        '<span class="date">'+esc(s.dow)+" "+esc(s.label||fmtDate(s.d))+'</span>'+
+        '<span class="rink">'+esc(s.rink)+'</span>'+
+        pinLink(r.map,s.rink)+
+        (cd?'<span class="chip count">'+esc(cd)+'</span>':'')+
+        '<span class="chip drive">'+esc(r.time)+' each way</span>'+
+        '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team — game times land closer to the date.</span>'+
+      '</div></div>';
+    } else {
+      h+='<div class="card"><div class="tier t'+r.tier+'"></div><div class="cbody">'+
+        '<span class="date">'+esc(s.dow)+" "+fmtDate(s.d)+'</span>'+
+        '<span class="rink">'+esc(s.rink)+(s.venue?' <span class="tiny">('+esc(s.venue)+')</span>':'')+'</span>'+
+        pinLink(s.venue&&s.rink==="Lethbridge"?s.venue+", Lethbridge, AB":r.map,s.rink)+
+        '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
+        '<span class="chip drive">'+esc(r.time)+' each way</span>'+
+        (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
+      '</div></div>';
+    }
   }
   return h+'</div>';
 }
@@ -188,10 +229,65 @@ renderStrip()+
   '<p class="muted">Figured at <span class="num">16.8 L/100 km</span> (14 MPG — honest truck economy with four players and their bags) at the Okotoks street price above, refreshed each morning. Split it, or buy the driver’s next tank.</p>'+
   '<div class="scroll"><table><thead><tr><th>Round trip to</th><th>Distance</th><th>Fuel</th><th>Cost</th><th>Split 4 ways</th></tr></thead><tbody>'+renderFuel()+'</tbody></table></div>'+
   '<p class="tiny">Fuel only — no wear, no coffee, no chicken strips at the Claresholm A&amp;W.</p></section>'+
+'<section class="sec"><h2>The gear locker</h2>'+
+  '<p class="muted">Season-long truth: somebody needs tape, a kid outgrows skates in October, and the garage needs a shooting pad by Christmas. Shop from the couch.</p>'+
+  '<div class="tabs" role="tablist" id="geartabs"></div>'+
+  '<div class="shop" id="gearpanel"></div>'+
+  '<p class="tiny">Just handy links — nobody here gets a commission. Prices in CAD; check shipping to Okotoks before you fall in love.</p>'+
+'</section>'+
 '<section class="sec"><h2>Money &amp; team</h2>'+
   '<p class="muted"><span class="num">$1,000</span>/player due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Credit card possible (+3.15%): ask Jesse — 403-915-2051.</p></section>'+
 '<footer>Okotoks Mustangs carpool hub &middot; built from Jesse’s Aug 23 season email, the Sept practice PDF, and the 2026 showcase poster. Pin this page: iPhone — Safari, Share, Add to Home Screen. Android — Chrome menu, Add to Home screen.</footer>'+
 '</div>';
+
+/* ==== Gear locker tabs ==== */
+var SHOP = {
+  "Sticks & Gear": [
+    {n:"Bauer", d:"The mothership — sticks, skates, protective. Liam’s inbox already knows the SUPREME line by heart.", u:"https://www.bauer.com"},
+    {n:"Pro Hockey Life", d:"Canada’s big hockey shop. Wide stock, frequent sales, ships fast.", u:"https://www.prohockeylife.com"},
+    {n:"Sport Chek — Hockey", d:"Sale-rack sticks, base layers, and last-minute cup replacements.", u:"https://www.sportchek.ca/en/categories/hockey.html"},
+    {n:"Amazon.ca — hockey gear", d:"When it has to be at the door before Wednesday’s skate.", u:"https://www.amazon.ca/s?k=hockey+equipment"}
+  ],
+  "Tape & Essentials": [
+    {n:"Howies Hockey Tape", d:"Cloth, clear, and wax by the bulk pack — one order lasts the season.", u:"https://howieshockeytape.com"},
+    {n:"Amazon.ca — hockey tape", d:"Tape multipacks with next-day delivery. The convoy never runs dry.", u:"https://www.amazon.ca/s?k=hockey+stick+tape"},
+    {n:"Amazon.ca — laces & wax", d:"Waxed laces, skate wax, blade covers — the little stuff that vanishes.", u:"https://www.amazon.ca/s?k=hockey+skate+laces+waxed"},
+    {n:"Amazon.ca — bag deodorizer", d:"Four players, one truck, 1 h 45 to Lethbridge. This one’s for the drivers.", u:"https://www.amazon.ca/s?k=hockey+bag+deodorizer"}
+  ],
+  "Garage Training": [
+    {n:"Better Hockey", d:"Shooting tarps and dryland tiles — the stuff 100+ NHL pros train on at home.", u:"https://www.betterhockeycanada.com"},
+    {n:"HockeyShot", d:"Synthetic ice, passing kits, shooting pads. Winter-proof the driveway.", u:"https://hockeyshot.ca"},
+    {n:"Amazon.ca — training aids", d:"Stickhandling balls, agility ladders, radar guns.", u:"https://www.amazon.ca/s?k=hockey+training+aids"}
+  ],
+  "Swag & Fun": [
+    {n:"Amazon.ca — hockey swag", d:"Toques, tees, and gifts for the hockey-mad.", u:"https://www.amazon.ca/s?k=hockey+gifts"},
+    {n:"Amazon.ca — mini sticks", d:"Knee hockey for the hotel hallway on showcase weekends. You know it’s happening.", u:"https://www.amazon.ca/s?k=mini+hockey+sticks+set"},
+    {n:"Mustangs team store", d:"Jesse says the online apparel store is coming any day — link lands here the moment he sends it.", u:""}
+  ]
+};
+function renderShop(cat){
+  var tabs=document.getElementById("geartabs"),panel=document.getElementById("gearpanel");
+  var names=Object.keys(SHOP),th="";
+  for(var i=0;i<names.length;i++){
+    th+='<button class="tab" role="tab" aria-selected="'+(names[i]===cat)+'" data-cat="'+esc(names[i])+'">'+esc(names[i])+'</button>';
+  }
+  tabs.innerHTML=th;
+  var items=SHOP[cat],ph="";
+  for(var j=0;j<items.length;j++){
+    var it=items[j];
+    if(it.u){
+      ph+='<a class="shopcard" href="'+esc(it.u)+'" target="_blank" rel="noopener"><span class="sn">'+esc(it.n)+'</span><span class="sd">'+esc(it.d)+'</span><span class="su">'+esc(it.u.replace(/^https:\/\/(www\.)?/,"").split("/")[0])+' →</span></a>';
+    } else {
+      ph+='<div class="shopcard" style="opacity:.65"><span class="sn">'+esc(it.n)+'</span><span class="sd">'+esc(it.d)+'</span><span class="su">coming soon</span></div>';
+    }
+  }
+  panel.innerHTML=ph;
+}
+document.getElementById("geartabs").addEventListener("click",function(e){
+  var b=e.target.closest("[data-cat]");
+  if(b) renderShop(b.getAttribute("data-cat"));
+});
+renderShop("Sticks & Gear");
 </script>
 </body>
 </html>
