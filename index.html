@@ -36,7 +36,9 @@ body{margin:0}
   --shadow:rgba(0,0,0,.45);
 }}
 body{background:var(--ground);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.6}
-#app{max-width:52rem;margin:0 auto;padding:1.25rem 1rem 5rem}
+body::before{content:"";position:fixed;inset:0;background:url(mustangs-logo.png) center 34%/min(74vmin,36rem) no-repeat;opacity:.055;pointer-events:none;z-index:0}
+#app{max-width:52rem;margin:0 auto;padding:1.25rem 1rem 5rem;position:relative;z-index:1}
+.crest{width:clamp(68px,17vw,104px);height:auto;filter:drop-shadow(0 2px 6px var(--shadow))}
 h1,h2,.eyebrow,th,.btnlink{font-family:var(--sans)}
 h1{font-size:clamp(1.6rem,6vw,2.4rem);line-height:1.05;margin:0;font-weight:800;letter-spacing:-.02em;text-transform:uppercase;text-wrap:balance}
 h2{font-size:.82rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:0;padding-bottom:.5rem;border-bottom:2px solid var(--line)}
@@ -44,7 +46,8 @@ p{margin:0}
 .stack{display:flex;flex-direction:column;gap:2.25rem}
 .sec{display:flex;flex-direction:column;gap:.9rem}
 .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
-.mast{display:flex;flex-direction:column;gap:.55rem;padding-bottom:1.1rem;border-bottom:3px solid var(--ink)}
+.mast{display:grid;grid-template-columns:1fr auto;gap:.55rem 1.25rem;align-items:center;padding-bottom:1.1rem;border-bottom:3px solid var(--ink)}
+.mast .mtxt{display:flex;flex-direction:column;gap:.55rem}
 .eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 .sub{color:var(--ink2);font-size:.95rem}
 .strip{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;align-items:baseline;background:var(--accentWash);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:3px;padding:.8rem .95rem}
@@ -213,9 +216,12 @@ function renderFuel(){
 document.getElementById("app").innerHTML =
 '<div class="stack">'+
 '<header class="mast">'+
-  '<span class="eyebrow">Okotoks &middot; '+FAMILIES.join(" &middot; ")+'</span>'+
-  '<h1>Mustangs Carpool Hub</h1>'+
-  '<p class="sub">U16 AA &middot; 2026–27 season. The schedule, the rinks, the fuel math — no sign-in, loads from the driveway.</p>'+
+  '<div class="mtxt">'+
+    '<span class="eyebrow">Okotoks &middot; '+FAMILIES.join(" &middot; ")+'</span>'+
+    '<h1>Mustangs Carpool Hub</h1>'+
+    '<p class="sub">U16 AA &middot; 2026–27 season. The schedule, the rinks, the fuel math — no sign-in, loads from the driveway.</p>'+
+  '</div>'+
+  '<img class="crest" src="mustangs-logo.png" alt="Mustangs Hockey crest" width="104" height="104">'+
 '</header>'+
 renderStrip()+
 '<div><a class="btnlink" href="'+esc(BOARD_URL)+'" target="_blank" rel="noopener">Open the live board → claim drives &amp; breakroom</a>'+
