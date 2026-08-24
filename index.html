@@ -93,6 +93,9 @@ p{margin:0}
 .drill .dnum{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--accent2);border:1px solid var(--line2);border-radius:100px;padding:.05rem .45rem}
 .drill .dd{font-size:.9rem;color:var(--ink2);line-height:1.5}
 .trlead{font-family:var(--sans);font-size:.95rem;color:var(--ink2);border-left:3px solid var(--accent);padding-left:.75rem}
+.nav{position:sticky;top:0;z-index:5;display:flex;gap:.4rem;flex-wrap:wrap;background:var(--ground);padding:.65rem 0;border-bottom:2px solid var(--line);margin:0 -0.25rem;padding-left:.25rem;padding-right:.25rem}
+.nav .tab{font-size:.82rem;padding:.5rem .9rem}
+.view[hidden]{display:none}
 .scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:26rem}
 th{text-align:left;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);padding:.4rem .6rem .4rem 0;border-bottom:1px solid var(--line2);white-space:nowrap}
@@ -230,33 +233,73 @@ document.getElementById("app").innerHTML =
   '<img class="crest" src="mustangs-logo.png" alt="Mustangs Hockey crest" width="104" height="104">'+
 '</header>'+
 renderStrip()+
-'<div><a class="btnlink" href="'+esc(BOARD_URL)+'" target="_blank" rel="noopener">Open the live board → claim drives &amp; breakroom</a>'+
-'<p class="tiny" style="margin-top:.5rem">The live board is where drives get claimed, payments get ticked, and the breakroom wall lives — it needs a free claude.ai sign-in to edit. This hub is the fast read-only front door.</p></div>'+
-'<section class="sec"><h2>Every U16 date on the books</h2>'+renderSessions()+
-  '<p class="tiny">Practice times from Jesse’s Sept schedule PDF; weeknight skate times TBC. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p></section>'+
-'<section class="sec"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
+'<nav class="nav" id="mainnav" aria-label="Sections"></nav>'+
+'<section class="sec view" id="v-schedule"><h2>Every U16 date on the books</h2>'+renderSessions()+
+  '<p class="tiny">Practice times from Jesse’s Sept schedule PDF; weeknight skate times TBC. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p>'+
+  '<div><a class="btnlink" href="'+esc(BOARD_URL)+'" target="_blank" rel="noopener">Open the live board → claim drives &amp; breakroom</a>'+
+  '<p class="tiny" style="margin-top:.5rem">The live board is where drives get claimed, payments get ticked, and the breakroom wall lives — it needs a free claude.ai sign-in to edit. This hub is the fast read-only front door.</p></div>'+
+'</section>'+
+'<section class="sec view" id="v-rinks"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
   '<thead><tr><th>Town</th><th>Rink</th><th>Distance</th><th>One way</th><th>Round trip</th><th>Pin</th></tr></thead><tbody>'+renderRinks()+'</tbody></table></div>'+
-  '<p class="tiny">Pins open in Google Maps. Lethbridge weeknight venue not confirmed yet — those default to Logan Boulet.</p></section>'+
-'<section class="sec"><h2>Fuel — what a drive really costs</h2>'+
+  '<p class="tiny">Pins open in Google Maps. Lethbridge weeknight venue not confirmed yet — those default to Logan Boulet. Winter rule: <a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta</a> before every run south.</p></section>'+
+'<section class="sec view" id="v-fuel"><h2>Fuel — what a drive really costs</h2>'+
   '<p class="muted">Figured at <span class="num">16.8 L/100 km</span> (14 MPG — honest truck economy with four players and their bags) at the Okotoks street price above, refreshed each morning. Split it, or buy the driver’s next tank.</p>'+
   '<div class="scroll"><table><thead><tr><th>Round trip to</th><th>Distance</th><th>Fuel</th><th>Cost</th><th>Split 4 ways</th></tr></thead><tbody>'+renderFuel()+'</tbody></table></div>'+
   '<p class="tiny">Fuel only — no wear, no coffee, no chicken strips at the Claresholm A&amp;W.</p></section>'+
-'<section class="sec"><h2>&#128170; The training room — for the boys</h2>'+
+'<section class="sec view" id="v-training"><h2>&#128170; The training room — for the boys</h2>'+
   '<div class="trlead" id="trlead"></div>'+
   '<div class="tabs" role="tablist" id="traintabs"></div>'+
   '<div class="drills" id="trainpanel"></div>'+
   '<p class="tiny">General age-appropriate training info, not medical advice — anything that hurts (not burns, hurts) gets shut down and mentioned to a parent or coach. Coach’s systems come first; this is the extra 1%.</p>'+
 '</section>'+
-'<section class="sec"><h2>The gear locker</h2>'+
+'<section class="sec view" id="v-gear"><h2>The gear locker</h2>'+
   '<p class="muted">Season-long truth: somebody needs tape, a kid outgrows skates in October, and the garage needs a shooting pad by Christmas. Shop from the couch.</p>'+
   '<div class="tabs" role="tablist" id="geartabs"></div>'+
   '<div class="shop" id="gearpanel"></div>'+
   '<p class="tiny">Just handy links — nobody here gets a commission. Prices in CAD; check shipping to Okotoks before you fall in love.</p>'+
 '</section>'+
-'<section class="sec"><h2>Money &amp; team</h2>'+
-  '<p class="muted"><span class="num">$1,000</span>/player due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Credit card possible (+3.15%): ask Jesse — 403-915-2051.</p></section>'+
+'<section class="sec view" id="v-team"><h2>Money &amp; team</h2>'+
+  '<p class="muted"><span class="num">$1,000</span>/player due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Credit card possible (+3.15%): ask Jesse — 403-915-2051.</p>'+
+  '<p class="muted">Team manager: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Rosters, weeknight ice times, the Oct/Nov schedule, and the apparel store are all still on their way from him.</p>'+
+  '<div><a class="btnlink" href="'+esc(BOARD_URL)+'" target="_blank" rel="noopener">Open the live board → payments &amp; breakroom</a></div>'+
+'</section>'+
 '<footer>Okotoks Mustangs carpool hub &middot; built from Jesse’s Aug 23 season email, the Sept practice PDF, and the 2026 showcase poster. Pin this page: iPhone — Safari, Share, Add to Home Screen. Android — Chrome menu, Add to Home screen.</footer>'+
 '</div>';
+
+/* ==== Section navigation ==== */
+var VIEWS = [
+  {id:"schedule", label:"🗓 Schedule"},
+  {id:"rinks",    label:"📍 Rinks"},
+  {id:"fuel",     label:"⛽ Fuel"},
+  {id:"training", label:"💪 Training"},
+  {id:"gear",     label:"🛒 Gear"},
+  {id:"team",     label:"💵 Team"}
+];
+function setView(id){
+  var known=false;
+  for(var i=0;i<VIEWS.length;i++) if(VIEWS[i].id===id) known=true;
+  if(!known) id="schedule";
+  for(var j=0;j<VIEWS.length;j++){
+    var sec=document.getElementById("v-"+VIEWS[j].id);
+    if(sec) sec.hidden = VIEWS[j].id!==id;
+  }
+  var btns=document.querySelectorAll("#mainnav .tab");
+  for(var k=0;k<btns.length;k++) btns[k].setAttribute("aria-selected", btns[k].getAttribute("data-view")===id);
+  if(("#"+id)!==location.hash){ try{ history.replaceState(null,"","#"+id); }catch(e){ location.hash=id; } }
+}
+(function(){
+  var nav=document.getElementById("mainnav"),h="";
+  for(var i=0;i<VIEWS.length;i++){
+    h+='<button class="tab" role="tab" data-view="'+VIEWS[i].id+'" aria-selected="false">'+VIEWS[i].label+'</button>';
+  }
+  nav.innerHTML=h;
+  nav.addEventListener("click",function(e){
+    var b=e.target.closest("[data-view]");
+    if(b) setView(b.getAttribute("data-view"));
+  });
+  window.addEventListener("hashchange",function(){ setView(location.hash.replace("#","")); });
+  setView(location.hash.replace("#","") || "schedule");
+})();
 
 /* ==== Training room tabs ==== */
 var TRAIN = {
