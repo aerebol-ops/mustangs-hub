@@ -102,8 +102,11 @@ p{margin:0}
 .assign{flex-basis:100%;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;padding-top:.35rem;border-top:1px dashed var(--line)}
 .who{font-family:var(--sans);font-weight:700;font-size:.92rem;color:var(--ink3);font-style:italic}
 .who.set{color:var(--good);font-style:normal}
-.assign select{font-family:var(--sans);font-size:.88rem;color:var(--ink);background:var(--sunk);border:1px solid var(--line2);border-radius:3px;padding:.35rem .45rem;cursor:pointer}
-.assign select:disabled{opacity:.5}
+.togs{display:flex;gap:.4rem;flex-wrap:wrap}
+.famtog{font-family:var(--sans);font-size:.85rem;font-weight:700;color:var(--ink3);background:var(--sunk);border:1px solid var(--line2);border-radius:999px;padding:.32rem .75rem;cursor:pointer;line-height:1.2}
+.famtog:hover{border-color:var(--ink3)}
+.famtog.on{color:var(--ground);background:var(--good);border-color:var(--good)}
+.famtog:disabled{opacity:.5;cursor:wait}
 .claimnote{font-family:var(--sans);font-size:.75rem;color:var(--ink3)}
 .nav .tab{font-size:.82rem;padding:.5rem .9rem}
 .view[hidden]{display:none}
@@ -197,8 +200,8 @@ function renderGlance(){
   if(next){
     var du=daysUntil(next.d);
     var when=du===0?"Today":(du===1?"Tomorrow":"In "+du+" days");
-    var c=CLAIMS[next.id];
-    var driver=CLAIMS_OK?(c&&c.family?c.family+" is driving":"No driver yet — claim it on the Schedule tab"):"";
+    var nf=famsOf(CLAIMS[next.id]);
+    var driver=CLAIMS_OK?(nf.length?nf.join(" + ")+(nf.length>1?" are":" is")+" driving":"No driver yet — claim it on the Schedule tab"):"";
     h+='<div class="gt c-ice"><span class="gk">&#127954; Next ice &middot; '+esc(when)+'</span>'+
       '<span class="gv">'+esc(next.dow)+" "+(next.label?esc(next.label):fmtDate(next.d))+' &middot; '+esc(next.rink)+'</span>'+
       '<span class="gs">'+esc(KIND[next.kind]||"Ice")+(next.time?' &middot; '+esc(next.time):' &middot; time TBC')+(driver?' &middot; '+esc(driver):'')+'</span></div>';
@@ -234,16 +237,23 @@ function renderGlance(){
   return h+'</div></section>';
 }
 var MONTHFULL=["","January","February","March","April","May","June","July","August","September","October","November","December"];
+function famsOf(c){
+  if(!c) return [];
+  if(c.families&&c.families.length!==undefined) return c.families;
+  if(c.family) return [c.family];
+  return [];
+}
 function claimRow(s){
   if(!CLAIMS_OK) return "";
-  var c=CLAIMS[s.id];
-  var who=c&&c.family?'<span class="who set">'+esc(c.family)+" driving</span>":'<span class="who">Nobody yet — take it:</span>';
-  var o='<option value="">— open —</option>';
+  var fams=famsOf(CLAIMS[s.id]);
+  var who=fams.length?'<span class="who set">'+esc(fams.join(" + "))+(fams.length>1?" are":" is")+" driving</span>":'<span class="who">Who&rsquo;s driving? Tap your name:</span>';
+  var b='';
   for(var i=0;i<FAMILIES.length;i++){
-    o+='<option value="'+esc(FAMILIES[i])+'"'+((c&&c.family)===FAMILIES[i]?" selected":"")+'>'+esc(FAMILIES[i])+'</option>';
+    var f=FAMILIES[i],on=fams.indexOf(f)>=0;
+    b+='<button type="button" class="famtog'+(on?' on':'')+'" data-claim="'+esc(s.id)+'" data-family="'+esc(f)+'" data-on="'+(on?'1':'')+'" aria-pressed="'+(on?'true':'false')+'" aria-label="'+esc(f)+(on?' driving — tap to step back':' — tap to drive')+' '+esc(s.dow)+' '+fmtDate(s.d)+'">'+(on?'&#128663; ':'')+esc(f)+'</button>';
   }
   return '<div class="assign">'+who+
-    '<select data-claim="'+esc(s.id)+'" aria-label="Driver for '+esc(s.dow)+' '+fmtDate(s.d)+'">'+o+'</select>'+
+    '<span class="togs">'+b+'</span>'+
     '<span class="claimnote" id="cn-'+esc(s.id)+'"></span>'+
   '</div>';
 }
@@ -312,20 +322,26 @@ function fetchClaims(){
     if(g) g.outerHTML=renderGlance();
   })["catch"](function(){ /* worker unreachable — cards stay read-only */ });
 }
-document.addEventListener("change",function(e){
-  var t=e.target,id=t.getAttribute&&t.getAttribute("data-claim");
-  if(!id) return;
+document.addEventListener("click",function(e){
+  var t=e.target;
+  while(t&&t.getAttribute&&!t.getAttribute("data-claim")) t=t.parentNode;
+  if(!t||!t.getAttribute) return;
+  var id=t.getAttribute("data-claim"),fam=t.getAttribute("data-family");
+  if(!id||!fam) return;
+  var on=!t.getAttribute("data-on"); /* flipping to the opposite of current */
   var note=document.getElementById("cn-"+id);
   t.disabled=true; if(note) note.textContent="saving…";
   fetch(CLAIMS_API+"/claim",{
     method:"POST",
     headers:{"Content-Type":"application/json","X-Team":"mustangs-2026"},
-    body:JSON.stringify({id:id,family:t.value})
+    body:JSON.stringify({id:id,family:fam,on:on})
   }).then(function(r){
     if(!r.ok) throw new Error(r.status);
     return r.json();
   }).then(function(board){
     CLAIMS=board; refreshSched();
+    var g=document.getElementById("glancewrap");
+    if(g) g.outerHTML=renderGlance();
   })["catch"](function(){
     t.disabled=false;
     if(note) note.textContent="didn’t save — try again";
