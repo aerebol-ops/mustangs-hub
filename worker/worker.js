@@ -92,6 +92,45 @@ export default {
       });
     }
 
+    // Payments: KV key "pay" = { "2026-09": ["Lyons", ...] } — families who
+    // marked that month's team payment as sent. Same honor system as claims.
+    if (url.pathname === "/pay" && request.method === "GET") {
+      const raw = await env.CLAIMS.get("pay");
+      return new Response(raw || "{}", {
+        headers: cors({ "Content-Type": "application/json" })
+      });
+    }
+
+    if (url.pathname === "/pay" && request.method === "POST") {
+      if (request.headers.get("X-Team") !== TEAM) {
+        return new Response('{"error":"nope"}', { status: 403, headers: cors() });
+      }
+      let body;
+      try { body = await request.json(); } catch (e) {
+        return new Response('{"error":"bad json"}', { status: 400, headers: cors() });
+      }
+      const month = String(body.month || "");
+      const family = String(body.family || "");
+      if (!/^20\d\d-(0[1-9]|1[0-2])$/.test(month)) {
+        return new Response('{"error":"unknown month"}', { status: 400, headers: cors() });
+      }
+      if (!FAMILIES.includes(family)) {
+        return new Response('{"error":"unknown family"}', { status: 400, headers: cors() });
+      }
+      const raw = await env.CLAIMS.get("pay");
+      const pay = raw ? JSON.parse(raw) : {};
+      let fams = Array.isArray(pay[month]) ? pay[month] : [];
+      fams = fams.filter(function (f) { return f !== family; });
+      if (body.paid) fams.push(family);
+      fams = FAMILIES.filter(function (f) { return fams.includes(f); });
+      if (fams.length) pay[month] = fams;
+      else delete pay[month];
+      await env.CLAIMS.put("pay", JSON.stringify(pay));
+      return new Response(JSON.stringify(pay), {
+        headers: cors({ "Content-Type": "application/json" })
+      });
+    }
+
     return new Response('{"error":"not found"}', { status: 404, headers: cors() });
   }
 };
