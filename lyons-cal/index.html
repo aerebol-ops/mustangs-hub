@@ -163,10 +163,12 @@
   .who button[aria-pressed="true"]{background:var(--rink); border-color:var(--rink); color:var(--chipink)}
   .frow{display:flex; gap:12px; flex-wrap:wrap}
   .frow > div{flex:1 1 160px}
-  select,input[type="date"],textarea{
+  select,input[type="date"],input[type="file"],textarea{
     font:inherit; font-size:14.5px; color:var(--ink); background:var(--paper);
     border:1.5px solid var(--line); border-radius:8px; padding:8px 10px; width:100%;
   }
+  input[type="file"]{font-size:13.5px}
+  .rphoto{display:block; max-width:100%; max-height:220px; border-radius:8px; margin-top:8px; border:1px solid var(--line)}
   textarea{min-height:74px; resize:vertical}
   .send{
     font:inherit; font-size:15px; font-weight:700; color:var(--chipink); background:var(--rink);
@@ -334,9 +336,12 @@ function render(){
 
   var reqs = state.requests.slice().reverse().map(function(r){
     var tag = r.status==='applied' ? '<span class="tag done">on the board</span>' : '<span class="tag new">new</span>';
+    var photo = (r.photo && r.photo.indexOf('data:image/')===0)
+      ? '<img class="rphoto" src="'+esc(r.photo)+'" alt="'+esc(r.photoName||'photo')+'">'
+      : (r.photoName ? '<div class="rmeta" style="margin-top:6px">&#128247; '+esc(r.photoName)+' (archived to the family files)</div>' : '');
     return '<div class="req"><div class="rhead"><span class="rwho">'+esc(r.who)+'</span>'+
       '<span class="rmeta">'+esc(r.cat)+(r.date?' · for '+esc(r.date):'')+' · sent '+esc(r.ts)+'</span>'+tag+'</div>'+
-      '<div class="rtext">'+esc(r.text)+'</div></div>';
+      '<div class="rtext">'+esc(r.text)+'</div>'+photo+'</div>';
   }).join('');
 
   var app = document.getElementById('app');
@@ -392,12 +397,14 @@ function render(){
     '</div>'+
     '<div><label class="flabel" for="ftext">What should change</label>'+
     '<textarea id="ftext" maxlength="300" placeholder="e.g. Hawaii flights booked, back Jan 2 &mdash; or: skate times came out, Wednesdays are 7:15"></textarea></div>'+
+    '<div><label class="flabel" for="fphoto">Photo <span style="text-transform:none;font-weight:400">(optional &mdash; schedule, flyer, booking screenshot)</span></label>'+
+    '<input type="file" id="fphoto" accept="image/*"></div>'+
     '<div class="frow" style="align-items:center">'+
       '<button class="send" id="sendBtn" type="submit">Put it on the board</button>'+
       '<span class="formmsg" id="formMsg" role="status"></span>'+
     '</div>'+
-    '<p class="fnote" id="modeNote">Submissions save onto this page for everyone, and the nightly sweep folds them into the calendar. '+
-    'You can also just email <strong>'+MAILTO+'</strong> with <strong>FAMILY CAL</strong> in the subject &mdash; the sweep reads that too.</p>'+
+    '<p class="fnote" id="modeNote">Submissions save onto this page for everyone &mdash; photo included &mdash; and the nightly sweep reads them (yes, it reads the photo) and folds them into the calendar. '+
+    'You can also just email <strong>'+MAILTO+'</strong> with <strong>FAMILY CAL</strong> in the subject, photos or PDFs attached &mdash; the sweep reads that too.</p>'+
   '</form></div>'+
   '<div class="h2row"><h2>Family inbox</h2><span class="note">what&rsquo;s been suggested and where it stands</span></div>'+
   '<div class="inbox" id="inbox">'+(reqs||'<div class="req" style="color:var(--haze)">Nothing waiting &mdash; suggestions show up here.</div>')+'</div>'+
@@ -485,7 +492,8 @@ function wireForm(){
       document.getElementById('fcat').value = draft.cat;
       document.getElementById('fdate').value = draft.date||'';
       document.getElementById('ftext').value = draft.text;
-      msg('Someone updated the board first — your note is still here, send it again.', true);
+      msg('Someone updated the board first — your note is still here, send it again' +
+          (draft.photoName ? ' (re-attach the photo).' : '.'), true);
     }
   }
   document.getElementById('reqform').addEventListener('submit', onSubmit);
@@ -505,6 +513,28 @@ function mailtoFallback(req){
   location.href = 'mailto:'+MAILTO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
   msg('Opening email instead — send it and the sweep picks it up tonight.');
 }
+function compressImage(file, cb){
+  var url = URL.createObjectURL(file);
+  var img = new Image();
+  img.onload = function(){
+    URL.revokeObjectURL(url);
+    var w = img.naturalWidth, h = img.naturalHeight, out = null;
+    var shrink = function(maxDim, q){
+      var s = Math.min(1, maxDim / Math.max(w, h));
+      var cv = document.createElement('canvas');
+      cv.width = Math.max(1, Math.round(w*s)); cv.height = Math.max(1, Math.round(h*s));
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      return cv.toDataURL('image/jpeg', q);
+    };
+    try {
+      out = shrink(1400, 0.72);
+      if (out.length > 900000) out = shrink(1000, 0.55);
+    } catch(e){ out = null; }
+    cb(out && out.length <= 900000 ? out : null);
+  };
+  img.onerror = function(){ URL.revokeObjectURL(url); cb(null); };
+  img.src = url;
+}
 function onSubmit(ev){
   ev.preventDefault();
   var text = document.getElementById('ftext').value.trim();
@@ -519,12 +549,36 @@ function onSubmit(ev){
     ts: new Date().toLocaleDateString('en-CA', {month:'short', day:'numeric'}),
     status: 'new'
   };
-  if (readOnly || !artifactNS){ mailtoFallback(req); return; }
+  var fEl = document.getElementById('fphoto');
+  var file = fEl && fEl.files && fEl.files[0];
+  if (readOnly || !artifactNS){
+    mailtoFallback(req);
+    if (file){ msg('Attach your photo to the email before sending — it can’t ride the link on its own.', true); }
+    return;
+  }
+  if (file){
+    msg('Shrinking photo…');
+    compressImage(file, function(photo){
+      if (!photo){ msg('That photo wouldn’t shrink enough — email it with FAMILY CAL in the subject instead.', true); return; }
+      var total = photo.length;
+      state.requests.forEach(function(r){ if (r.photo) total += r.photo.length; });
+      if (total > 6000000){ msg('The board’s photo box is full — email this one; the sweep clears space nightly.', true); return; }
+      req.photo = photo; req.photoName = file.name;
+      doPublish(req);
+    });
+  } else {
+    doPublish(req);
+  }
+}
+function doPublish(req){
   var btn = document.getElementById('sendBtn');
   btn.disabled = true; msg('Saving to the board…');
   var newState = JSON.parse(JSON.stringify(state));
   newState.requests.push(req);
-  try { sessionStorage.setItem('famcal-draft', JSON.stringify(req)); } catch(e){}
+  try {
+    var draftCopy = {}; for (var k in req){ if (k !== 'photo') draftCopy[k] = req[k]; }
+    sessionStorage.setItem('famcal-draft', JSON.stringify(draftCopy));
+  } catch(e){}
   artifactNS.publish(buildDoc(newState)).then(function(){
     /* success: this view reloads to the new version; draft check shows the toast */
   }).catch(function(err){
@@ -569,7 +623,8 @@ if (window.claude && window.claude.use){
   readOnly = true;
   var mn = document.getElementById('modeNote');
   if (mn){ mn.innerHTML = 'From this view, suggestions go by email: tap the button and your mail app opens '+
-    'pre&#8209;addressed to <strong>'+MAILTO+'</strong> &mdash; hit send and the nightly sweep boards it.'; }
+    'pre&#8209;addressed to <strong>'+MAILTO+'</strong> &mdash; attach photos or PDFs right in the email, '+
+    'hit send, and the nightly sweep reads it all and boards it.'; }
 }
 })();
 </script>
