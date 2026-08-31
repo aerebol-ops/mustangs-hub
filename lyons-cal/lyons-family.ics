@@ -1,0 +1,400 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Lyons Family Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Lyons Family Cal
+X-WR-TIMEZONE:America/Edmonton
+X-PUBLISHED-TTL:PT12H
+REFRESH-INTERVAL;VALUE=DURATION:PT12H
+BEGIN:VEVENT
+UID:f8b1d737fe4539f2@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260901
+DTEND;VALUE=DATE:20260902
+SUMMARY:Hockey e-transfer due — $1\,000
+DESCRIPTION:to lethbridgemustangs@gmail.com · Payment · Board: https://a
+ erebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2aa28f8d9604a05d@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260907
+DTEND;VALUE=DATE:20260908
+SUMMARY:Labour Day — no school
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:8e4a43f30d69ed9b@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260909
+DTEND;VALUE=DATE:20260910
+SUMMARY:Weeknight skate — Lethbridge
+DESCRIPTION:time TBC · Hockey · Board: https://aerebol-ops.github.io/mus
+ tangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b3a68bd8fe977ed9@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260912
+DTEND;VALUE=DATE:20260913
+SUMMARY:Practice — Logan Boulet\, Lethbridge
+DESCRIPTION:5:00–6:30 + 6:45–7:45 (with U17) · Hockey · Board: https://a
+ erebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:36b35b1570b3e643@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260914
+DTEND;VALUE=DATE:20260915
+SUMMARY:Weeknight skate — Stavely
+DESCRIPTION:time TBC · Hockey · Board: https://aerebol-ops.github.io/mus
+ tangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f3e1154d4144eb9e@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260916
+DTEND;VALUE=DATE:20260917
+SUMMARY:Weeknight skate — Lethbridge
+DESCRIPTION:time TBC · Hockey · Board: https://aerebol-ops.github.io/mus
+ tangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:5c05bf6d2311eb6a@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260918
+DTEND;VALUE=DATE:20260928
+SUMMARY:Dad home — Trip 1 (projected)
+DESCRIPTION:Kainai weekend + Three Hills showcase · 10 days · Travel · B
+ oard: https://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:17e05c857ec09e32@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260918
+DTEND;VALUE=DATE:20260919
+SUMMARY:No school — PD day
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:c89163f60b03f6a2@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260919
+DTEND;VALUE=DATE:20260920
+SUMMARY:Practice — Kainai Sports Centre
+DESCRIPTION:10:00–11:30 + 1:00–2:00 · Hockey · Board: https://aerebol-op
+ s.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0213728ad5da69a3@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260920
+DTEND;VALUE=DATE:20260921
+SUMMARY:Practice — Kainai Sports Centre
+DESCRIPTION:9:30–11:00 + 12:30–1:30 · Hockey · Board: https://aerebol-op
+ s.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:6feb9c8724acd815@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260921
+DTEND;VALUE=DATE:20260922
+SUMMARY:Weeknight skate — Stavely
+DESCRIPTION:time TBC · Hockey · Board: https://aerebol-ops.github.io/mus
+ tangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:df9290efad1735af@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260923
+DTEND;VALUE=DATE:20260924
+SUMMARY:Weeknight skate — Lethbridge
+DESCRIPTION:time TBC · Hockey · Board: https://aerebol-ops.github.io/mus
+ tangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:377b7120d509f568@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260925
+DTEND;VALUE=DATE:20260928
+SUMMARY:Showcase — Three Hills
+DESCRIPTION:Best Western Diamond Inn (Schlaht booking) · Hockey showcase
+  · Board: https://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:6aa4ad0545389351@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260928
+DTEND;VALUE=DATE:20260929
+SUMMARY:Weeknight skate — Stavely
+DESCRIPTION:time TBC · Hockey · Board: https://aerebol-ops.github.io/mus
+ tangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f2e3a88c8ee67318@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:No school — Truth & Reconciliation Day
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:8a6b8797b5cf8261@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261001
+DTEND;VALUE=DATE:20261002
+SUMMARY:Hockey e-transfer due
+DESCRIPTION:1st of the month\, no invoice coming · Payment · Board: http
+ s://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:7d3f0379baa685df@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261003
+DTEND;VALUE=DATE:20261004
+SUMMARY:Practice — Stavely Arena
+DESCRIPTION:11:45–12:45 + 2:15–3:45 · Hockey · Board: https://aerebol-op
+ s.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f02270250cfa498e@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261004
+DTEND;VALUE=DATE:20261005
+SUMMARY:Practice — Stavely Arena
+DESCRIPTION:3:30–4:30 + 4:45–5:45 · Hockey · Board: https://aerebol-ops.
+ github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a5da7db4d6a9982e@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261008
+DTEND;VALUE=DATE:20261018
+SUMMARY:Dad home — Trip 2 (projected)
+DESCRIPTION:Lethbridge showcase + Thanksgiving · 10 days · Travel · Boar
+ d: https://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:c33f80545d9e1ad8@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261012
+SUMMARY:Showcase — Lethbridge
+DESCRIPTION:Fairfield Inn booked · Hockey showcase · Board: https://aere
+ bol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:d9cacbd4923e24a4@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+SUMMARY:Thanksgiving — no school
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4f28133bb3141a91@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+SUMMARY:No school — PD day
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a21763decbd3d863@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:Hockey e-transfer due
+DESCRIPTION:1st of the month\, no invoice coming · Payment · Board: http
+ s://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:8e7f8eb31ea96b99@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261114
+SUMMARY:Fall Break — no school all week
+DESCRIPTION:Remembrance Day Wed Nov 11 · School · Board: https://aerebol
+ -ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:5e4427c292c1bef7@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261116
+SUMMARY:Showcase — Penhold
+DESCRIPTION:hotel TBD · Hockey showcase · Board: https://aerebol-ops.git
+ hub.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:bd09d25c3e7e53c9@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261121
+SUMMARY:Dad home — Trip 3 (projected)
+DESCRIPTION:Fall Break tail + Penhold showcase · 10 days · Travel · Boar
+ d: https://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3addf124ab1ac333@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261128
+SUMMARY:No school — PD day
+DESCRIPTION:learner conferences run Nov 16–27 · School · Board: https://
+ aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:9ff72524d79a7d86@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261216
+DTEND;VALUE=DATE:20261224
+SUMMARY:Dad home — Trip 4 (projected)
+DESCRIPTION:last school week before break · Hawaii follows Dec 24 · Trav
+ el · Board: https://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fbd56de99657b5d4@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261221
+DTEND;VALUE=DATE:20270102
+SUMMARY:Winter Break
+DESCRIPTION:schools reopen Jan 4 · School · Board: https://aerebol-ops.g
+ ithub.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:12f42af02aec38fa@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20261224
+DTEND;VALUE=DATE:20261225
+SUMMARY:Christmas trip — Hawaii
+DESCRIPTION:departs Dec 24 · return TBD · flight + hotel details coming 
+ · Travel · Board: https://aerebol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4d909a0a844cb026@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270118
+DTEND;VALUE=DATE:20270129
+SUMMARY:High school exams — semester 1
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:be0cb3a0d13e99ed@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270129
+DTEND;VALUE=DATE:20270130
+SUMMARY:No school — PD day
+DESCRIPTION:semester 2 starts Feb 1 · School · Board: https://aerebol-op
+ s.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b9df52643e55643f@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270215
+DTEND;VALUE=DATE:20270220
+SUMMARY:February week off
+DESCRIPTION:Family Day + convention week · School · Board: https://aereb
+ ol-ops.github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e9103861404b2b17@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270322
+DTEND;VALUE=DATE:20270323
+SUMMARY:No school — PD day
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:8ea217647cb642d8@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270326
+DTEND;VALUE=DATE:20270403
+SUMMARY:Spring Break
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:37d5813abd0a48e7@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270423
+DTEND;VALUE=DATE:20270424
+SUMMARY:No school — PD day
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b542073fb13d8dac@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270521
+DTEND;VALUE=DATE:20270525
+SUMMARY:Long weekend
+DESCRIPTION:PD day + Victoria Day · School · Board: https://aerebol-ops.
+ github.io/mustangs-hub/lyons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:729845ab5319a4b6@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270609
+DTEND;VALUE=DATE:20270629
+SUMMARY:High school exam window
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4bd56524689782a3@lyons-cal
+DTSTAMP:20260831T171355Z
+DTSTART;VALUE=DATE:20270629
+DTEND;VALUE=DATE:20270630
+SUMMARY:Last day of school
+DESCRIPTION:School · Board: https://aerebol-ops.github.io/mustangs-hub/l
+ yons-cal/
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
