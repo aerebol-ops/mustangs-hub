@@ -1,0 +1,570 @@
+<title>Lyons Family Calendar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#24486E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style id="css">
+  :root{
+    --paper:#F6F7F4; --card:#FFFFFF; --ink:#1D2833; --haze:#5C6873;
+    --line:#DDE2DE; --rink:#24486E; --rink-soft:#E3EAF3;
+    --flare:#C43B3B; --flare-soft:#F7E4E2;
+    --field:#3E7A4E; --field-soft:#E4EEE4;
+    --trail:#A9782F; --trail-soft:#F3EAD8;
+    --today:#24486E; --chipink:#FFFFFF;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#141B23; --card:#1C242E; --ink:#E8ECEF; --haze:#93A0AB;
+      --line:#2C3743; --rink:#7FA8D4; --rink-soft:#243447;
+      --flare:#E07B72; --flare-soft:#3D2626;
+      --field:#7FB88C; --field-soft:#22332A;
+      --trail:#D9B36A; --trail-soft:#3A3226;
+      --today:#7FA8D4; --chipink:#141B23;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#141B23; --card:#1C242E; --ink:#E8ECEF; --haze:#93A0AB;
+    --line:#2C3743; --rink:#7FA8D4; --rink-soft:#243447;
+    --flare:#E07B72; --flare-soft:#3D2626;
+    --field:#7FB88C; --field-soft:#22332A;
+    --trail:#D9B36A; --trail-soft:#3A3226;
+    --today:#7FA8D4; --chipink:#141B23;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; padding:0}
+  h1,h2,h3,p,ul{margin:0}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:16px; line-height:1.55;
+  }
+  .wrap{max-width:920px; margin:0 auto; padding:28px 18px 64px}
+  a{color:var(--rink); text-decoration-thickness:1px; text-underline-offset:2px}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+    outline:2px solid var(--rink); outline-offset:2px; border-radius:2px}
+
+  .eyebrow{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--haze); font-weight:600}
+  h1{
+    font-family:"Zilla Slab","Rockwell",serif; font-weight:700;
+    font-size:clamp(34px,6vw,48px); line-height:1.05; margin:6px 0 10px; text-wrap:balance;
+  }
+  .sub{color:var(--haze); max-width:60ch; margin:0 0 14px}
+  .linkrow{display:flex; flex-wrap:wrap; gap:8px 18px; font-size:14px; padding:12px 0 4px; border-top:1px solid var(--line)}
+  header{margin-bottom:26px}
+  h2{font-family:"Zilla Slab","Rockwell",serif; font-weight:600; font-size:24px; margin:0 0 4px; text-wrap:balance}
+  h3{font-family:"Zilla Slab",serif; font-weight:600}
+  .h2row{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:36px 0 12px}
+  .h2row .note{color:var(--haze); font-size:13.5px}
+
+  .toast{
+    position:fixed; left:50%; bottom:22px; transform:translateX(-50%);
+    background:var(--ink); color:var(--paper); font-size:14px; font-weight:600;
+    padding:10px 18px; border-radius:24px; box-shadow:0 4px 18px rgba(0,0,0,.25); z-index:50;
+  }
+
+  .nextup{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px}
+  .nu{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 14px; display:flex; flex-direction:column; gap:3px}
+  .nu .when{font-size:12.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--haze)}
+  .nu .what{font-weight:600; font-size:15px; line-height:1.3}
+  .nu .meta{font-size:13px; color:var(--haze)}
+  .nu .rel{font-size:12.5px; font-weight:700; margin-top:4px}
+  .nu.c-show .rel,.nu.c-pay .rel{color:var(--flare)}
+  .nu.c-practice .rel,.nu.c-skate .rel{color:var(--rink)}
+  .nu.c-school .rel{color:var(--field)}
+  .nu.c-travel .rel{color:var(--trail)}
+  .nu.today-card{border-color:var(--today); box-shadow:0 0 0 1px var(--today) inset}
+
+  .legend{display:flex; flex-wrap:wrap; gap:8px 16px; font-size:13px; color:var(--haze); margin:14px 0 6px; align-items:center}
+  .key{display:inline-flex; align-items:center; gap:6px}
+  .swatch{width:12px; height:12px; border-radius:3px; flex:none}
+  .sw-school{background:var(--field-soft); border:1px solid var(--field)}
+  .sw-practice{background:var(--rink)}
+  .sw-skate{background:transparent; border:2px solid var(--rink); border-radius:50%; width:10px; height:10px}
+  .sw-show{background:var(--flare)}
+  .sw-pay{background:transparent; border:2px solid var(--flare); border-radius:50%; width:10px; height:10px}
+  .sw-travel{background:var(--trail)}
+
+  .month{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin:16px 0}
+  .month h3{font-size:20px; margin:0 0 12px}
+  .mbody{display:grid; grid-template-columns:minmax(280px,340px) 1fr; gap:8px 26px}
+  @media (max-width:640px){ .mbody{grid-template-columns:1fr} }
+  .grid{display:grid; grid-template-columns:repeat(7,1fr); gap:3px; align-self:start}
+  .dow{font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--haze); text-align:center; padding-bottom:3px; font-weight:600}
+  .cell{
+    position:relative; min-height:42px; border-radius:6px; padding:3px 0 12px;
+    text-align:center; font-variant-numeric:tabular-nums; font-size:13px; font-weight:500;
+    background:var(--paper);
+  }
+  .cell.blank{background:transparent}
+  .cell.off{background:var(--field-soft); color:var(--field); font-weight:700}
+  .cell.showday{background:var(--flare-soft)}
+  .cell.today{outline:2px solid var(--today); outline-offset:-2px; font-weight:700}
+  .dots{position:absolute; left:0; right:0; bottom:4px; display:flex; gap:3px; justify-content:center}
+  .dot{width:7px; height:7px; border-radius:50%}
+  .d-practice{background:var(--rink)}
+  .d-skate{background:transparent; border:2px solid var(--rink); width:5px; height:5px}
+  .d-pay{background:transparent; border:2px solid var(--flare); width:5px; height:5px}
+  .d-travel{background:var(--trail)}
+  .band{position:absolute; left:2px; right:2px; bottom:0; height:4px; border-radius:2px; background:var(--flare)}
+  .mlist{padding:0; list-style:none; font-size:14px; display:flex; flex-direction:column; gap:7px; align-self:start}
+  .mlist li{display:flex; gap:10px; align-items:baseline}
+  .mlist .md{flex:none; width:64px; font-weight:700; font-variant-numeric:tabular-nums; font-size:13px}
+  .mlist .c-practice .md,.mlist .c-skate .md{color:var(--rink)}
+  .mlist .c-show .md,.mlist .c-pay .md{color:var(--flare)}
+  .mlist .c-school .md{color:var(--field)}
+  .mlist .c-travel .md{color:var(--trail)}
+  .mlist .tt{line-height:1.4}
+  .mlist .tt small{color:var(--haze); display:block; font-size:12.5px}
+
+  .shows{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+  .show{background:var(--card); border:1px solid var(--line); border-top:4px solid var(--flare); border-radius:10px; padding:14px 16px}
+  .show .dates{font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--flare)}
+  .show h3{font-size:20px; margin:2px 0 8px}
+  .show p{margin:6px 0; font-size:14px}
+  .show .hotel{border-top:1px dashed var(--line); margin-top:10px; padding-top:8px; font-size:13.5px}
+  .tag{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:1px 8px; border-radius:20px; margin-left:6px}
+  .tag.ok{background:var(--field); color:var(--chipink)}
+  .tag.tbd{background:var(--flare-soft); color:var(--flare)}
+  .tag.plan{background:var(--trail-soft); color:var(--trail)}
+  .tag.new{background:var(--rink); color:var(--chipink)}
+  .tag.done{background:var(--field-soft); color:var(--field)}
+
+  .travel{border-top-color:var(--trail)}
+  .travel .dates{color:var(--trail)}
+  .verify{
+    font:inherit; font-size:13px; font-weight:700; color:var(--trail);
+    background:var(--trail-soft); border:1.5px solid var(--trail); border-radius:8px;
+    padding:6px 12px; cursor:pointer; margin-top:10px;
+  }
+
+  .plain{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px}
+  .plain ul{margin:8px 0 0; padding-left:20px}
+  .plain li{margin:6px 0; font-size:14.5px}
+
+  .rail{display:flex; flex-direction:column}
+  .r-item{display:flex; gap:14px; padding:9px 0; border-bottom:1px solid var(--line); font-size:14.5px; align-items:baseline}
+  .r-item:last-child{border-bottom:none}
+  .r-when{flex:none; width:132px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--field); font-size:13.5px}
+  .r-what small{color:var(--haze); display:block; font-size:12.5px}
+  .r-item.exam .r-when{color:var(--rink)}
+
+  /* submit form */
+  .formcard{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 20px}
+  .fgrid{display:grid; gap:12px}
+  .flabel{font-size:12.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--haze); margin-bottom:5px; display:block}
+  .who{display:flex; gap:8px; flex-wrap:wrap}
+  .who button{
+    font:inherit; font-size:14px; font-weight:600; color:var(--ink);
+    background:var(--paper); border:1.5px solid var(--line); border-radius:22px; padding:6px 16px; cursor:pointer;
+  }
+  .who button[aria-pressed="true"]{background:var(--rink); border-color:var(--rink); color:var(--chipink)}
+  .frow{display:flex; gap:12px; flex-wrap:wrap}
+  .frow > div{flex:1 1 160px}
+  select,input[type="date"],textarea{
+    font:inherit; font-size:14.5px; color:var(--ink); background:var(--paper);
+    border:1.5px solid var(--line); border-radius:8px; padding:8px 10px; width:100%;
+  }
+  textarea{min-height:74px; resize:vertical}
+  .send{
+    font:inherit; font-size:15px; font-weight:700; color:var(--chipink); background:var(--rink);
+    border:none; border-radius:8px; padding:10px 22px; cursor:pointer; justify-self:start;
+  }
+  .send[disabled]{opacity:.55; cursor:default}
+  .fnote{font-size:13px; color:var(--haze)}
+  .fnote strong{color:var(--ink)}
+  .formmsg{font-size:14px; font-weight:600}
+  .formmsg.err{color:var(--flare)}
+
+  .inbox{display:flex; flex-direction:column; gap:10px}
+  .req{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:11px 14px; font-size:14px}
+  .req .rhead{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:3px}
+  .req .rwho{font-weight:700}
+  .req .rmeta{color:var(--haze); font-size:12.5px}
+  .req .rtext{line-height:1.45}
+
+  footer{margin-top:44px; padding-top:14px; border-top:1px solid var(--line); font-size:12.5px; color:var(--haze); line-height:1.7}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important} }
+</style>
+
+<div id="app"></div>
+
+<script type="application/json" id="state">
+{
+  "updated": "2026-08-29",
+  "events": [
+    {"d":"2026-09-01","cat":"pay","t":"Hockey e-transfer due — $1,000","m":"to lethbridgemustangs@gmail.com"},
+    {"d":"2026-09-07","cat":"school","t":"Labour Day — no school"},
+    {"d":"2026-09-09","cat":"skate","t":"Weeknight skate — Lethbridge","m":"time TBC"},
+    {"d":"2026-09-12","cat":"practice","t":"Practice — Logan Boulet, Lethbridge","m":"5:00–6:30 + 6:45–7:45 (with U17)"},
+    {"d":"2026-09-14","cat":"skate","t":"Weeknight skate — Stavely","m":"time TBC"},
+    {"d":"2026-09-16","cat":"skate","t":"Weeknight skate — Lethbridge","m":"time TBC"},
+    {"d":"2026-09-18","end":"2026-09-27","cat":"travel","t":"Dad home — Trip 1 (projected)","m":"Kainai weekend + Three Hills showcase · 10 days"},
+    {"d":"2026-09-18","cat":"school","t":"No school — PD day"},
+    {"d":"2026-09-19","cat":"practice","t":"Practice — Kainai Sports Centre","m":"10:00–11:30 + 1:00–2:00"},
+    {"d":"2026-09-20","cat":"practice","t":"Practice — Kainai Sports Centre","m":"9:30–11:00 + 12:30–1:30"},
+    {"d":"2026-09-21","cat":"skate","t":"Weeknight skate — Stavely","m":"time TBC"},
+    {"d":"2026-09-23","cat":"skate","t":"Weeknight skate — Lethbridge","m":"time TBC"},
+    {"d":"2026-09-25","end":"2026-09-27","cat":"show","t":"Showcase — Three Hills","m":"Best Western Diamond Inn (Schlaht booking)"},
+    {"d":"2026-09-28","cat":"skate","t":"Weeknight skate — Stavely","m":"time TBC"},
+    {"d":"2026-09-30","cat":"school","t":"No school — Truth & Reconciliation Day"},
+    {"d":"2026-10-01","cat":"pay","t":"Hockey e-transfer due","m":"1st of the month, no invoice coming"},
+    {"d":"2026-10-03","cat":"practice","t":"Practice — Stavely Arena","m":"11:45–12:45 + 2:15–3:45"},
+    {"d":"2026-10-04","cat":"practice","t":"Practice — Stavely Arena","m":"3:30–4:30 + 4:45–5:45"},
+    {"d":"2026-10-08","end":"2026-10-17","cat":"travel","t":"Dad home — Trip 2 (projected)","m":"Lethbridge showcase + Thanksgiving · 10 days"},
+    {"d":"2026-10-09","end":"2026-10-11","cat":"show","t":"Showcase — Lethbridge","m":"Fairfield Inn booked"},
+    {"d":"2026-10-12","cat":"school","t":"Thanksgiving — no school"},
+    {"d":"2026-10-19","cat":"school","t":"No school — PD day"},
+    {"d":"2026-11-01","cat":"pay","t":"Hockey e-transfer due","m":"1st of the month, no invoice coming"},
+    {"d":"2026-11-09","end":"2026-11-13","cat":"school","t":"Fall Break — no school all week","m":"Remembrance Day Wed Nov 11"},
+    {"d":"2026-11-13","end":"2026-11-15","cat":"show","t":"Showcase — Penhold","m":"hotel TBD"},
+    {"d":"2026-11-11","end":"2026-11-20","cat":"travel","t":"Dad home — Trip 3 (projected)","m":"Fall Break tail + Penhold showcase · 10 days"},
+    {"d":"2026-11-27","cat":"school","t":"No school — PD day","m":"learner conferences run Nov 16–27"},
+    {"d":"2026-12-16","end":"2026-12-23","cat":"travel","t":"Dad home — Trip 4 (projected)","m":"last school week before break · Hawaii follows Dec 24"},
+    {"d":"2026-12-21","end":"2027-01-01","cat":"school","t":"Winter Break","m":"schools reopen Jan 4"},
+    {"d":"2026-12-24","cat":"travel","t":"Christmas trip — Hawaii","m":"departs Dec 24 · return TBD · flight + hotel details coming"},
+    {"d":"2027-01-18","end":"2027-01-28","cat":"school","t":"High school exams — semester 1"},
+    {"d":"2027-01-29","cat":"school","t":"No school — PD day","m":"semester 2 starts Feb 1"},
+    {"d":"2027-02-15","end":"2027-02-19","cat":"school","t":"February week off","m":"Family Day + convention week"},
+    {"d":"2027-03-22","cat":"school","t":"No school — PD day"},
+    {"d":"2027-03-26","end":"2027-04-02","cat":"school","t":"Spring Break"},
+    {"d":"2027-04-23","cat":"school","t":"No school — PD day"},
+    {"d":"2027-05-21","end":"2027-05-24","cat":"school","t":"Long weekend","m":"PD day + Victoria Day"},
+    {"d":"2027-06-09","end":"2027-06-28","cat":"school","t":"High school exam window"},
+    {"d":"2027-06-29","cat":"school","t":"Last day of school"}
+  ],
+  "travel": [
+    {"dates":"Aug 19–25","title":"Dad home in Canada — done","detail":"Up MAF→DEN→YYC Wed Aug 19, back YYC→IAH→MAF Tue Aug 25.","status":"done"},
+    {"dates":"Sep 18 → 27","title":"Trip 1 — Three Hills run","detail":"Fri Sep 18 (PD day — Liam's off school) → Sun Sep 27. Two hockey weekends in 10 days: Kainai practices Sep 19–20, the Monday and Wednesday skates, and the full Three Hills showcase. Likely a solo run. Not booked.","status":"planning"},
+    {"dates":"Oct 8 → 17","title":"Trip 2 — Thanksgiving + Lethbridge","detail":"Thu Oct 8 → Sat Oct 17. The family-friendly one: the Lethbridge showcase from the Fairfield (room already booked, 2 adults + 2 kids), Thanksgiving Monday, then a home week with Liam. Best candidate for Amanda + Theron — one hotel base, no rink-hopping. Not booked.","status":"planning"},
+    {"dates":"Nov 11 → 20","title":"Trip 3 — Fall Break + Penhold","detail":"Wed Nov 11 (Remembrance Day) → Fri Nov 20. Back half of Fall Break, the full Penhold showcase (hotel still TBD), and the start of conference week. Likely solo. Not booked.","status":"planning"},
+    {"dates":"Dec 16 → 23","title":"Trip 4 — school-out week","detail":"Wed Dec 16 → Wed Dec 23, Liam's last school week before break — then everyone flies to Hawaii Dec 24. Not booked.","status":"planning"},
+    {"dates":"Dec 24 →","title":"Christmas in Hawaii","detail":"Departs Dec 24. Flights and accommodations are being booked — details land here as the confirmations hit Dad's inbox. School winter break runs through Jan 1, back in class Jan 4.","status":"planning"}
+  ],
+  "requests": []
+}
+</script>
+
+<script id="app-script">
+(function(){
+'use strict';
+var FAMILY = ['Mike','Robina','Amanda','Liam'];
+var CATS = ['Hockey','School','Travel','Other'];
+var MAILTO = 'mlyons@csrhigroup.com';
+var WORK = 'mscroom@csrhigroup.com';
+var MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+var DOW = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+var GRID_MONTHS = [[2026,8],[2026,9],[2026,10]];
+
+var state = JSON.parse(document.getElementById('state').textContent);
+var artifactNS = null;   // resolved claude capability namespace (or null)
+var readOnly = false;
+
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function P(s){ var p=s.split('-'); return new Date(+p[0], +p[1]-1, +p[2]); }
+function K(dt){ return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
+function fmt(dt){ return dt.toLocaleDateString('en-CA',{weekday:'short',month:'short',day:'numeric'}); }
+function today0(){ var t=new Date(); t.setHours(0,0,0,0); return t; }
+
+/* ---------- render ---------- */
+function render(){
+  var today = today0();
+  var marks = {};
+  state.events.forEach(function(e){
+    var s=P(e.d), en=e.end?P(e.end):s;
+    for(var dt=new Date(s); dt<=en; dt.setDate(dt.getDate()+1)){
+      var k=K(dt); marks[k]=marks[k]||{}; marks[k][e.cat]=true;
+    }
+  });
+
+  var upcoming = state.events.map(function(e){ return {e:e, s:P(e.d), en:e.end?P(e.end):P(e.d)}; })
+    .filter(function(x){ return x.en>=today; })
+    .sort(function(a,b){ return a.s-b.s; }).slice(0,5);
+
+  var nextup = upcoming.map(function(x){
+    var days = Math.round((x.s-today)/86400000);
+    var rel = x.s<=today ? (x.e && x.en>today ? 'underway' : (+x.s===+today ? 'today' : 'underway'))
+            : days===1 ? 'tomorrow' : 'in '+days+' days';
+    var when = x.e && x.e.end ? fmt(x.s)+' – '+fmt(x.en) : (x.e.end ? fmt(x.s)+' – '+fmt(x.en) : fmt(x.s));
+    return '<div class="nu c-'+x.e.cat+(x.s<=today&&x.en>=today?' today-card':'')+'">'+
+      '<span class="when">'+esc(when)+'</span><span class="what">'+esc(x.e.t)+'</span>'+
+      (x.e.m?'<span class="meta">'+esc(x.e.m)+'</span>':'')+
+      '<span class="rel">'+rel+'</span></div>';
+  }).join('');
+
+  var months = '';
+  GRID_MONTHS.forEach(function(ym){
+    var y=ym[0], mo=ym[1];
+    var first=new Date(y,mo,1), dim=new Date(y,mo+1,0).getDate();
+    var cells = DOW.map(function(d){ return '<div class="dow">'+d+'</div>'; }).join('');
+    for(var i=0;i<first.getDay();i++) cells+='<div class="cell blank"></div>';
+    for(var d=1;d<=dim;d++){
+      var dt=new Date(y,mo,d), k=K(dt), m=marks[k]||{};
+      var cls='cell'+(m.school?' off':'')+(m.show?' showday':'')+(+dt===+today?' today':'');
+      var dots='';
+      if(m.practice) dots+='<span class="dot d-practice"></span>';
+      if(m.skate) dots+='<span class="dot d-skate"></span>';
+      if(m.travel) dots+='<span class="dot d-travel"></span>';
+      if(m.pay) dots+='<span class="dot d-pay"></span>';
+      cells+='<div class="'+cls+'">'+d+(dots?'<span class="dots">'+dots+'</span>':'')+(m.show?'<span class="band"></span>':'')+'</div>';
+    }
+    var list = state.events.filter(function(e){ var s=P(e.d); return s.getFullYear()===y && s.getMonth()===mo; })
+      .sort(function(a,b){ return P(a.d)-P(b.d); })
+      .map(function(e){
+        var s=P(e.d);
+        var lbl=s.toLocaleDateString('en-CA',{weekday:'short'})+' '+s.getDate()+(e.end?'–'+P(e.end).getDate():'');
+        return '<li class="c-'+e.cat+'"><span class="md">'+lbl+'</span><span class="tt">'+esc(e.t)+
+          (e.m?'<small>'+esc(e.m)+'</small>':'')+'</span></li>';
+      }).join('');
+    months+='<div class="month"><h3>'+MN[mo]+' '+y+'</h3><div class="mbody"><div class="grid">'+cells+'</div><ul class="mlist">'+list+'</ul></div></div>';
+  });
+
+  var travel = state.travel.map(function(t, i){
+    var tag = t.status==='done' ? '<span class="tag done">done</span>'
+            : t.status==='verified' ? '<span class="tag ok">verified &#10003;</span>'
+            : t.status==='planning' ? '<span class="tag plan">planning</span>'
+            : '<span class="tag tbd">tbd</span>';
+    var vbtn = t.status==='planning'
+      ? '<button class="verify" type="button" data-verify="'+i+'">Verify dates &rarr; email work</button>' : '';
+    return '<div class="show travel"><div class="dates">'+esc(t.dates)+'</div><h3>'+esc(t.title)+tag+'</h3>'+
+      '<p>'+esc(t.detail)+'</p>'+vbtn+'</div>';
+  }).join('');
+
+  var reqs = state.requests.slice().reverse().map(function(r){
+    var tag = r.status==='applied' ? '<span class="tag done">on the board</span>' : '<span class="tag new">new</span>';
+    return '<div class="req"><div class="rhead"><span class="rwho">'+esc(r.who)+'</span>'+
+      '<span class="rmeta">'+esc(r.cat)+(r.date?' · for '+esc(r.date):'')+' · sent '+esc(r.ts)+'</span>'+tag+'</div>'+
+      '<div class="rtext">'+esc(r.text)+'</div></div>';
+  }).join('');
+
+  var app = document.getElementById('app');
+  app.innerHTML =
+  '<div class="wrap">'+
+  '<header>'+
+    '<div class="eyebrow">Okotoks &middot; 2026&ndash;27 season</div>'+
+    '<h1>Lyons Family Calendar</h1>'+
+    '<p class="sub">Liam&rsquo;s grade&nbsp;10 year, the Mustangs U16&nbsp;AA season, and Dad&rsquo;s travel on one page &mdash; for Mike, Amanda, Robina, Liam, and baby Theron.</p>'+
+    '<div class="linkrow">'+
+      '<a href="https://claude.ai/code/artifact/3f6b186b-8156-40bf-ba92-a5f0579112e1">Carpool board</a>'+
+      '<a href="https://aerebol-ops.github.io/mustangs-hub/">Mustangs hub</a>'+
+      '<a href="https://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics">Team calendar (.ics)</a>'+
+      '<a href="https://media.foothillsschooldivision.ca/media/Default/medialib/2026-2027-instructional-calendar.d1998b26278.pdf">FSD school calendar (PDF)</a>'+
+    '</div>'+
+  '</header>'+
+  '<div class="h2row"><h2>Next up</h2><span class="note">as of '+today.toLocaleDateString('en-CA',{month:'long',day:'numeric'})+'</span></div>'+
+  '<div class="nextup">'+nextup+'</div>'+
+  '<div class="legend">'+
+    '<span class="key"><span class="swatch sw-school"></span>No school</span>'+
+    '<span class="key"><span class="swatch sw-practice"></span>Practice</span>'+
+    '<span class="key"><span class="swatch sw-skate"></span>Weeknight skate</span>'+
+    '<span class="key"><span class="swatch sw-show"></span>Showcase weekend</span>'+
+    '<span class="key"><span class="swatch sw-travel"></span>Travel</span>'+
+    '<span class="key"><span class="swatch sw-pay"></span>Hockey e&#8209;transfer due</span>'+
+  '</div>'+
+  '<div>'+months+'</div>'+
+  '<div class="h2row"><h2>Dad&rsquo;s travel &amp; family trips</h2><span class="note">projected 8&ndash;10&#8209;day trips &mdash; Verify locks the dates &amp; drafts the work heads&#8209;up; bookings replace projections as they land</span></div>'+
+  '<div class="shows">'+travel+'</div>'+
+  '<div class="h2row"><h2>Showcase weekends</h2><span class="note">the away ones &mdash; hotel plans included</span></div>'+
+  '<div class="shows">'+
+    '<div class="show"><div class="dates">Sep 25&ndash;27</div><h3>Three Hills</h3>'+
+      '<p>Centennial Place Arena &middot; <a href="https://maps.google.com/?q=Centennial+Place+Arena+Three+Hills+AB">map</a><br>Fri Sep 25 is a school day &mdash; plan an early checkout for the drive up.</p>'+
+      '<p class="hotel"><strong>Best Western Diamond Inn</strong> <span class="tag ok">group booked</span><br>351 7th Ave NE, Three Hills &middot; check&#8209;in Fri 3:00&nbsp;pm &middot; out Sun 11:00&nbsp;am<br>Booked on the Schlaht side &mdash; confirm rooms with Todd.</p></div>'+
+    '<div class="show"><div class="dates">Oct 9&ndash;11</div><h3>Lethbridge</h3>'+
+      '<p>Home barn weekend &mdash; Logan Boulet Arena &middot; <a href="https://maps.google.com/?q=Logan+Boulet+Arena+Lethbridge+AB">map</a><br>Runs into Thanksgiving Monday &mdash; no school Oct 12, easy drive home.</p>'+
+      '<p class="hotel"><strong>Fairfield Inn &amp; Suites Lethbridge</strong> <span class="tag ok">booked</span><br>2 nights &middot; 1 room &middot; check&#8209;in Fri 3:00&nbsp;pm &middot; out Sun 12:00&nbsp;pm<br>Confirmation # is in Dad&rsquo;s email</p></div>'+
+    '<div class="show"><div class="dates">Nov 13&ndash;15</div><h3>Penhold</h3>'+
+      '<p>Penhold Regional Multiplex &middot; <a href="https://maps.google.com/?q=Penhold+Regional+Multiplex+AB">map</a><br>Lands on the last day of Fall Break (Nov 9&ndash;13) &mdash; the whole week is open to travel.</p>'+
+      '<p class="hotel"><strong>Hotel</strong> <span class="tag tbd">not booked yet</span><br>Red Deer / Gasoline Alley has the most options, ~10&nbsp;min from the rink.</p></div>'+
+  '</div>'+
+  '<div class="h2row"><h2>Suggest a change</h2><span class="note">new dates, fixes, trip ideas &mdash; anyone in the family</span></div>'+
+  '<div class="formcard"><form id="reqform" class="fgrid">'+
+    '<div><span class="flabel">Who&rsquo;s asking</span><div class="who" id="whoRow">'+
+      FAMILY.map(function(n){ return '<button type="button" aria-pressed="false" data-who="'+n+'">'+n+'</button>'; }).join('')+
+    '</div></div>'+
+    '<div class="frow">'+
+      '<div><label class="flabel" for="fcat">About</label><select id="fcat">'+
+        CATS.map(function(c){ return '<option>'+c+'</option>'; }).join('')+'</select></div>'+
+      '<div><label class="flabel" for="fdate">Date it concerns <span style="text-transform:none;font-weight:400">(optional)</span></label>'+
+      '<input type="date" id="fdate"></div>'+
+    '</div>'+
+    '<div><label class="flabel" for="ftext">What should change</label>'+
+    '<textarea id="ftext" maxlength="300" placeholder="e.g. Hawaii flights booked, back Jan 2 &mdash; or: skate times came out, Wednesdays are 7:15"></textarea></div>'+
+    '<div class="frow" style="align-items:center">'+
+      '<button class="send" id="sendBtn" type="submit">Put it on the board</button>'+
+      '<span class="formmsg" id="formMsg" role="status"></span>'+
+    '</div>'+
+    '<p class="fnote" id="modeNote">Submissions save onto this page for everyone, and the nightly sweep folds them into the calendar. '+
+    'You can also just email <strong>'+MAILTO+'</strong> with <strong>FAMILY CAL</strong> in the subject &mdash; the sweep reads that too.</p>'+
+  '</form></div>'+
+  '<div class="h2row"><h2>Family inbox</h2><span class="note">what&rsquo;s been suggested and where it stands</span></div>'+
+  '<div class="inbox" id="inbox">'+(reqs||'<div class="req" style="color:var(--haze)">Nothing waiting &mdash; suggestions show up here.</div>')+'</div>'+
+  '<div class="h2row"><h2>Still coming from Jesse</h2><span class="note">from the team email, Aug 23</span></div>'+
+  '<div class="plain"><ul>'+
+    '<li><strong>Weeknight skate times</strong> &mdash; Lethbridge Wednesdays (Sep 9, 16, 23) and Stavely Mondays (Sep 14, 21, 28) are confirmed dates, times land once the arenas confirm. A third Thursday skate in Stavely is a strong possibility.</li>'+
+    '<li><strong>Oct&ndash;Nov practice schedule</strong> &mdash; due in the next few weeks; will look like September&rsquo;s, but some practices move to Raymond and Warner once those rinks open mid&#8209;October.</li>'+
+    '<li><strong>In&#8209;season weeknights (Oct&ndash;Feb)</strong> &mdash; most Mondays in Stavely, Wednesdays in Warner, with a possible third night in Raymond or Elkford.</li>'+
+    '<li><strong>Showcases after November</strong> &mdash; league re&#8209;seeds after the Sep/Oct showcases; remaining dates promised by Nov&nbsp;1.</li>'+
+    '<li><strong>Payments</strong> &mdash; $1,000 was due Sep 1 by e&#8209;transfer to lethbridgemustangs@gmail.com. No monthly invoice is coming; the 1st&#8209;of&#8209;month dots above are our own reminders.</li>'+
+  '</ul></div>'+
+  '<div class="h2row"><h2>School year, rest of the way</h2><span class="note">Foothills School Division &middot; semester 1 started Aug 31</span></div>'+
+  '<div class="plain rail">'+
+    '<div class="r-item"><span class="r-when">Nov 16&ndash;27</span><span class="r-what">Learner conferences, reporting period 1</span></div>'+
+    '<div class="r-item"><span class="r-when">Dec 21&ndash;Jan 1</span><span class="r-what">Winter Break <small>schools reopen Mon Jan 4</small></span></div>'+
+    '<div class="r-item exam"><span class="r-when">Jan 18&ndash;28</span><span class="r-what">High school exams &mdash; semester 1 finals <small>Jan 29 no school &middot; semester 2 starts Feb 1</small></span></div>'+
+    '<div class="r-item"><span class="r-when">Feb 15&ndash;19</span><span class="r-what">Full week off <small>Family Day, division closure, PD day, teachers&rsquo; convention</small></span></div>'+
+    '<div class="r-item"><span class="r-when">Mar 22</span><span class="r-what">No school &mdash; PD day</span></div>'+
+    '<div class="r-item"><span class="r-when">Mar 26&ndash;Apr 2</span><span class="r-what">Spring Break <small>Good Friday Mar 26 &middot; Easter Monday Mar 29</small></span></div>'+
+    '<div class="r-item"><span class="r-when">Apr 12&ndash;23</span><span class="r-what">Learner conferences, reporting period 2 <small>Apr 23 no school</small></span></div>'+
+    '<div class="r-item"><span class="r-when">May 21&ndash;24</span><span class="r-what">Long weekend <small>PD day Friday + Victoria Day Monday</small></span></div>'+
+    '<div class="r-item exam"><span class="r-when">Jun 9&ndash;28</span><span class="r-what">High school exam window</span></div>'+
+    '<div class="r-item"><span class="r-when">Jun 29</span><span class="r-what">Last day of school</span></div>'+
+  '</div>'+
+  '<div class="h2row"><h2>Liam&rsquo;s classes</h2></div>'+
+  '<div class="plain"><p style="font-size:14.5px">Period&#8209;by&#8209;period timetable isn&rsquo;t in email &mdash; it lives on <strong>Edsembli</strong> (posted Aug 15, along with homeroom). Pull it from the parent portal and suggest it above, and it gets its own section with the semester&nbsp;1 / semester&nbsp;2 course split.</p></div>'+
+  '<div class="h2row"><h2>Put this on your phone</h2><span class="note">one tap from the home screen, always current</span></div>'+
+  '<div class="plain"><p style="font-size:14.5px">The family link &mdash; no login, no app store: <strong><a href="https://aerebol-ops.github.io/mustangs-hub/lyons-cal/">aerebol-ops.github.io/mustangs-hub/lyons-cal</a></strong><br>'+
+  '<strong>iPhone:</strong> open that link in Safari, tap Share, then <strong>Add to Home Screen</strong> &mdash; it installs as &ldquo;Lyons Cal&rdquo; with its own icon and opens straight to the live board. '+
+  '<strong>Android:</strong> Chrome menu &rarr; Add to home screen.</p></div>'+
+  '<footer>Updated '+esc(state.updated)+' &middot; built from Jesse&rsquo;s team email + Sept practice PDF + showcase schedule (Aug 23), the FSD 2026&ndash;27 instructional calendar, United itineraries, and the hotel confirmations. '+
+  'Schedules may change &mdash; Jesse&rsquo;s word governs; source files live in OneDrive &rsaquo; _family_calendar &rsaquo; sources. '+
+  'Sibling hubs: <a href="https://claude.ai/code/artifact/3f6b186b-8156-40bf-ba92-a5f0579112e1">Mustangs carpool board</a> &middot; <a href="https://aerebol-ops.github.io/mustangs-hub/">team site</a>.</footer>'+
+  '</div>';
+
+  wireForm();
+  wireVerify();
+}
+
+/* ---------- verify a trip: flag it on the board + draft the work email ---------- */
+function wireVerify(){
+  document.getElementById('app').addEventListener('click', function(ev){
+    var b = ev.target.closest('button[data-verify]'); if(!b) return;
+    var i = +b.getAttribute('data-verify');
+    var t = state.travel[i]; if(!t) return;
+    var subj = 'Travel dates confirmed — Michael out ' + t.dates;
+    var body = 'Matt,\n\nConfirming my out-of-Permian dates: ' + t.dates + ' (' + t.title + ').\n' +
+      'Cell and email the whole way, dispatch covered remotely as usual — flag anything that needs ' +
+      'in-person coverage before I head out.\n\nMike';
+    location.href = 'mailto:' + WORK + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+    if (artifactNS && !readOnly){
+      var ns = JSON.parse(JSON.stringify(state));
+      ns.travel[i].status = 'verified';
+      try { sessionStorage.setItem('famcal-verified', t.dates); } catch(e){}
+      artifactNS.publish(buildDoc(ns)).catch(function(){ /* conflict: view reloads to winner; re-tap Verify */ });
+    }
+  });
+}
+
+/* ---------- submit ---------- */
+var picked = '';
+function wireForm(){
+  var whoRow = document.getElementById('whoRow');
+  whoRow.addEventListener('click', function(ev){
+    var b = ev.target.closest('button[data-who]'); if(!b) return;
+    picked = b.getAttribute('data-who');
+    whoRow.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', String(x===b)); });
+  });
+  var vDone = null;
+  try { vDone = sessionStorage.getItem('famcal-verified'); sessionStorage.removeItem('famcal-verified'); } catch(e){}
+  if (vDone){ toast('Trip ' + vDone + ' verified — work email drafted.'); }
+  var draft = null;
+  try { draft = JSON.parse(sessionStorage.getItem('famcal-draft')||'null'); } catch(e){}
+  if (draft){
+    var landed = state.requests.some(function(r){ return r.id === draft.id; });
+    sessionStorage.removeItem('famcal-draft');
+    if (landed){ toast('On the board — everyone sees it now.'); }
+    else {
+      picked = draft.who;
+      whoRow.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-pressed', String(x.getAttribute('data-who')===draft.who)); });
+      document.getElementById('fcat').value = draft.cat;
+      document.getElementById('fdate').value = draft.date||'';
+      document.getElementById('ftext').value = draft.text;
+      msg('Someone updated the board first — your note is still here, send it again.', true);
+    }
+  }
+  document.getElementById('reqform').addEventListener('submit', onSubmit);
+}
+function msg(t, isErr){
+  var el = document.getElementById('formMsg');
+  el.textContent = t; el.className = 'formmsg'+(isErr?' err':'');
+}
+function toast(t){
+  var el = document.createElement('div'); el.className='toast'; el.textContent=t;
+  document.body.appendChild(el);
+  setTimeout(function(){ el.remove(); }, 5000);
+}
+function mailtoFallback(req){
+  var subj = 'FAMILY CAL: '+req.cat+' — from '+req.who;
+  var body = req.text + (req.date ? '\n\nDate it concerns: '+req.date : '') + '\n\n(sent from the family calendar hub)';
+  location.href = 'mailto:'+MAILTO+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+  msg('Opening email instead — send it and the sweep picks it up tonight.');
+}
+function onSubmit(ev){
+  ev.preventDefault();
+  var text = document.getElementById('ftext').value.trim();
+  if (!picked){ msg('Pick a name first.', true); return; }
+  if (!text){ msg('Say what should change.', true); return; }
+  var req = {
+    id: 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2,6),
+    who: picked,
+    cat: document.getElementById('fcat').value,
+    date: document.getElementById('fdate').value || '',
+    text: text,
+    ts: new Date().toLocaleDateString('en-CA', {month:'short', day:'numeric'}),
+    status: 'new'
+  };
+  if (readOnly || !artifactNS){ mailtoFallback(req); return; }
+  var btn = document.getElementById('sendBtn');
+  btn.disabled = true; msg('Saving to the board…');
+  var newState = JSON.parse(JSON.stringify(state));
+  newState.requests.push(req);
+  try { sessionStorage.setItem('famcal-draft', JSON.stringify(req)); } catch(e){}
+  artifactNS.publish(buildDoc(newState)).then(function(){
+    /* success: this view reloads to the new version; draft check shows the toast */
+  }).catch(function(err){
+    var code = err && err.code;
+    if (code === 'conflict'){ return; /* view reloads to winner; draft restores the note */ }
+    btn.disabled = false;
+    try { sessionStorage.removeItem('famcal-draft'); } catch(e){}
+    if (code === 'not_writer' || code === 'not_granted' || code === 'not_declared' ||
+        code === 'capability_disabled' || code === 'capability_removed' || code === 'consent_required'){
+      readOnly = true;
+      document.getElementById('modeNote').innerHTML =
+        'This view can&rsquo;t write to the board, so suggestions go by email to <strong>'+MAILTO+'</strong> '+
+        'with <strong>FAMILY CAL</strong> in the subject &mdash; the nightly sweep reads those too.';
+      mailtoFallback(req);
+    } else if (code === 'rate_limited'){
+      msg('Too many saves at once — wait a minute and try again.', true);
+    } else {
+      msg('Couldn&rsquo;t save just now — try again, or use email.', true);
+    }
+  });
+}
+
+/* ---------- self-publish document template ---------- */
+function buildDoc(st){
+  var css = document.getElementById('css').textContent;
+  var code = document.getElementById('app-script').textContent;
+  var json = JSON.stringify(st, null, 1).replace(/</g, '\\u003c');
+  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n' +
+    '<title>Lyons Family Calendar</title>\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">\n' +
+    '<style id="css">' + css + '</style>\n</head>\n<body>\n<div id="app"></div>\n' +
+    '<script type="application/json" id="state">' + json + '</scr' + 'ipt>\n' +
+    '<script id="app-script">' + code + '</scr' + 'ipt>\n</body>\n</html>';
+}
+
+render();
+
+if (window.claude && window.claude.use){
+  window.claude.use('artifact').then(function(ns){ artifactNS = ns; });
+} else {
+  readOnly = true;
+  var mn = document.getElementById('modeNote');
+  if (mn){ mn.innerHTML = 'From this view, suggestions go by email: tap the button and your mail app opens '+
+    'pre&#8209;addressed to <strong>'+MAILTO+'</strong> &mdash; hit send and the nightly sweep boards it.'; }
+}
+})();
+</script>
