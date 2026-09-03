@@ -133,20 +133,35 @@ var FUEL = {price:1.58, costco:1.45, asOf:"Sep 3"};
 var FAMILIES = ["Lyons","Schlaht","Aubin","Novlesky"];
 var CLAIMS_API = "https://mustangs-claims.mlyons-b47.workers.dev";
 var SESSIONS = [
-{id:"s1", d:"2026-09-09",dow:"Wed",rink:"Lethbridge",kind:"skate",time:"",gd:"20260909/20260910"},
+{id:"s1", d:"2026-09-09",dow:"Wed",rink:"Lethbridge",venue:"Labour Club Arena",kind:"skate",time:"9:00–10:00 PM",gd:"20260910T030000Z/20260910T040000Z"},
 {id:"s7", d:"2026-09-12",dow:"Sat",rink:"Lethbridge",venue:"Logan Boulet",kind:"practice",time:"5:00–6:30 + 6:45–7:45 w/ U17",gd:"20260912T230000Z/20260913T014500Z"},
-{id:"s2", d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:"",gd:"20260914/20260915"},
-{id:"s3", d:"2026-09-16",dow:"Wed",rink:"Lethbridge",kind:"skate",time:"",gd:"20260916/20260917"},
+{id:"s2", d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20260915T015000Z/20260915T030000Z"},
+{id:"s3", d:"2026-09-16",dow:"Wed",rink:"Lethbridge",venue:"Labour Club Arena",kind:"skate",time:"9:00–10:00 PM",gd:"20260917T030000Z/20260917T040000Z"},
 {id:"s8", d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"10:00–11:30 + 1:00–2:00",gd:"20260919T160000Z/20260919T200000Z"},
 {id:"s9", d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20260920T153000Z/20260920T193000Z"},
-{id:"s4", d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:"",gd:"20260921/20260922"},
-{id:"s5", d:"2026-09-23",dow:"Wed",rink:"Lethbridge",kind:"skate",time:"",gd:"20260923/20260924"},
+{id:"s4", d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20260922T015000Z/20260922T030000Z"},
+{id:"s5", d:"2026-09-23",dow:"Wed",rink:"Lethbridge",venue:"Labour Club Arena",kind:"skate",time:"9:00–10:00 PM",gd:"20260924T030000Z/20260924T040000Z"},
 {id:"s10",d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:"",gd:"20260925/20260928"},
-{id:"s6", d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:"",gd:"20260928/20260929"},
+{id:"s6", d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20260929T015000Z/20260929T030000Z"},
 {id:"s11",d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45",gd:"20261003T174500Z/20261003T214500Z"},
 {id:"s12",d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45",gd:"20261004T213000Z/20261004T234500Z"},
+{id:"s15",d:"2026-10-05",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261006T015000Z/20261006T030000Z"},
 {id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:"",gd:"20261009/20261012"},
-{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116"}
+{id:"s16",d:"2026-10-19",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261020T015000Z/20261020T030000Z"},
+{id:"s17",d:"2026-10-26",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261027T015000Z/20261027T030000Z"},
+{id:"s18",d:"2026-11-02",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261103T025000Z/20261103T040000Z"},
+{id:"s19",d:"2026-11-09",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261110T025000Z/20261110T040000Z"},
+{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116"},
+{id:"s20",d:"2026-11-23",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261124T025000Z/20261124T040000Z"},
+{id:"s21",d:"2026-11-30",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261201T025000Z/20261201T040000Z"},
+{id:"s22",d:"2026-12-07",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20261208T025000Z/20261208T040000Z"},
+{id:"s23",d:"2027-01-04",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270105T025000Z/20270105T040000Z"},
+{id:"s24",d:"2027-01-11",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270112T025000Z/20270112T040000Z"},
+{id:"s25",d:"2027-01-18",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270119T025000Z/20270119T040000Z"},
+{id:"s26",d:"2027-02-01",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270202T025000Z/20270202T040000Z"},
+{id:"s27",d:"2027-02-08",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270209T025000Z/20270209T040000Z"},
+{id:"s28",d:"2027-02-22",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270223T025000Z/20270223T040000Z"},
+{id:"s29",d:"2027-03-01",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270302T025000Z/20270302T040000Z"}
 ];
 var HOTELS = {
   "s10": {name:"Best Western Diamond Inn", addr:"351 7th Ave NE, Three Hills", phone:"403-443-7889",
@@ -159,7 +174,7 @@ var HOTELS = {
 var ICS_HTTPS = "https://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 var ICS_WEBCAL = "webcal://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 function calUrl(s){
-  var title = "Mustangs U16 — " + (KIND[s.kind]||"Ice") + " · " + s.rink + (s.kind==="skate" ? " (time TBC)" : "");
+  var title = "Mustangs U16 — " + (KIND[s.kind]||"Ice") + " · " + s.rink;
   var r = RINKS[s.rink] || {};
   return "https://calendar.google.com/calendar/render?action=TEMPLATE" +
     "&text=" + encodeURIComponent(title) +
@@ -181,7 +196,7 @@ var RINKS = {
   "Warner":      {km:235, time:"2 h 25", tier:3, venue:"Warner Arena",              map:"Warner Arena, Warner, AB"},
   "Elkford BC":  {km:290, time:"3 h 15", tier:4, venue:"Elkford Arena",             map:"Elkford Arena, Elkford, BC"}
 };
-var KIND = {skate:"Weeknight skate", practice:"Practice", showcase:"Showcase"};
+var KIND = {skate:"Optional skate", practice:"Practice", showcase:"Showcase"};
 var MONTH = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 var LP100 = 16.8;
 
@@ -448,7 +463,11 @@ renderGlance()+
   '<span class="gv"><a href="https://calendar.google.com/calendar/r?cid='+encodeURIComponent(ICS_WEBCAL)+'" target="_blank" rel="noopener">Subscribe in Google Calendar</a> &nbsp;&middot;&nbsp; <a href="'+esc(ICS_WEBCAL)+'">Apple / Outlook</a></span>'+
   '<span class="gs">Subscribe once and every date lands in your calendar — and when Jesse’s Oct/Nov schedule drops or times firm up, your calendar updates itself. Or grab single dates with the &#128197;&#xFE0E; cal button on any card below.</span></div>'+
   renderSessions()+
-  '<p class="tiny">Practice times from Jesse’s Sept schedule PDF; weeknight skate times TBC. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p>'+
+  '<p class="tiny">Weeknight skates are <strong>100% optional and free</strong> — Jesse: come to one a week, all of them, or none; they’re skills &amp; small-area games to get better. Our four are focusing on the <strong>Stavely Mondays</strong> — that’s why every one through March is on the cards above. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p>'+
+  '<div class="gt c-road"><span class="gk">&#129365; More optional ice, if anyone’s keen</span>'+
+  '<span class="gs"><strong>Wednesdays move to Warner</strong> (7:50–9:00 PM, ~2 h 25 each way) from Oct 14: Oct 14/21/28, Nov 4/18/25, Dec 2/9, Jan 6/13/20, Feb 3/10/24, Mar 3 — a long haul for a free skate, so they’re off our cards; holler in the group text if you want to convoy one. '+
+  '<strong>Tuesdays in Elkford</strong> are the separate High Altitude Hockey skills program (9:30–10:30 PM, Elkford Arena, from Sep 22): $25 a session or $260 for all 13 — and 3 h 15 away. '+
+  '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors) start late September — nights TBC, they’ll land on the cards when Jesse confirms.</span></div>'+
 '</section>'+
 '<section class="sec view" id="v-rinks"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
   '<thead><tr><th>Town</th><th>Rink</th><th>Distance</th><th>One way</th><th>Round trip</th><th>Pin</th></tr></thead><tbody>'+renderRinks()+'</tbody></table></div>'+
@@ -470,10 +489,14 @@ renderGlance()+
   '<p class="tiny">Just handy links — nobody here gets a commission. Prices in CAD; check shipping to Okotoks before you fall in love.</p>'+
 '</section>'+
 '<section class="sec view" id="v-team"><h2>Money &amp; team</h2>'+
-  '<p class="muted"><span class="num">$1,000</span>/player due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Credit card possible (+3.15%): ask Jesse — 403-915-2051.</p>'+
+  '<p class="muted"><span class="num">$1,000</span>/player was due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Prefer credit card (+3.15%)? Jesse’s setting up a card link — sit tight a day or two, or ask him: 403-915-2051.</p>'+
   '<div id="paywrap"></div>'+
   '<p class="tiny">Tap your family once the e-transfer is sent — everyone sees it, nobody has to chase. Honor system, same as claiming a drive. New months appear here as Jesse confirms them.</p>'+
-  '<p class="muted">Team manager: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Rosters, weeknight ice times, the Oct/Nov schedule, and the apparel store are all still on their way from him.</p>'+
+  '<div class="gt c-ice"><span class="gk">&#127881; Team news — Jesse’s Sept 3 update</span>'+
+  '<span class="gs"><strong>Jesse is coaching U16 this season</strong> — “big expectations for this group.” The <strong>roster is finalized</strong> and went out with his email. <strong>Gear</strong> (gloves, polos, shorts, bags, hats, uniforms) lands at the first practice — everything in by the Three Hills showcase. The <strong>team store</strong> is delayed at the vendor; if it isn’t up by week’s end Jesse will send an order form instead.</span></div>'+
+  '<div class="gt c-road"><span class="gk">&#127952; SSHL — optional weeknight house league</span>'+
+  '<span class="gs">Jesse’s grade 4–12 league out of Raymond, now in year 8 — Mustangs kids welcome and usually moved up a division. <span class="num">$225</span> gets a 14-game season (games Thu/Fri, a few Sat, some in Cardston), practice every other Thursday, and the Tuesday PEP session 2&times;/month. Meant to be competitive but fun; he schedules around showcases. <a href="https://sshlhockey.ca/registration" target="_blank" rel="noopener">Register at sshlhockey.ca &#8599;</a> — the link is open for about 3 weeks from Sep 3. Heads up from Okotoks: Raymond is ~2 h each way.</span></div>'+
+  '<p class="muted">Team manager &amp; coach: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Still to come from him: the Oct/Nov weekend practice schedule, goalie session nights, the store link, and showcase game times.</p>'+
 '</section>'+
 '<footer>Okotoks Mustangs carpool hub &middot; built from Jesse’s Aug 23 season email, the Sept practice PDF, and the 2026 showcase poster. Pin this page: iPhone — Safari, Share, Add to Home Screen. Android — Chrome menu, Add to Home screen.</footer>'+
 '</div>';

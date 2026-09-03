@@ -1,134 +1,298 @@
-BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Mustangs Carpool Hub//EN
-CALSCALE:GREGORIAN
-METHOD:PUBLISH
-X-WR-CALNAME:Mustangs U16 (Okotoks carpool)
-X-WR-TIMEZONE:America/Edmonton
-BEGIN:VEVENT
-UID:s1-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20260909
-DTEND;VALUE=DATE:20260910
-SUMMARY:Mustangs U16 - Weeknight skate - Lethbridge (time TBC)
-LOCATION:Logan Boulet Arena\, 1302 9 Ave N\, Lethbridge\, AB
-DESCRIPTION:Weeknight skate (time TBC). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s7-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART:20260912T230000Z
-DTEND:20260913T014500Z
-SUMMARY:Mustangs U16 - Practice - Lethbridge
-LOCATION:Logan Boulet Arena\, 1302 9 Ave N\, Lethbridge\, AB
-DESCRIPTION:Practice (5:00-6:30 + 6:45-7:45 w/ U17). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s2-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20260914
-DTEND;VALUE=DATE:20260915
-SUMMARY:Mustangs U16 - Weeknight skate - Stavely (time TBC)
-LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
-DESCRIPTION:Weeknight skate (time TBC). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s3-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20260916
-DTEND;VALUE=DATE:20260917
-SUMMARY:Mustangs U16 - Weeknight skate - Lethbridge (time TBC)
-LOCATION:Logan Boulet Arena\, 1302 9 Ave N\, Lethbridge\, AB
-DESCRIPTION:Weeknight skate (time TBC). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s8-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART:20260919T160000Z
-DTEND:20260919T200000Z
-SUMMARY:Mustangs U16 - Practice - Kainai
-LOCATION:Kainai Sports Centre\, Stand Off\, AB
-DESCRIPTION:Practice (10:00-11:30 + 1:00-2:00). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s9-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART:20260920T153000Z
-DTEND:20260920T193000Z
-SUMMARY:Mustangs U16 - Practice - Kainai
-LOCATION:Kainai Sports Centre\, Stand Off\, AB
-DESCRIPTION:Practice (9:30-11:00 + 12:30-1:30). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s4-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20260921
-DTEND;VALUE=DATE:20260922
-SUMMARY:Mustangs U16 - Weeknight skate - Stavely (time TBC)
-LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
-DESCRIPTION:Weeknight skate (time TBC). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s5-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20260923
-DTEND;VALUE=DATE:20260924
-SUMMARY:Mustangs U16 - Weeknight skate - Lethbridge (time TBC)
-LOCATION:Logan Boulet Arena\, 1302 9 Ave N\, Lethbridge\, AB
-DESCRIPTION:Weeknight skate (time TBC). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s10-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20260925
-DTEND;VALUE=DATE:20260928
-SUMMARY:Mustangs U16 - SHOWCASE WEEKEND - Three Hills
-LOCATION:Centennial Place Arena\, Three Hills\, AB
-DESCRIPTION:SHOWCASE WEEKEND (Sep 25-27). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s6-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20260928
-DTEND;VALUE=DATE:20260929
-SUMMARY:Mustangs U16 - Weeknight skate - Stavely (time TBC)
-LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
-DESCRIPTION:Weeknight skate (time TBC). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s11-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART:20261003T174500Z
-DTEND:20261003T214500Z
-SUMMARY:Mustangs U16 - Practice - Stavely
-LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
-DESCRIPTION:Practice (11:45-12:45 + 2:15-3:45). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s12-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART:20261004T213000Z
-DTEND:20261004T234500Z
-SUMMARY:Mustangs U16 - Practice - Stavely
-LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
-DESCRIPTION:Practice (3:30-4:30 + 4:45-5:45). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s13-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20261009
-DTEND;VALUE=DATE:20261012
-SUMMARY:Mustangs U16 - SHOWCASE WEEKEND - Lethbridge
-LOCATION:Logan Boulet Arena\, 1302 9 Ave N\, Lethbridge\, AB
-DESCRIPTION:SHOWCASE WEEKEND (Oct 9-11). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-BEGIN:VEVENT
-UID:s14-2026@mustangs-hub
-DTSTAMP:20260824T030000Z
-DTSTART;VALUE=DATE:20261113
-DTEND;VALUE=DATE:20261116
-SUMMARY:Mustangs U16 - SHOWCASE WEEKEND - Penhold
-LOCATION:Penhold Regional Multiplex\, 1 Waskasoo Ave\, Penhold\, AB
-DESCRIPTION:SHOWCASE WEEKEND (Nov 13-15). Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
-END:VEVENT
-END:VCALENDAR
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Mustangs Carpool Hub//U16 Schedule//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Mustangs U16 2026-27
+X-WR-TIMEZONE:America/Edmonton
+BEGIN:VEVENT
+UID:s1-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260910T030000Z
+DTEND:20260910T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Labour Club\, Lethbridge
+LOCATION:Labour Club Arena\, Lethbridge\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s7-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260912T230000Z
+DTEND:20260913T014500Z
+SUMMARY:Mustangs U16 — Practice · Logan Boulet\, Lethbridge
+LOCATION:Logan Boulet Arena\, 1302 9 Ave N\, Lethbridge\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s2-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260915T015000Z
+DTEND:20260915T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s3-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260917T030000Z
+DTEND:20260917T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Labour Club\, Lethbridge
+LOCATION:Labour Club Arena\, Lethbridge\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s8-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260919T160000Z
+DTEND:20260919T200000Z
+SUMMARY:Mustangs U16 — Practice · Kainai
+LOCATION:Kainai Sports Centre\, Stand Off\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s9-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260920T153000Z
+DTEND:20260920T193000Z
+SUMMARY:Mustangs U16 — Practice · Kainai
+LOCATION:Kainai Sports Centre\, Stand Off\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s4-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260922T015000Z
+DTEND:20260922T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s5-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260924T030000Z
+DTEND:20260924T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Labour Club\, Lethbridge
+LOCATION:Labour Club Arena\, Lethbridge\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s6-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20260929T015000Z
+DTEND:20260929T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s11-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261003T174500Z
+DTEND:20261003T214500Z
+SUMMARY:Mustangs U16 — Practice · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s12-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261004T213000Z
+DTEND:20261004T234500Z
+SUMMARY:Mustangs U16 — Practice · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s15-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261006T015000Z
+DTEND:20261006T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s16-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261020T015000Z
+DTEND:20261020T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s17-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261027T015000Z
+DTEND:20261027T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s18-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261103T025000Z
+DTEND:20261103T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s19-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261110T025000Z
+DTEND:20261110T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s20-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261124T025000Z
+DTEND:20261124T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s21-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261201T025000Z
+DTEND:20261201T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s22-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261208T025000Z
+DTEND:20261208T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s23-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270105T025000Z
+DTEND:20270105T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s24-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270112T025000Z
+DTEND:20270112T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s25-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270119T025000Z
+DTEND:20270119T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s26-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270202T025000Z
+DTEND:20270202T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s27-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270209T025000Z
+DTEND:20270209T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s28-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270223T025000Z
+DTEND:20270223T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s29-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270302T025000Z
+DTEND:20270302T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Stavely
+LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s10-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART;VALUE=DATE:20260925
+DTEND;VALUE=DATE:20260928
+SUMMARY:Mustangs U16 — Showcase Weekend · Three Hills
+LOCATION:Centennial Place Arena\, Three Hills\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s13-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261012
+SUMMARY:Mustangs U16 — Showcase Weekend · Lethbridge
+LOCATION:Logan Boulet Arena\, 1302 9 Ave N\, Lethbridge\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s14-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART;VALUE=DATE:20261113
+DTEND;VALUE=DATE:20261116
+SUMMARY:Mustangs U16 — Showcase Weekend · Penhold
+LOCATION:Penhold Regional Multiplex\, 1 Waskasoo Ave\, Penhold\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+END:VCALENDAR
