@@ -70,7 +70,8 @@ p{margin:0}
 .cal .dn{font-family:var(--mono);font-size:.7rem;color:var(--ink3);line-height:1}
 .calpill{font-family:var(--sans);font-size:.58rem;font-weight:700;border:0;border-radius:3px;padding:.2rem .18rem;color:var(--ground);cursor:pointer;text-align:left;line-height:1.15;width:100%;overflow:hidden;letter-spacing:.01em}
 .calpill.k1{background:var(--good)}
-.calpill.k2,.calpill.k3,.calpill.k4{background:var(--ice)}
+.calpill.k2{background:var(--ice)}
+.calpill.k3,.calpill.k4{background:var(--far)}
 .calpill.show{background:var(--accent)}
 .calpill.sel{outline:2px solid var(--ink);outline-offset:1px}
 .calpill:hover{opacity:.85}
@@ -78,6 +79,7 @@ p{margin:0}
 .calkey{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;vertical-align:-.1rem}
 .calkey.k1{background:var(--good)}
 .calkey.k2{background:var(--ice)}
+.calkey.k3{background:var(--far)}
 .calkey.show{background:var(--accent)}
 .seldetail{margin:0 0 1.1rem}
 .rosterwrap{max-width:28rem}
@@ -183,8 +185,39 @@ var SESSIONS = [
 {id:"s26",d:"2027-02-01",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270202T025000Z/20270202T040000Z"},
 {id:"s27",d:"2027-02-08",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270209T025000Z/20270209T040000Z"},
 {id:"s28",d:"2027-02-22",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270223T025000Z/20270223T040000Z"},
-{id:"s29",d:"2027-03-01",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270302T025000Z/20270302T040000Z"}
+{id:"s29",d:"2027-03-01",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20270302T025000Z/20270302T040000Z"},
+/* Elkford Tuesdays — High Altitude Hockey skills (separate paid program, $25/session) */
+{id:"s30",d:"2026-09-22",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20260923T033000Z/20260923T043000Z"},
+{id:"s31",d:"2026-10-06",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261007T033000Z/20261007T043000Z"},
+{id:"s32",d:"2026-10-13",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261014T033000Z/20261014T043000Z"},
+{id:"s33",d:"2026-10-20",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261021T033000Z/20261021T043000Z"},
+{id:"s34",d:"2026-10-27",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261028T033000Z/20261028T043000Z"},
+{id:"s35",d:"2026-11-03",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261104T043000Z/20261104T053000Z"},
+{id:"s36",d:"2026-11-10",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261111T043000Z/20261111T053000Z"},
+{id:"s37",d:"2026-11-17",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261118T043000Z/20261118T053000Z"},
+{id:"s38",d:"2026-11-24",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261125T043000Z/20261125T053000Z"},
+{id:"s39",d:"2026-12-01",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261202T043000Z/20261202T053000Z"},
+{id:"s40",d:"2026-12-08",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261209T043000Z/20261209T053000Z"},
+{id:"s41",d:"2026-12-15",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261216T043000Z/20261216T053000Z"},
+{id:"s42",d:"2026-12-22",dow:"Tue",rink:"Elkford BC",venue:"High Altitude Hockey",kind:"skills",time:"9:30–10:30 PM",gd:"20261223T043000Z/20261223T053000Z"},
+/* Warner Wednesdays — Mustangs weeknight ice from Oct 14 */
+{id:"s43",d:"2026-10-14",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261015T015000Z/20261015T030000Z"},
+{id:"s44",d:"2026-10-21",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261022T015000Z/20261022T030000Z"},
+{id:"s45",d:"2026-10-28",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261029T015000Z/20261029T030000Z"},
+{id:"s46",d:"2026-11-04",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261105T025000Z/20261105T040000Z"},
+{id:"s47",d:"2026-11-18",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261119T025000Z/20261119T040000Z"},
+{id:"s48",d:"2026-11-25",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261126T025000Z/20261126T040000Z"},
+{id:"s49",d:"2026-12-02",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261203T025000Z/20261203T040000Z"},
+{id:"s50",d:"2026-12-09",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20261210T025000Z/20261210T040000Z"},
+{id:"s51",d:"2027-01-06",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20270107T025000Z/20270107T040000Z"},
+{id:"s52",d:"2027-01-13",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20270114T025000Z/20270114T040000Z"},
+{id:"s53",d:"2027-01-20",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20270121T025000Z/20270121T040000Z"},
+{id:"s54",d:"2027-02-03",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20270204T025000Z/20270204T040000Z"},
+{id:"s55",d:"2027-02-10",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20270211T025000Z/20270211T040000Z"},
+{id:"s56",d:"2027-02-24",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20270225T025000Z/20270225T040000Z"},
+{id:"s57",d:"2027-03-03",dow:"Wed",rink:"Warner",kind:"skate",time:"7:50–9:00 PM",gd:"20270304T025000Z/20270304T040000Z"}
 ];
+SESSIONS.sort(function(a,b){ return a.d<b.d?-1:(a.d>b.d?1:0); });
 var HOTELS = {
   "s10": {name:"Best Western Diamond Inn", addr:"351 7th Ave NE, Three Hills", phone:"403-443-7889",
     book:"https://www.bestwestern.com/en_US/book/three-hills/hotel-rooms/best-western-diamond-inn/propertyCode.61069.html",
@@ -218,7 +251,7 @@ var RINKS = {
   "Warner":      {km:235, time:"2 h 25", tier:3, venue:"Warner Arena",              map:"Warner Arena, Warner, AB"},
   "Elkford BC":  {km:290, time:"3 h 15", tier:4, venue:"Elkford Arena",             map:"Elkford Arena, Elkford, BC"}
 };
-var KIND = {skate:"Optional skate", practice:"Practice", showcase:"Showcase"};
+var KIND = {skate:"Optional skate", practice:"Practice", showcase:"Showcase", skills:"Optional skills skate · $25"};
 var MONTH = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 var LP100 = 16.8;
 
@@ -393,7 +426,7 @@ function renderSessions(){
         var cs=cell.s,cr=RINKS[cs.rink]||{tier:2};
         var claimed=CLAIMS_OK&&famsOf(CLAIMS[cs.id]).length>0;
         var pc=cs.kind==="showcase"?"show":("k"+(cr.tier||2));
-        var lbl=cs.kind==="showcase"?(cell.first?"&#9733; "+esc(PILLRINK[cs.rink]||cs.rink):"&#9733;"):esc(PILLRINK[cs.rink]||cs.rink);
+        var lbl=cs.kind==="showcase"?(cell.first?"&#9733; "+esc(PILLRINK[cs.rink]||cs.rink):"&#9733;"):(cs.kind==="skills"?"$ ":"")+esc(PILLRINK[cs.rink]||cs.rink);
         h+='<button type="button" class="calpill '+pc+(cs.id===SELID?" sel":"")+'" data-open="'+esc(cs.id)+'" aria-label="'+esc(KIND[cs.kind]||"Ice")+' '+esc(cs.rink)+' '+fmtDate(cs.d)+'">'+lbl+(claimed?' &#128663;':'')+'</button>';
       }
       h+='</span>';
@@ -404,7 +437,7 @@ function renderSessions(){
       h+='<div class="cards seldetail">'+cardHTML(sel)+'</div>';
     }
   }
-  h+='<p class="tiny callegend"><span class="calkey k1"></span> Stavely &nbsp;<span class="calkey k2"></span> Lethbridge / Kainai / Three Hills / Penhold &nbsp;<span class="calkey show"></span> &#9733; Showcase &nbsp;&#128663; = a family&rsquo;s driving. Tap any date for details &amp; drive claims.</p>';
+  h+='<p class="tiny callegend"><span class="calkey k1"></span> Stavely — our runs &nbsp;<span class="calkey k2"></span> Lethbridge / Kainai &nbsp;<span class="calkey k3"></span> Warner &amp; Elkford — the long hauls ($ = Elkford, paid) &nbsp;<span class="calkey show"></span> &#9733; Showcase &nbsp;&#128663; = a family&rsquo;s driving. Tap any date for details &amp; drive claims.</p>';
   return h+'</div>';
 }
 function refreshSched(){
@@ -557,10 +590,10 @@ renderGlance()+
   '<span class="gs">Subscribe once and every date lands in your calendar — and when Jesse’s Oct/Nov schedule drops or times firm up, your calendar updates itself. Or grab single dates with the &#128197;&#xFE0E; cal button on any card below.</span></div>'+
   renderSessions()+
   '<p class="tiny">Weeknight skates are <strong>100% optional and free</strong> — Jesse: come to one a week, all of them, or none; they’re skills &amp; small-area games to get better. Our four are focusing on the <strong>Stavely Mondays</strong> — that’s why every one through March is on the cards above. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p>'+
-  '<div class="gt c-road"><span class="gk">&#129365; More optional ice, if anyone’s keen</span>'+
-  '<span class="gs"><strong>Wednesdays move to Warner</strong> (7:50–9:00 PM, ~2 h 25 each way) from Oct 14: Oct 14/21/28, Nov 4/18/25, Dec 2/9, Jan 6/13/20, Feb 3/10/24, Mar 3 — a long haul for a free skate, so they’re off our cards; holler in the group text if you want to convoy one. '+
-  '<strong>Tuesdays in Elkford</strong> are the separate High Altitude Hockey skills program (9:30–10:30 PM, Elkford Arena, from Sep 22): $25 a session or $260 for all 13 — and 3 h 15 away. '+
-  '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors) start late September — nights TBC, they’ll land on the cards when Jesse confirms.</span></div>'+
+  '<div class="gt c-road"><span class="gk">&#129365; The long-haul options — on the calendar in red</span>'+
+  '<span class="gs"><strong>Wednesdays move to Warner</strong> (7:50–9:00 PM, ~2 h 25 each way) from Oct 14 — free Mustangs ice, just a serious drive; holler in the group text if you want to convoy one. '+
+  '<strong>Tuesdays in Elkford</strong> (the $ pills) are the separate High Altitude Hockey skills program: 9:30–10:30 PM at Elkford Arena, $25 a session or $260 for all 13 — and 3 h 15 away. '+
+  '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors) start late September — nights TBC, they’ll land on the calendar when Jesse confirms.</span></div>'+
 '</section>'+
 '<section class="sec view" id="v-rinks"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
   '<thead><tr><th>Town</th><th>Rink</th><th>Distance</th><th>One way</th><th>Round trip</th><th>Pin</th></tr></thead><tbody>'+renderRinks()+'</tbody></table></div>'+

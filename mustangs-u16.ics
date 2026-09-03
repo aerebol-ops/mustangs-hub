@@ -266,6 +266,156 @@ LOCATION:Stavely Arena\, 5004 51 Ave\, Stavely\, AB
 DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
 END:VEVENT
 BEGIN:VEVENT
+UID:s43-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261015T015000Z
+DTEND:20261015T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s44-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261022T015000Z
+DTEND:20261022T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s45-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261029T015000Z
+DTEND:20261029T030000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s46-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261105T025000Z
+DTEND:20261105T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s47-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261119T025000Z
+DTEND:20261119T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s48-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261126T025000Z
+DTEND:20261126T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s49-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261203T025000Z
+DTEND:20261203T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s50-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20261210T025000Z
+DTEND:20261210T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s51-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270107T025000Z
+DTEND:20270107T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s52-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270114T025000Z
+DTEND:20270114T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s53-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270121T025000Z
+DTEND:20270121T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s54-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270204T025000Z
+DTEND:20270204T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s55-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270211T025000Z
+DTEND:20270211T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s56-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270225T025000Z
+DTEND:20270225T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
+UID:s57-2026@mustangs-hub
+DTSTAMP:20260903T180000Z
+SEQUENCE:1
+DTSTART:20270304T025000Z
+DTEND:20270304T040000Z
+SUMMARY:Mustangs U16 — Optional skate · Warner
+LOCATION:Warner Arena\, Warner\, AB
+DESCRIPTION:Drive claims + details: https://aerebol-ops.github.io/mustangs-hub/
+END:VEVENT
+BEGIN:VEVENT
 UID:s10-2026@mustangs-hub
 DTSTAMP:20260903T180000Z
 SEQUENCE:1

@@ -5,10 +5,8 @@
 const ORIGIN = "https://aerebol-ops.github.io";
 const TEAM = "mustangs-2026";
 const FAMILIES = ["Lyons", "Schlaht", "Aubin", "Novlesky"];
-const SESSIONS = [
-  "s1","s2","s3","s4","s5","s6","s7","s8","s9","s10","s11","s12","s13","s14",
-  "s15","s16","s17","s18","s19","s20","s21","s22","s23","s24","s25","s26","s27","s28","s29"
-];
+const SESSIONS = [];
+for (let i = 1; i <= 57; i++) SESSIONS.push("s" + i);
 
 // A claim is a LIST of families — plenty of nights need two or three cars.
 // Old entries were {family:"X"}; famsOf() reads both shapes.
