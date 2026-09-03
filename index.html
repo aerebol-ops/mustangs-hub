@@ -60,6 +60,26 @@ p{margin:0}
 .gt .gs{font-size:.78rem;color:var(--ink3);font-family:var(--sans);line-height:1.45}
 .btnlink{display:inline-block;background:var(--ink);color:var(--ground);text-decoration:none;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;border-radius:3px;padding:.65rem 1rem}
 .btnlink:hover{opacity:.85}
+/* month calendar */
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin:.5rem 0 .9rem}
+.cal .wd{font-family:var(--sans);font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);text-align:center;padding:.1rem 0}
+.cal .dc{background:var(--panel);border:1px solid var(--line);border-radius:3px;min-height:3.3rem;padding:.18rem .22rem;display:flex;flex-direction:column;gap:.16rem;min-width:0}
+.cal .dc.blank{background:transparent;border-color:transparent}
+.cal .dc.past{opacity:.45}
+.cal .dc.today{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.cal .dn{font-family:var(--mono);font-size:.7rem;color:var(--ink3);line-height:1}
+.calpill{font-family:var(--sans);font-size:.58rem;font-weight:700;border:0;border-radius:3px;padding:.2rem .18rem;color:var(--ground);cursor:pointer;text-align:left;line-height:1.15;width:100%;overflow:hidden;letter-spacing:.01em}
+.calpill.k1{background:var(--good)}
+.calpill.k2,.calpill.k3,.calpill.k4{background:var(--ice)}
+.calpill.show{background:var(--accent)}
+.calpill.sel{outline:2px solid var(--ink);outline-offset:1px}
+.calpill:hover{opacity:.85}
+.callegend{display:flex;flex-wrap:wrap;gap:.25rem .4rem;align-items:center}
+.calkey{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;vertical-align:-.1rem}
+.calkey.k1{background:var(--good)}
+.calkey.k2{background:var(--ice)}
+.calkey.show{background:var(--accent)}
+.seldetail{margin:0 0 1.1rem}
 .rosterwrap{max-width:28rem}
 .rosterwrap img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px;box-shadow:0 1px 3px var(--shadow)}
 .cards{display:flex;flex-direction:column;gap:.7rem}
@@ -277,54 +297,114 @@ function claimRow(s){
     '<span class="claimnote" id="cn-'+esc(s.id)+'"></span>'+
   '</div>';
 }
+function cardHTML(s){
+  var r=RINKS[s.rink]||{time:"?",tier:0,map:s.rink};
+  var du=daysUntil(s.d);
+  var cd=du===0?"today!":(du===1?"tomorrow":(du>0?"in "+du+" days":""));
+  if(s.kind==="showcase"){
+    return '<div class="card showcase"><div class="tier"></div><div class="cbody">'+
+      '<span class="showbadge">&#9733; Showcase Weekend &#9733;</span>'+
+      '<span class="date">'+esc(s.dow)+" "+esc(s.label||fmtDate(s.d))+'</span>'+
+      '<span class="rink">'+esc(s.rink)+'</span>'+
+      pinLink(r.map,s.rink)+
+      '<a class="pin" href="'+esc(calUrl(s))+'" target="_blank" rel="noopener" aria-label="Add to calendar">&#128197;&#xFE0E; cal</a>'+
+      (cd?'<span class="chip count">'+esc(cd)+'</span>':'')+
+      '<span class="chip drive">'+esc(r.time)+' each way</span>'+
+      '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team — game times land closer to the date.</span>'+
+      (function(){
+        var ht=HOTELS[s.id];
+        if(!ht) return '<span class="roadtrip">&#127976; <strong>Team hotel:</strong> not booked yet — watch this space.</span>';
+        return '<span class="roadtrip">&#127976; <strong>Team hotel: '+esc(ht.name)+'</strong> &middot; '+esc(ht.inout)+
+          (ht.phone?' &middot; <span class="num">'+esc(ht.phone)+'</span>':'')+
+          ' &middot; '+esc(ht.by)+' — grab a room to be down the hall: '+
+          '<a href="'+esc(ht.book)+'" target="_blank" rel="noopener">book at the hotel &#8599;</a> '+
+          pinLink(ht.name+", "+ht.addr+", AB", ht.name)+
+        '</span>';
+      })()+
+      claimRow(s)+
+    '</div></div>';
+  }
+  return '<div class="card"><div class="tier t'+r.tier+'"></div><div class="cbody">'+
+    '<span class="date">'+esc(s.dow)+" "+fmtDate(s.d)+'</span>'+
+    '<span class="rink">'+esc(s.rink)+(s.venue?' <span class="tiny">('+esc(s.venue)+')</span>':'')+'</span>'+
+    pinLink(s.venue&&s.rink==="Lethbridge"?s.venue+", Lethbridge, AB":r.map,s.rink)+
+    '<a class="pin" href="'+esc(calUrl(s))+'" target="_blank" rel="noopener" aria-label="Add to calendar">&#128197;&#xFE0E; cal</a>'+
+    '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
+    '<span class="chip drive">'+esc(r.time)+' each way</span>'+
+    (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
+    claimRow(s)+
+  '</div></div>';
+}
+var SELID=null;
+var PILLRINK={"Stavely":"Stavely","Lethbridge":"Leth","Kainai":"Kainai","Three Hills":"3 Hills","Penhold":"Penhold","Raymond":"Raymond","Warner":"Warner","Elkford BC":"Elkford"};
+function sessById(id){ for(var i=0;i<SESSIONS.length;i++) if(SESSIONS[i].id===id) return SESSIONS[i]; return null; }
 function renderSessions(){
-  var h='<div class="cards" id="schedcards">',curMonth="";
-  for(var i=0;i<SESSIONS.length;i++){
-    var s=SESSIONS[i],r=RINKS[s.rink]||{time:"?",tier:0,map:s.rink};
-    if(daysUntil(s.d)<0 && s.kind!=="showcase") continue; /* past days drop off */
-    var mn=MONTHFULL[parseInt(s.d.split("-")[1],10)];
-    if(mn!==curMonth){
-      curMonth=mn;
-      var cnt=0;for(var j=0;j<SESSIONS.length;j++){if(MONTHFULL[parseInt(SESSIONS[j].d.split("-")[1],10)]===mn&&daysUntil(SESSIONS[j].d)>=0)cnt++;}
-      h+='<div class="mdiv"><span class="mname">'+esc(mn)+'</span><span class="mrule"></span><span class="mcount">'+cnt+' on the ice</span></div>';
-    }
-    var du=daysUntil(s.d);
-    var cd=du===0?"today!":(du===1?"tomorrow":(du>0?"in "+du+" days":""));
-    if(s.kind==="showcase"){
-      h+='<div class="card showcase"><div class="tier"></div><div class="cbody">'+
-        '<span class="showbadge">&#9733; Showcase Weekend &#9733;</span>'+
-        '<span class="date">'+esc(s.dow)+" "+esc(s.label||fmtDate(s.d))+'</span>'+
-        '<span class="rink">'+esc(s.rink)+'</span>'+
-        pinLink(r.map,s.rink)+
-        '<a class="pin" href="'+esc(calUrl(s))+'" target="_blank" rel="noopener" aria-label="Add to calendar">&#128197;&#xFE0E; cal</a>'+
-        (cd?'<span class="chip count">'+esc(cd)+'</span>':'')+
-        '<span class="chip drive">'+esc(r.time)+' each way</span>'+
-        '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team — game times land closer to the date.</span>'+
-        (function(){
-          var ht=HOTELS[s.id];
-          if(!ht) return '<span class="roadtrip">&#127976; <strong>Team hotel:</strong> not booked yet — watch this space.</span>';
-          return '<span class="roadtrip">&#127976; <strong>Team hotel: '+esc(ht.name)+'</strong> &middot; '+esc(ht.inout)+
-            (ht.phone?' &middot; <span class="num">'+esc(ht.phone)+'</span>':'')+
-            ' &middot; '+esc(ht.by)+' — grab a room to be down the hall: '+
-            '<a href="'+esc(ht.book)+'" target="_blank" rel="noopener">book at the hotel &#8599;</a> '+
-            pinLink(ht.name+", "+ht.addr+", AB", ht.name)+
-          '</span>';
-        })()+
-        claimRow(s)+
-      '</div></div>';
-    } else {
-      h+='<div class="card"><div class="tier t'+r.tier+'"></div><div class="cbody">'+
-        '<span class="date">'+esc(s.dow)+" "+fmtDate(s.d)+'</span>'+
-        '<span class="rink">'+esc(s.rink)+(s.venue?' <span class="tiny">('+esc(s.venue)+')</span>':'')+'</span>'+
-        pinLink(s.venue&&s.rink==="Lethbridge"?s.venue+", Lethbridge, AB":r.map,s.rink)+
-        '<a class="pin" href="'+esc(calUrl(s))+'" target="_blank" rel="noopener" aria-label="Add to calendar">&#128197;&#xFE0E; cal</a>'+
-        '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
-        '<span class="chip drive">'+esc(r.time)+' each way</span>'+
-        (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
-        claimRow(s)+
-      '</div></div>';
+  /* month-calendar layout: pills on the grid, tap a date for its full card */
+  var i,s;
+  if(!SELID || !sessById(SELID)){
+    for(i=0;i<SESSIONS.length;i++){ if(daysUntil(SESSIONS[i].d)>=0){ SELID=SESSIONS[i].id; break; } }
+  }
+  /* byDate: "YYYY-MM-DD" -> {s, first} ; showcases span 3 days */
+  var byDate={};
+  for(i=0;i<SESSIONS.length;i++){
+    s=SESSIONS[i];
+    var span=s.kind==="showcase"?3:1;
+    var p=s.d.split("-");
+    var dt=new Date(parseInt(p[0],10),parseInt(p[1],10)-1,parseInt(p[2],10));
+    for(var k=0;k<span;k++){
+      var key=dt.getFullYear()+"-"+("0"+(dt.getMonth()+1)).slice(-2)+"-"+("0"+dt.getDate()).slice(-2);
+      byDate[key]={s:s,first:k===0};
+      dt.setDate(dt.getDate()+1);
     }
   }
+  /* ordered list of months that still matter (current month onward) */
+  var months=[],seen={};
+  var now=new Date(); now.setHours(0,0,0,0);
+  var curKey=now.getFullYear()*12+now.getMonth();
+  for(i=0;i<SESSIONS.length;i++){
+    s=SESSIONS[i];
+    var yy=parseInt(s.d.split("-")[0],10),mm=parseInt(s.d.split("-")[1],10)-1;
+    if(yy*12+mm<curKey) continue;
+    var mk=yy+"-"+mm;
+    if(!seen[mk]){ seen[mk]=true; months.push({y:yy,m:mm}); }
+  }
+  var WD=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  var h='<div id="schedcards">';
+  for(var mi=0;mi<months.length;mi++){
+    var y=months[mi].y,m=months[mi].m;
+    var cnt=0;
+    for(i=0;i<SESSIONS.length;i++){
+      s=SESSIONS[i];
+      if(parseInt(s.d.split("-")[0],10)===y&&parseInt(s.d.split("-")[1],10)-1===m&&(daysUntil(s.d)>=0||s.kind==="showcase"))cnt++;
+    }
+    h+='<div class="mdiv"><span class="mname">'+esc(MONTHFULL[m+1])+(y!==now.getFullYear()?' <span class="tiny num">'+y+'</span>':'')+'</span><span class="mrule"></span><span class="mcount">'+cnt+' on the ice</span></div>';
+    h+='<div class="cal" role="grid" aria-label="'+esc(MONTHFULL[m+1])+' '+y+'">';
+    for(i=0;i<7;i++) h+='<span class="wd">'+WD[i]+'</span>';
+    var first=new Date(y,m,1).getDay();
+    var dim=new Date(y,m+1,0).getDate();
+    for(i=0;i<first;i++) h+='<span class="dc blank"></span>';
+    for(var day=1;day<=dim;day++){
+      var dkey=y+"-"+("0"+(m+1)).slice(-2)+"-"+("0"+day).slice(-2);
+      var cell=byDate[dkey];
+      var cd2=new Date(y,m,day);
+      var cls="dc"+(cd2<now?" past":"")+(cd2.getTime()===now.getTime()?" today":"");
+      h+='<span class="'+cls+'"><span class="dn">'+day+'</span>';
+      if(cell){
+        var cs=cell.s,cr=RINKS[cs.rink]||{tier:2};
+        var claimed=CLAIMS_OK&&famsOf(CLAIMS[cs.id]).length>0;
+        var pc=cs.kind==="showcase"?"show":("k"+(cr.tier||2));
+        var lbl=cs.kind==="showcase"?(cell.first?"&#9733; "+esc(PILLRINK[cs.rink]||cs.rink):"&#9733;"):esc(PILLRINK[cs.rink]||cs.rink);
+        h+='<button type="button" class="calpill '+pc+(cs.id===SELID?" sel":"")+'" data-open="'+esc(cs.id)+'" aria-label="'+esc(KIND[cs.kind]||"Ice")+' '+esc(cs.rink)+' '+fmtDate(cs.d)+'">'+lbl+(claimed?' &#128663;':'')+'</button>';
+      }
+      h+='</span>';
+    }
+    h+='</div>';
+    var sel=sessById(SELID);
+    if(sel&&parseInt(sel.d.split("-")[0],10)===y&&parseInt(sel.d.split("-")[1],10)-1===m){
+      h+='<div class="cards seldetail">'+cardHTML(sel)+'</div>';
+    }
+  }
+  h+='<p class="tiny callegend"><span class="calkey k1"></span> Stavely &nbsp;<span class="calkey k2"></span> Lethbridge / Kainai / Three Hills / Penhold &nbsp;<span class="calkey show"></span> &#9733; Showcase &nbsp;&#128663; = a family&rsquo;s driving. Tap any date for details &amp; drive claims.</p>';
   return h+'</div>';
 }
 function refreshSched(){
@@ -342,6 +422,17 @@ function fetchClaims(){
     if(g) g.outerHTML=renderGlance();
   })["catch"](function(){ /* worker unreachable — cards stay read-only */ });
 }
+document.addEventListener("click",function(e){
+  var p=e.target;
+  while(p&&p.getAttribute&&!p.getAttribute("data-open")) p=p.parentNode;
+  if(p&&p.getAttribute){
+    SELID=p.getAttribute("data-open");
+    refreshSched();
+    var det=document.querySelector(".seldetail");
+    if(det&&det.scrollIntoView) det.scrollIntoView({block:"nearest",behavior:"smooth"});
+    return;
+  }
+});
 document.addEventListener("click",function(e){
   var t=e.target;
   while(t&&t.getAttribute&&!t.getAttribute("data-claim")) t=t.parentNode;
