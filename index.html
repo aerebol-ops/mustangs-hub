@@ -283,11 +283,11 @@ function renderGlance(){
 
   /* Payment */
   var dp=daysUntil("2026-09-01");
-  var due=dp>1?"due in "+dp+" days":(dp===1?"due tomorrow":(dp===0?"due today":"was due Sept 1 — check the Team tab"));
+  var due=dp>1?"due in "+dp+" days":(dp===1?"due tomorrow":(dp===0?"due today":"was due Sept 1 — check the Money tab"));
   var sent=PAY_OK?(Array.isArray(PAY["2026-09"])?PAY["2026-09"].length:0)+" of "+FAMILIES.length+" sent &middot; ":"";
   h+='<div class="gt c-money"><span class="gk">&#128181; September payment</span>'+
     '<span class="gv"><span class="num">$1,000</span>/player &middot; '+esc(due)+'</span>'+
-    '<span class="gs">'+sent+'E-transfer to Jesse — tick yours off on the Team tab.</span></div>';
+    '<span class="gs">'+sent+'E-transfer to Jesse — tick yours off on the Money tab.</span></div>';
 
   /* Fuel */
   h+='<div class="gt"><span class="gk">&#9981; Pump price &middot; Okotoks</span>'+
@@ -614,10 +614,7 @@ renderGlance()+
   '<div class="shop" id="gearpanel"></div>'+
   '<p class="tiny">Just handy links — nobody here gets a commission. Prices in CAD; check shipping to Okotoks before you fall in love.</p>'+
 '</section>'+
-'<section class="sec view" id="v-team"><h2>Money &amp; team</h2>'+
-  '<p class="muted"><span class="num">$1,000</span>/player was due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Prefer credit card (+3.15%)? Jesse’s setting up a card link — sit tight a day or two, or ask him: 403-915-2051.</p>'+
-  '<div id="paywrap"></div>'+
-  '<p class="tiny">Tap your family once the e-transfer is sent — everyone sees it, nobody has to chase. Honor system, same as claiming a drive. New months appear here as Jesse confirms them.</p>'+
+'<section class="sec view" id="v-roster"><h2>The roster</h2>'+
   '<div class="rosterwrap"><img src="mustangs-roster.jpg" alt="Mustangs U16 2026/27 roster poster — 18 players with jersey numbers" loading="lazy"></div>'+
   '<p class="tiny">The 2026/27 roster, straight from Coach Jesse. Our four: Liam <span class="num">#14</span>, Benjamin Schlaht <span class="num">#24</span>, Chase <span class="num">#73</span>, Colton <span class="num">#91</span>.</p>'+
   '<div class="gt c-ice"><span class="gk">&#127881; Team news — Jesse’s Sept 3 update</span>'+
@@ -625,6 +622,11 @@ renderGlance()+
   '<div class="gt c-road"><span class="gk">&#127952; SSHL — optional weeknight house league</span>'+
   '<span class="gs">Jesse’s grade 4–12 league out of Raymond, now in year 8 — Mustangs kids welcome and usually moved up a division. <span class="num">$225</span> gets a 14-game season (games Thu/Fri, a few Sat, some in Cardston), practice every other Thursday, and the Tuesday PEP session 2&times;/month. Meant to be competitive but fun; he schedules around showcases. <a href="https://sshlhockey.ca/registration" target="_blank" rel="noopener">Register at sshlhockey.ca &#8599;</a> — the link is open for about 3 weeks from Sep 3. Heads up from Okotoks: Raymond is ~2 h each way.</span></div>'+
   '<p class="muted">Team manager &amp; coach: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Still to come from him: the Oct/Nov weekend practice schedule, goalie session nights, the store link, and showcase game times.</p>'+
+'</section>'+
+'<section class="sec view" id="v-money"><h2>Money</h2>'+
+  '<p class="muted"><span class="num">$1,000</span>/player was due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Prefer credit card (+3.15%)? Jesse’s setting up a card link — sit tight a day or two, or ask him: 403-915-2051.</p>'+
+  '<div id="paywrap"></div>'+
+  '<p class="tiny">Tap your family once the e-transfer is sent — everyone sees it, nobody has to chase. Honor system, same as claiming a drive. New months appear here as Jesse confirms them.</p>'+
 '</section>'+
 '<footer>Okotoks Mustangs carpool hub &middot; built from Jesse’s Aug 23 season email, the Sept practice PDF, and the 2026 showcase poster. Pin this page: iPhone — Safari, Share, Add to Home Screen. Android — Chrome menu, Add to Home screen.</footer>'+
 '</div>';
@@ -636,9 +638,11 @@ var VIEWS = [
   {id:"fuel",     label:"⛽ Fuel"},
   {id:"training", label:"💪 Training"},
   {id:"gear",     label:"🛒 Gear"},
-  {id:"team",     label:"💵 Team"}
+  {id:"roster",   label:"🏒 Roster"},
+  {id:"money",    label:"💵 Money"}
 ];
 function setView(id){
+  if(id==="team") id="money"; /* the old combined tab */
   var known=false;
   for(var i=0;i<VIEWS.length;i++) if(VIEWS[i].id===id) known=true;
   if(!known) id="schedule";
