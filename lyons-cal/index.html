@@ -108,6 +108,8 @@
   .d-skate{background:transparent; border:2px solid var(--rink); width:5px; height:5px}
   .d-pay{background:transparent; border:2px solid var(--flare); width:5px; height:5px}
   .d-travel{background:var(--trail)}
+  .d-family{background:var(--haze)}
+  .sw-family{background:var(--haze)}
   .band{position:absolute; left:2px; right:2px; bottom:0; height:4px; border-radius:2px; background:var(--flare)}
   .mlist{padding:0; list-style:none; font-size:14px; display:flex; flex-direction:column; gap:7px; align-self:start}
   .mlist li{display:flex; gap:10px; align-items:baseline}
@@ -116,6 +118,8 @@
   .mlist .c-show .md,.mlist .c-pay .md{color:var(--flare)}
   .mlist .c-school .md{color:var(--field)}
   .mlist .c-travel .md{color:var(--trail)}
+  .mlist .c-family .md{color:var(--haze)}
+  .nu.c-family .rel{color:var(--haze)}
   .mlist .tt{line-height:1.4}
   .mlist .tt small{color:var(--haze); display:block; font-size:12.5px}
 
@@ -195,41 +199,76 @@
 
 <script type="application/json" id="state">
 {
-  "updated": "2026-08-29",
+  "updated": "2026-09-04",
   "events": [
     {"d":"2026-09-01","cat":"pay","t":"Hockey e-transfer due — $1,000","m":"to lethbridgemustangs@gmail.com"},
     {"d":"2026-09-07","cat":"school","t":"Labour Day — no school"},
-    {"d":"2026-09-09","cat":"skate","t":"Weeknight skate — Lethbridge","m":"time TBC"},
+    {"d":"2026-09-09","cat":"skate","t":"Weeknight skate — Labour Club, Lethbridge","m":"9:00–10:00 PM (U15–U18 group)"},
+    {"d":"2026-09-11","end":"2026-09-14","cat":"family","t":"Shannon & Tib in Midland","m":"land Fri 2:30 PM (Southwest from Vegas) · out Mon 7:05 AM"},
     {"d":"2026-09-12","cat":"practice","t":"Practice — Logan Boulet, Lethbridge","m":"5:00–6:30 + 6:45–7:45 (with U17)"},
-    {"d":"2026-09-14","cat":"skate","t":"Weeknight skate — Stavely","m":"time TBC"},
-    {"d":"2026-09-16","cat":"skate","t":"Weeknight skate — Lethbridge","m":"time TBC"},
+    {"d":"2026-09-14","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-09-16","cat":"skate","t":"Weeknight skate — Labour Club, Lethbridge","m":"9:00–10:00 PM (U15–U18 group)"},
+    {"d":"2026-09-17","cat":"family","t":"Amanda — golf tourney at GTCC","m":"Green Tree CC, Midland"},
     {"d":"2026-09-18","end":"2026-09-27","cat":"travel","t":"Dad home — Trip 1 (projected)","m":"Kainai weekend + Three Hills showcase · 10 days"},
     {"d":"2026-09-18","cat":"school","t":"No school — PD day"},
     {"d":"2026-09-19","cat":"practice","t":"Practice — Kainai Sports Centre","m":"10:00–11:30 + 1:00–2:00"},
     {"d":"2026-09-20","cat":"practice","t":"Practice — Kainai Sports Centre","m":"9:30–11:00 + 12:30–1:30"},
-    {"d":"2026-09-21","cat":"skate","t":"Weeknight skate — Stavely","m":"time TBC"},
-    {"d":"2026-09-23","cat":"skate","t":"Weeknight skate — Lethbridge","m":"time TBC"},
+    {"d":"2026-09-21","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-09-22","cat":"pay","t":"RSVP due — Tobi & Matt's wedding","m":"withjoy.com/tobi-and-matt"},
+    {"d":"2026-09-23","cat":"skate","t":"Weeknight skate — Labour Club, Lethbridge","m":"9:00–10:00 PM (U15–U18 group)"},
     {"d":"2026-09-25","end":"2026-09-27","cat":"show","t":"Showcase — Three Hills","m":"Best Western Diamond Inn (Schlaht booking)"},
-    {"d":"2026-09-28","cat":"skate","t":"Weeknight skate — Stavely","m":"time TBC"},
+    {"d":"2026-09-25","cat":"family","t":"Club championship — men's & women's","m":"GTCC · from Mike · same weekend as Three Hills + Trip 1"},
+    {"d":"2026-09-28","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2026-09-30","cat":"school","t":"No school — Truth & Reconciliation Day"},
     {"d":"2026-10-01","cat":"pay","t":"Hockey e-transfer due","m":"1st of the month, no invoice coming"},
     {"d":"2026-10-03","cat":"practice","t":"Practice — Stavely Arena","m":"11:45–12:45 + 2:15–3:45"},
     {"d":"2026-10-04","cat":"practice","t":"Practice — Stavely Arena","m":"3:30–4:30 + 4:45–5:45"},
+    {"d":"2026-10-05","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2026-10-08","end":"2026-10-17","cat":"travel","t":"Dad home — Trip 2 (projected)","m":"Lethbridge showcase + Thanksgiving · 10 days"},
     {"d":"2026-10-09","end":"2026-10-11","cat":"show","t":"Showcase — Lethbridge","m":"Fairfield Inn booked"},
+    {"d":"2026-10-11","cat":"family","t":"Tobi & Matt's wedding — Minturn, CO","m":"brunch 10:00–3:00, Minturn Saloon · same day as Lethbridge showcase"},
     {"d":"2026-10-12","cat":"school","t":"Thanksgiving — no school"},
+    {"d":"2026-10-14","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group) · Warner opens"},
     {"d":"2026-10-19","cat":"school","t":"No school — PD day"},
+    {"d":"2026-10-19","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-10-21","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-10-26","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-10-28","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2026-11-01","cat":"pay","t":"Hockey e-transfer due","m":"1st of the month, no invoice coming"},
+    {"d":"2026-11-02","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-11-04","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2026-11-09","end":"2026-11-13","cat":"school","t":"Fall Break — no school all week","m":"Remembrance Day Wed Nov 11"},
+    {"d":"2026-11-09","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2026-11-13","end":"2026-11-15","cat":"show","t":"Showcase — Penhold","m":"hotel TBD"},
     {"d":"2026-11-11","end":"2026-11-20","cat":"travel","t":"Dad home — Trip 3 (projected)","m":"Fall Break tail + Penhold showcase · 10 days"},
+    {"d":"2026-11-18","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-11-23","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-11-25","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2026-11-27","cat":"school","t":"No school — PD day","m":"learner conferences run Nov 16–27"},
+    {"d":"2026-11-30","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-12-02","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-12-07","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2026-12-09","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2026-12-16","end":"2026-12-23","cat":"travel","t":"Dad home — Trip 4 (projected)","m":"last school week before break · Hawaii follows Dec 24"},
     {"d":"2026-12-21","end":"2027-01-01","cat":"school","t":"Winter Break","m":"schools reopen Jan 4"},
     {"d":"2026-12-24","cat":"travel","t":"Christmas trip — Hawaii","m":"departs Dec 24 · return TBD · flight + hotel details coming"},
+    {"d":"2027-01-04","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-01-06","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-01-11","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-01-13","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2027-01-18","end":"2027-01-28","cat":"school","t":"High school exams — semester 1"},
+    {"d":"2027-01-18","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-01-20","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2027-01-29","cat":"school","t":"No school — PD day","m":"semester 2 starts Feb 1"},
+    {"d":"2027-02-01","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-02-03","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-02-08","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-02-10","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2027-02-15","end":"2027-02-19","cat":"school","t":"February week off","m":"Family Day + convention week"},
+    {"d":"2027-02-22","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-02-24","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-03-01","cat":"skate","t":"Weeknight skate — Stavely","m":"7:50–9:00 PM (U14+ group)"},
+    {"d":"2027-03-03","cat":"skate","t":"Weeknight skate — Warner","m":"7:50–9:00 PM (U14+ group)"},
     {"d":"2027-03-22","cat":"school","t":"No school — PD day"},
     {"d":"2027-03-26","end":"2027-04-02","cat":"school","t":"Spring Break"},
     {"d":"2027-04-23","cat":"school","t":"No school — PD day"},
@@ -239,13 +278,18 @@
   ],
   "travel": [
     {"dates":"Aug 19–25","title":"Dad home in Canada — done","detail":"Up MAF→DEN→YYC Wed Aug 19, back YYC→IAH→MAF Tue Aug 25.","status":"done"},
-    {"dates":"Sep 18 → 27","title":"Trip 1 — Three Hills run","detail":"Fri Sep 18 (PD day — Liam's off school) → Sun Sep 27. Two hockey weekends in 10 days: Kainai practices Sep 19–20, the Monday and Wednesday skates, and the full Three Hills showcase. Likely a solo run. Not booked.","status":"planning"},
-    {"dates":"Oct 8 → 17","title":"Trip 2 — Thanksgiving + Lethbridge","detail":"Thu Oct 8 → Sat Oct 17. The family-friendly one: the Lethbridge showcase from the Fairfield (room already booked, 2 adults + 2 kids), Thanksgiving Monday, then a home week with Liam. Best candidate for Amanda + Theron — one hotel base, no rink-hopping. Not booked.","status":"planning"},
+    {"dates":"Sep 18 → 27","title":"Trip 1 — Three Hills run","detail":"Fri Sep 18 (PD day — Liam's off school) → Sun Sep 27. Two hockey weekends in 10 days: Kainai practices Sep 19–20, the Monday and Wednesday skates, and the full Three Hills showcase. Likely a solo run. Heads-up: the GTCC club championship falls Sep 25 — same weekend as the showcase; pick one. Not booked.","status":"planning"},
+    {"dates":"Oct 8 → 17","title":"Trip 2 — Thanksgiving + Lethbridge","detail":"Thu Oct 8 → Sat Oct 17. Lethbridge showcase from the Fairfield (room already booked), Thanksgiving Monday, then a home week with Liam. Heads-up: Tobi & Matt's wedding in Minturn, CO is Sun Oct 11 — Amanda's likely Colorado-bound that weekend, so sort who's where before booking. Not booked.","status":"planning"},
     {"dates":"Nov 11 → 20","title":"Trip 3 — Fall Break + Penhold","detail":"Wed Nov 11 (Remembrance Day) → Fri Nov 20. Back half of Fall Break, the full Penhold showcase (hotel still TBD), and the start of conference week. Likely solo. Not booked.","status":"planning"},
     {"dates":"Dec 16 → 23","title":"Trip 4 — school-out week","detail":"Wed Dec 16 → Wed Dec 23, Liam's last school week before break — then everyone flies to Hawaii Dec 24. Not booked.","status":"planning"},
     {"dates":"Dec 24 →","title":"Christmas in Hawaii","detail":"Departs Dec 24. Flights and accommodations are being booked — details land here as the confirmations hit Dad's inbox. School winter break runs through Jan 1, back in class Jan 4.","status":"planning"}
   ],
-  "requests": []
+  "requests": [
+    {"id":"em-amanda-0831a","who":"Amanda","cat":"Other","date":"2026-09-11","text":"Shannon and Tib in Midland Sept 11–14 — visit + Shannon's flights are on the board","ts":"Aug 31","status":"applied","photoName":"IMG_9396.png"},
+    {"id":"em-amanda-0831b","who":"Amanda","cat":"Other","date":"2026-09-17","text":"Amanda playing golf tourney at GTCC","ts":"Aug 31","status":"applied"},
+    {"id":"em-mike-0831","who":"Mike","cat":"Other","date":"2026-09-25","text":"Club championship men's & women's at GTCC — boarded; note it collides with the Three Hills showcase weekend","ts":"Aug 31","status":"applied"},
+    {"id":"em-amanda-0903","who":"Amanda","cat":"Travel","date":"2026-10-11","text":"Wedding in Colorado — Tobi & Matt, Minturn Saloon, brunch 10–3. RSVP by Sep 22 (on the board). Collides with the Lethbridge showcase.","ts":"Sep 3","status":"applied","photoName":"IMG_9441.jpeg"}
+  ]
 }
 </script>
 
@@ -258,7 +302,14 @@ var MAILTO = 'mlyons@csrhigroup.com';
 var WORK = 'mscroom@csrhigroup.com';
 var MN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 var DOW = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-var GRID_MONTHS = [[2026,8],[2026,9],[2026,10]];
+var GRID_MONTHS = (function(){
+  var t = new Date(), y = t.getFullYear(), mo = t.getMonth();
+  if (y < 2026 || (y === 2026 && mo < 8)) { y = 2026; mo = 8; }        // floor: Sep 2026
+  if (y > 2027 || (y === 2027 && mo > 3)) { y = 2027; mo = 3; }        // ceiling: Apr–Jun 2027
+  var out = [];
+  for (var i = 0; i < 3; i++){ var m = mo + i; out.push([y + Math.floor(m/12), m % 12]); }
+  return out;
+})();
 
 var state = JSON.parse(document.getElementById('state').textContent);
 var artifactNS = null;   // resolved claude capability namespace (or null)
@@ -309,6 +360,7 @@ function render(){
       if(m.practice) dots+='<span class="dot d-practice"></span>';
       if(m.skate) dots+='<span class="dot d-skate"></span>';
       if(m.travel) dots+='<span class="dot d-travel"></span>';
+      if(m.family) dots+='<span class="dot d-family"></span>';
       if(m.pay) dots+='<span class="dot d-pay"></span>';
       cells+='<div class="'+cls+'">'+d+(dots?'<span class="dots">'+dots+'</span>':'')+(m.show?'<span class="band"></span>':'')+'</div>';
     }
@@ -367,7 +419,8 @@ function render(){
     '<span class="key"><span class="swatch sw-skate"></span>Weeknight skate</span>'+
     '<span class="key"><span class="swatch sw-show"></span>Showcase weekend</span>'+
     '<span class="key"><span class="swatch sw-travel"></span>Travel</span>'+
-    '<span class="key"><span class="swatch sw-pay"></span>Hockey e&#8209;transfer due</span>'+
+    '<span class="key"><span class="swatch sw-family"></span>Family</span>'+
+    '<span class="key"><span class="swatch sw-pay"></span>Payment / RSVP due</span>'+
   '</div>'+
   '<div>'+months+'</div>'+
   '<div class="h2row"><h2>Dad&rsquo;s travel &amp; family trips</h2><span class="note">projected 8&ndash;10&#8209;day trips &mdash; Verify locks the dates &amp; drafts the work heads&#8209;up; bookings replace projections as they land</span></div>'+
@@ -408,13 +461,14 @@ function render(){
   '</form></div>'+
   '<div class="h2row"><h2>Family inbox</h2><span class="note">what&rsquo;s been suggested and where it stands</span></div>'+
   '<div class="inbox" id="inbox">'+(reqs||'<div class="req" style="color:var(--haze)">Nothing waiting &mdash; suggestions show up here.</div>')+'</div>'+
-  '<div class="h2row"><h2>Still coming from Jesse</h2><span class="note">from the team email, Aug 23</span></div>'+
+  '<div class="h2row"><h2>Team news &amp; what&rsquo;s still coming</h2><span class="note">from Jesse&rsquo;s emails &mdash; latest Sep 3</span></div>'+
   '<div class="plain"><ul>'+
-    '<li><strong>Weeknight skate times</strong> &mdash; Lethbridge Wednesdays (Sep 9, 16, 23) and Stavely Mondays (Sep 14, 21, 28) are confirmed dates, times land once the arenas confirm. A third Thursday skate in Stavely is a strong possibility.</li>'+
-    '<li><strong>Oct&ndash;Nov practice schedule</strong> &mdash; due in the next few weeks; will look like September&rsquo;s, but some practices move to Raymond and Warner once those rinks open mid&#8209;October.</li>'+
-    '<li><strong>In&#8209;season weeknights (Oct&ndash;Feb)</strong> &mdash; most Mondays in Stavely, Wednesdays in Warner, with a possible third night in Raymond or Elkford.</li>'+
+    '<li><strong>Weeknight ice is set for the season</strong> &mdash; every date is on the board and in the calendar feed: Labour Club Wednesdays 9:00&ndash;10:00&nbsp;PM in September, then Warner Wednesdays from Oct&nbsp;14 and Stavely Mondays, both 7:50&ndash;9:00&nbsp;PM, through March&nbsp;3. Not every week runs &mdash; trust the dots. Skates are optional and free.</li>'+
+    '<li><strong>Roster&rsquo;s out</strong> &mdash; Liam wears <strong>#14</strong>, and Jesse is coaching the team this season. Full sheet lives in the family files (not posted here).</li>'+
+    '<li><strong>Optional extras</strong> &mdash; SSHL house league (grades 9&ndash;12 fit: 14 games Thu/Fri + Tuesday 3&#8209;on&#8209;3, $225, register within ~3 weeks at sshlhockey.ca) and Elkford Tuesday skills skates (9:30&ndash;10:30&nbsp;PM from Sep&nbsp;22, $25/session or $260 for all 13). Goalie sessions also starting &mdash; not Liam&rsquo;s lane.</li>'+
+    '<li><strong>Oct&ndash;Nov practice schedule</strong> &mdash; still coming; will look like September&rsquo;s with some practices moving to Raymond and Warner mid&#8209;October.</li>'+
     '<li><strong>Showcases after November</strong> &mdash; league re&#8209;seeds after the Sep/Oct showcases; remaining dates promised by Nov&nbsp;1.</li>'+
-    '<li><strong>Payments</strong> &mdash; $1,000 was due Sep 1 by e&#8209;transfer to lethbridgemustangs@gmail.com. No monthly invoice is coming; the 1st&#8209;of&#8209;month dots above are our own reminders.</li>'+
+    '<li><strong>Payments</strong> &mdash; $1,000 monthly by e&#8209;transfer to lethbridgemustangs@gmail.com, no invoices coming; the 1st&#8209;of&#8209;month dots are our reminders. Team store still delayed &mdash; order form promised if it slips further.</li>'+
   '</ul></div>'+
   '<div class="h2row"><h2>School year, rest of the way</h2><span class="note">Foothills School Division &middot; semester 1 started Aug 31</span></div>'+
   '<div class="plain rail">'+
@@ -553,7 +607,7 @@ function onSubmit(ev){
   var file = fEl && fEl.files && fEl.files[0];
   if (readOnly || !artifactNS){
     mailtoFallback(req);
-    if (file){ msg('Attach your photo to the email before sending — it can’t ride the link on its own.', true); }
+    if (file){ msg('Photos can’t ride this link. Easiest: open Photos, pick the shot, Share → Mail it to '+MAILTO+' with FAMILY CAL in the subject. Or in the draft that just opened: long-press in the body → Insert Photo.', true); }
     return;
   }
   if (file){
@@ -623,8 +677,10 @@ if (window.claude && window.claude.use){
   readOnly = true;
   var mn = document.getElementById('modeNote');
   if (mn){ mn.innerHTML = 'From this view, suggestions go by email: tap the button and your mail app opens '+
-    'pre&#8209;addressed to <strong>'+MAILTO+'</strong> &mdash; attach photos or PDFs right in the email, '+
-    'hit send, and the nightly sweep reads it all and boards it.'; }
+    'pre&#8209;addressed to <strong>'+MAILTO+'</strong> &mdash; hit send and the nightly sweep boards it. '+
+    '<strong>Sending a photo?</strong> The reliable way: open <strong>Photos</strong>, pick the shot, '+
+    'Share &rarr; Mail, address it to '+MAILTO+' with <strong>FAMILY CAL</strong> in the subject. '+
+    '(In a draft, you can also long&#8209;press in the body &rarr; Insert Photo.)'; }
 }
 })();
 </script>
