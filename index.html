@@ -161,7 +161,7 @@ var SESSIONS = [
 {id:"s7", d:"2026-09-12",dow:"Sat",rink:"Lethbridge",venue:"Logan Boulet",kind:"practice",time:"5:00–6:30 + 6:45–7:45 w/ U17",gd:"20260912T230000Z/20260913T014500Z"},
 {id:"s2", d:"2026-09-14",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20260915T015000Z/20260915T030000Z"},
 {id:"s3", d:"2026-09-16",dow:"Wed",rink:"Lethbridge",venue:"Labour Club Arena",kind:"skate",time:"9:00–10:00 PM",gd:"20260917T030000Z/20260917T040000Z"},
-{id:"s8", d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"10:00–11:30 + 1:00–2:00",gd:"20260919T160000Z/20260919T200000Z"},
+{id:"s8", d:"2026-09-19",dow:"Sat",rink:"Kainai",kind:"practice",time:"",gd:"20260919/20260920",warn:"Jesse moved some Sep 19 U16 times/venues (Sept 6 update) — new slot being confirmed; don’t roll on the old 10:00 Kainai time yet."},
 {id:"s9", d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20260920T153000Z/20260920T193000Z"},
 {id:"s4", d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:"7:50–9:00 PM",gd:"20260922T015000Z/20260922T030000Z"},
 {id:"s5", d:"2026-09-23",dow:"Wed",rink:"Lethbridge",venue:"Labour Club Arena",kind:"skate",time:"9:00–10:00 PM",gd:"20260924T030000Z/20260924T040000Z"},
@@ -365,6 +365,7 @@ function cardHTML(s){
     '<span class="chip">'+esc(KIND[s.kind]||"Ice")+'</span>'+
     '<span class="chip drive">'+esc(r.time)+' each way</span>'+
     (s.time?'<span class="chip drive">'+esc(s.time)+'</span>':'<span class="chip tbc">Time TBC</span>')+
+    (s.warn?'<span class="roadtrip">&#9888;&#65039; '+esc(s.warn)+'</span>':'')+
     claimRow(s)+
   '</div></div>';
 }
@@ -593,7 +594,7 @@ renderGlance()+
   '<div class="gt c-road"><span class="gk">&#129365; The long-haul options — on the calendar in red</span>'+
   '<span class="gs"><strong>Wednesdays move to Warner</strong> (7:50–9:00 PM, ~2 h 25 each way) from Oct 14 — free Mustangs ice, just a serious drive; holler in the group text if you want to convoy one. '+
   '<strong>Tuesdays in Elkford</strong> (the $ pills) are the separate High Altitude Hockey skills program: 9:30–10:30 PM at Elkford Arena, $25 a session or $260 for all 13 — and 3 h 15 away. '+
-  '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors) start late September — nights TBC, they’ll land on the calendar when Jesse confirms.</span></div>'+
+  '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors): <strong>Wednesdays 6:15 PM, twice a month, all season</strong> — exact dates land on the calendar as soon as the schedule sheet comes through.</span></div>'+
 '</section>'+
 '<section class="sec view" id="v-rinks"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
   '<thead><tr><th>Town</th><th>Rink</th><th>Distance</th><th>One way</th><th>Round trip</th><th>Pin</th></tr></thead><tbody>'+renderRinks()+'</tbody></table></div>'+
@@ -632,7 +633,9 @@ renderGlance()+
   '<span class="gs"><a href="https://sshlhockey.ca/registration" target="_blank" rel="noopener"><strong>Register at sshlhockey.ca &#8599;</strong></a> — the link is open for about <strong>3 weeks from Sep 3</strong> (call it ~Sep 24). Okotoks reality check: Raymond is ~2 h each way and games are weeknights — worth a convoy conversation in the group text before anyone commits.</span></div>'+
 '</section>'+
 '<section class="sec view" id="v-money"><h2>Money</h2>'+
-  '<p class="muted"><span class="num">$1,000</span>/player was due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one. Prefer credit card (+3.15%)? Jesse’s setting up a card link — sit tight a day or two, or ask him: 403-915-2051.</p>'+
+  '<p class="muted"><span class="num">$1,000</span>/player was due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one.</p>'+
+  '<div class="gt c-money"><span class="gk">&#128179; Pay by credit card — link is live</span>'+
+  '<span class="gs">Jesse’s card link (Square) is open all year: <a href="https://square.link/u/7vuhahcC" target="_blank" rel="noopener"><strong>square.link/u/7vuhahcC &#8599;</strong></a>. You type the amount each time — and add the 3.15% processing fee yourself: a <span class="num">$1,000</span> payment is <span class="num">$1,031.50</span>, an <span class="num">$800</span> payment is <span class="num">$825.20</span>. E-transfer stays fee-free.</span></div>'+
   '<div id="paywrap"></div>'+
   '<p class="tiny">Tap your family once the e-transfer is sent — everyone sees it, nobody has to chase. Honor system, same as claiming a drive. New months appear here as Jesse confirms them.</p>'+
 '</section>'+
