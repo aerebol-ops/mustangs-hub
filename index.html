@@ -226,6 +226,8 @@ var HOTELS = {
     book:"https://www.marriott.com/en-us/hotels/yqlfi-fairfield-inn-and-suites-lethbridge/overview/",
     inout:"Check-in Fri 3:00 PM · out Sun 12:00 PM", by:"The Schlahts are booked"}
 };
+var REG_URL = "http://premierhockey.rampregistrations.com?cmVkaXI1=cmVnaXN0ZXJ0ZWFtam9pbg2&dGVhbWNvZGU1=OTgyNDI1";
+var STORE_URL = "https://lethbridgemustangs.itemorder.com/shop/home/";
 var ICS_HTTPS = "https://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 var ICS_WEBCAL = "webcal://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 function calUrl(s){
@@ -280,6 +282,13 @@ function renderGlance(){
   } else {
     h+='<div class="gt c-ice"><span class="gk">&#127954; Next ice</span><span class="gv">Schedule complete</span><span class="gs">Waiting on Jesse’s next batch of dates.</span></div>';
   }
+
+  /* League registration — mandatory before the first game */
+  var dr=daysUntil("2026-09-17");
+  var regDue=dr>1?"due Thursday night — "+dr+" days":(dr===1?"due TOMORROW night":(dr===0?"due TONIGHT":"was due Sep 17 — must be done before the first game"));
+  h+='<div class="gt c-road"><span class="gk">&#9888;&#65039; League registration &middot; '+esc(regDue)+'</span>'+
+    '<span class="gv"><a href="'+esc(REG_URL)+'" target="_blank" rel="noopener">Register on RAMP &#8599;</a> &middot; invite code <span class="num">98242</span></span>'+
+    '<span class="gs">Every player (and staff) registers with the league and signs the waiver. First time? Have the birth certificate or passport ready to upload. Details on the Roster tab.</span></div>';
 
   /* Payment */
   var dp=daysUntil("2026-09-01");
@@ -616,12 +625,15 @@ renderGlance()+
   '<p class="tiny">Just handy links — nobody here gets a commission. Prices in CAD; check shipping to Okotoks before you fall in love.</p>'+
 '</section>'+
 '<section class="sec view" id="v-roster"><h2>The roster</h2>'+
+  '<div class="gt c-road"><span class="gk">&#9888;&#65039; League registration — required before the first game</span>'+
+  '<span class="gv"><a href="'+esc(REG_URL)+'" target="_blank" rel="noopener"><strong>Register on RAMP &#8599;</strong></a> &middot; invite code <span class="num">98242</span></span>'+
+  '<span class="gs">The league requires <strong>every player and staff member</strong> to register and sign the waiver. If your player hasn’t registered with the league before, it will ask you to upload ID — <strong>birth certificate or passport</strong>, so have a photo of it handy. Jesse’s deadline for anyone playing this weekend: <strong>Thursday night, Sept 17</strong>. Five minutes now beats a scramble at the rink.</span></div>'+
   '<div class="rosterwrap"><img src="mustangs-roster.jpg" alt="Mustangs U16 2026/27 roster poster — 18 players with jersey numbers" loading="lazy"></div>'+
   '<p class="tiny">The 2026/27 roster, straight from Coach Jesse. Our four: Liam <span class="num">#14</span>, Benjamin Schlaht <span class="num">#24</span>, Chase <span class="num">#73</span>, Colton <span class="num">#91</span>.</p>'+
   '<div class="gt c-ice"><span class="gk">&#127881; Team news — Jesse’s Sept 3 update</span>'+
-  '<span class="gs"><strong>Jesse is coaching U16 this season</strong> — “big expectations for this group.” The <strong>roster is finalized</strong> and went out with his email. <strong>Gear</strong> (gloves, polos, shorts, bags, hats, uniforms) lands at the first practice — everything in by the Three Hills showcase. The <strong>team store</strong> is delayed at the vendor; if it isn’t up by week’s end Jesse will send an order form instead.</span></div>'+
+  '<span class="gs"><strong>Jesse is coaching U16 this season</strong> — “big expectations for this group.” The <strong>roster is finalized</strong>. <strong>Gear:</strong> everyone should have shorts, polo, and gloves by now — anything missing or wrong, reply to Jesse’s email and he’ll sort it; the rest of the player apparel lands this weekend. The <strong>team store is open</strong> (<a href="'+esc(STORE_URL)+'" target="_blank" rel="noopener">order apparel &#8599;</a>) — it’s also the <strong>red helmet order form</strong>. Bonus: Jesse’s bringing last year’s extra apparel to the rink <strong>Wednesday night Sept 16</strong> at a deep discount.</span></div>'+
   '<p class="tiny">Looking for the extra-league option? The <strong>3-on-3 &amp; SSHL house league</strong> has its own tab: <a href="#sshl">🥅 SSHL 3v3</a>.</p>'+
-  '<p class="muted">Team manager &amp; coach: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Still to come from him: the Oct/Nov weekend practice schedule, goalie session nights, the store link, and showcase game times.</p>'+
+  '<p class="muted">Team manager &amp; coach: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Still to come from him: the Oct/Nov weekend practice schedule, goalie session dates, and showcase game times.</p>'+
 '</section>'+
 '<section class="sec view" id="v-sshl"><h2>SSHL — the extra league</h2>'+
   '<p class="muted">Jesse’s own weeknight house league out of Raymond, now in <strong>year 8</strong> — grades 4–12, mostly local kids, and Mustangs kids are welcome (usually moved up a division or two). Meant to be competitive but fun, and he schedules around the showcases.</p>'+
@@ -764,7 +776,7 @@ var SHOP = {
   "Swag & Fun": [
     {n:"Amazon.ca — hockey swag", d:"Toques, tees, and gifts for the hockey-mad.", u:"https://www.amazon.ca/s?k=hockey+gifts"},
     {n:"Amazon.ca — mini sticks", d:"Knee hockey for the hotel hallway on showcase weekends. You know it’s happening.", u:"https://www.amazon.ca/s?k=mini+hockey+sticks+set"},
-    {n:"Mustangs team store", d:"Jesse says the online apparel store is coming any day — link lands here the moment he sends it.", u:""}
+    {n:"Mustangs team store — OPEN", d:"Official team apparel, and the order form for red helmets. Last year’s extras go cheap at the rink Wed Sept 16.", u:"https://lethbridgemustangs.itemorder.com/shop/home/"}
   ]
 };
 function renderShop(cat){
