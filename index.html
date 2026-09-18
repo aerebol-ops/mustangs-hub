@@ -165,17 +165,17 @@ var SESSIONS = [
 {id:"s9", d:"2026-09-20",dow:"Sun",rink:"Kainai",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20260920T153000Z/20260920T193000Z"},
 {id:"s4", d:"2026-09-21",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20260922T022000Z/20260922T033000Z"},
 {id:"s5", d:"2026-09-23",dow:"Wed",rink:"Lethbridge",venue:"Labour Club Arena",kind:"skate",time:"9:00–10:00 PM",gd:"20260924T030000Z/20260924T040000Z"},
-{id:"s10",d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:"",gd:"20260925/20260928",warn:"First games: get to the rink EARLY — jerseys, shells and socks are handed out before puck drop. And know the league conduct rules on the Roster tab; fines hit the whole program."},
+{id:"s10",d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:"",gd:"20260925/20260928",venue:"Three Hills Arena",map:"Three Hills Arena, 202 3 Ave N, Three Hills, AB",warn:"First games: get to the rink EARLY — jerseys, shells and socks are handed out before puck drop. And know the league conduct rules on the Roster tab; fines hit the whole program."},
 {id:"s6", d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20260929T022000Z/20260929T033000Z"},
 {id:"s11",d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45",gd:"20261003T174500Z/20261003T214500Z"},
 {id:"s12",d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45",gd:"20261004T213000Z/20261004T234500Z"},
 {id:"s15",d:"2026-10-05",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261006T022000Z/20261006T033000Z"},
-{id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:"",gd:"20261009/20261012"},
+{id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:"",gd:"20261009/20261012",venue:"Cavendish Farm Centre",map:"Cavendish Farm Centre, 74 Mauretania Rd W, Lethbridge, AB"},
 {id:"s16",d:"2026-10-19",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261020T022000Z/20261020T033000Z"},
 {id:"s17",d:"2026-10-26",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261027T022000Z/20261027T033000Z"},
 {id:"s18",d:"2026-11-02",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261103T032000Z/20261103T043000Z"},
 {id:"s19",d:"2026-11-09",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261110T032000Z/20261110T043000Z"},
-{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116"},
+{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116",warn:"Heads-up: the league’s showcase table lists the 2011 age group in Three Hills Nov 6–8 as well as Penhold Nov 13–15. Jesse’s poster has U16 in Penhold; we’ll confirm the moment the league posts November games — hold off on Penhold hotels until then."},
 {id:"s20",d:"2026-11-23",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261124T032000Z/20261124T043000Z"},
 {id:"s21",d:"2026-11-30",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261201T032000Z/20261201T043000Z"},
 {id:"s22",d:"2026-12-07",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261208T032000Z/20261208T043000Z"},
@@ -228,6 +228,23 @@ var HOTELS = {
 };
 var REG_URL = "http://premierhockey.rampregistrations.com?cmVkaXI1=cmVnaXN0ZXJ0ZWFtam9pbg2&dGVhbWNvZGU1=OTgyNDI1";
 var STORE_URL = "https://lethbridgemustangs.itemorder.com/shop/home/";
+var PHL_TEAM_URL = "https://phl.academy/team/14149/4200/38962/390129/masterschedule";
+var PHL_WEBCAL = "webcal://phl.academy/calendar/master-schedule/2814.ics?SID=14149&CATID=4200&DID=38962&TID=390129&TZ=America%2FEdmonton";
+/* Official PHL games (phl.academy, Mustangs 2011 Major FC). Checked 2026-09-18; November not posted yet. */
+var GAMES = {
+  s10: [
+    {d:"Fri Sep 25", t:"5:30 PM",  vs:"Riggers HA Black",        rink:"Three Hills Arena"},
+    {d:"Sat Sep 26", t:"10:15 AM", vs:"Riggers HA Grey",         rink:"Three Hills Arena"},
+    {d:"Sat Sep 26", t:"7:45 PM",  vs:"Ice Dragons",             rink:"Three Hills Arena"},
+    {d:"Sun Sep 27", t:"10:15 AM", vs:"North Legacy Warriors",   rink:"Three Hills Arena"}
+  ],
+  s13: [
+    {d:"Fri Oct 9",  t:"5:15 PM",  vs:"Rebels HA",               rink:"Cavendish Farm Centre — West"},
+    {d:"Sat Oct 10", t:"9:00 AM",  vs:"Stars Hockey AAA Prep",   rink:"Cavendish Farm Centre — West"},
+    {d:"Sat Oct 10", t:"4:00 PM",  vs:"Saskatchewan Nova HC",    rink:"Cavendish Farm Centre — West"},
+    {d:"Sun Oct 11", t:"10:15 AM", vs:"Stars Hockey AAA Prep",   rink:"Cavendish Farm Centre — East"}
+  ]
+};
 var ICS_HTTPS = "https://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 var ICS_WEBCAL = "webcal://aerebol-ops.github.io/mustangs-hub/mustangs-u16.ics";
 function calUrl(s){
@@ -247,7 +264,7 @@ var RINKS = {
   "Stavely":     {km:65,  time:"45 min", tier:1, venue:"Stavely Arena",             map:"Stavely Arena, 5004 51 Ave, Stavely, AB"},
   "Lethbridge":  {km:165, time:"1 h 45", tier:2, venue:"Logan Boulet Arena",        map:"Logan Boulet Arena, 1302 9 Ave N, Lethbridge, AB"},
   "Kainai":      {km:175, time:"1 h 50", tier:2, venue:"Kainai Sports Centre",      map:"Kainai Sports Centre, Stand Off, AB"},
-  "Three Hills": {km:160, time:"1 h 45", tier:2, venue:"Centennial Place Arena",    map:"Centennial Place Arena, Three Hills, AB"},
+  "Three Hills": {km:160, time:"1 h 45", tier:2, venue:"Three Hills Arena (Centennial Place)", map:"Three Hills Arena, 202 3 Ave N, Three Hills, AB"},
   "Penhold":     {km:175, time:"1 h 50", tier:2, venue:"Penhold Regional Multiplex",map:"Penhold Regional Multiplex, 1 Waskasoo Ave, Penhold, AB"},
   "Raymond":     {km:200, time:"2 h 05", tier:3, venue:"Raymond Ice Arena",         map:"Raymond Ice Arena, Raymond, AB"},
   "Warner":      {km:235, time:"2 h 25", tier:3, venue:"Warner Arena",              map:"Warner Arena, Warner, AB"},
@@ -347,12 +364,15 @@ function cardHTML(s){
     return '<div class="card showcase"><div class="tier"></div><div class="cbody">'+
       '<span class="showbadge">&#9733; Showcase Weekend &#9733;</span>'+
       '<span class="date">'+esc(s.dow)+" "+esc(s.label||fmtDate(s.d))+'</span>'+
-      '<span class="rink">'+esc(s.rink)+'</span>'+
-      pinLink(r.map,s.rink)+
+      '<span class="rink">'+esc(s.rink)+(s.venue?' <span class="tiny">('+esc(s.venue)+')</span>':'')+'</span>'+
+      pinLink(s.map||r.map,s.venue||s.rink)+
       '<a class="pin" href="'+esc(calUrl(s))+'" target="_blank" rel="noopener" aria-label="Add to calendar">&#128197;&#xFE0E; cal</a>'+
       (cd?'<span class="chip count">'+esc(cd)+'</span>':'')+
       '<span class="chip drive">'+esc(r.time)+' each way</span>'+
-              '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team — game times land closer to the date.</span>'+
+              '<span class="roadtrip">Road trip: a full weekend of real games in '+esc(s.rink)+'. Book it off, pack the good cooler, and travel like a team.</span>'+
+      (GAMES[s.id]
+        ? '<span class="roadtrip"><strong>&#127954; Game times — official PHL schedule:</strong><br>'+GAMES[s.id].map(function(g){ return '<span class="num">'+esc(g.d)+' &middot; '+esc(g.t)+'</span> vs '+esc(g.vs)+' <span class="tiny">('+esc(g.rink)+')</span>'; }).join('<br>')+'</span>'
+        : '<span class="roadtrip">&#127954; Game times post on the league site about a week out — they’ll appear here (and in the calendar feed) the moment they do.</span>')+
         (s.warn?'<span class="roadtrip">&#9888;&#65039; '+esc(s.warn)+'</span>':'')+
       (function(){
         var ht=HOTELS[s.id];
@@ -597,7 +617,8 @@ renderGlance()+
 '<nav class="nav" id="mainnav" aria-label="Sections"></nav>'+
 '<section class="sec view" id="v-schedule"><h2>Every U16 date on the books</h2>'+
   '<div class="gt c-ice"><span class="gk">&#128197; The whole season, in your family calendar</span>'+
-  '<span class="gv"><a href="https://calendar.google.com/calendar/r?cid='+encodeURIComponent(ICS_WEBCAL)+'" target="_blank" rel="noopener">Subscribe in Google Calendar</a> &nbsp;&middot;&nbsp; <a href="'+esc(ICS_WEBCAL)+'">Apple / Outlook</a></span>'+
+  '<span class="gv"><a href="https://calendar.google.com/calendar/r?cid='+encodeURIComponent(ICS_WEBCAL)+'" target="_blank" rel="noopener">Subscribe in Google Calendar</a> &nbsp;&middot;&nbsp; <a href="'+esc(ICS_WEBCAL)+'">Apple / Outlook</a>'+
+  ' &nbsp;&nbsp;|&nbsp;&nbsp; Official PHL game feed (league-maintained): <a href="https://calendar.google.com/calendar/render?cid='+encodeURIComponent(PHL_WEBCAL)+'" target="_blank" rel="noopener">Google</a> &middot; <a href="'+esc(PHL_WEBCAL)+'">Apple / Outlook</a> &middot; <a href="'+esc(PHL_TEAM_URL)+'" target="_blank" rel="noopener">team page &#8599;</a></span>'+
   '<span class="gs">Subscribe once and every date lands in your calendar — and when Jesse’s Oct/Nov schedule drops or times firm up, your calendar updates itself. Or grab single dates with the &#128197;&#xFE0E; cal button on any card below.</span></div>'+
   renderSessions()+
   '<p class="tiny">Weeknight skates are <strong>100% optional and free</strong> — Jesse: come to one a week, all of them, or none; they’re skills &amp; small-area games to get better. Our four are focusing on the <strong>Stavely Mondays</strong> — that’s why every one through March is on the cards above. <strong>Heads up (Sept 17):</strong> Jesse rebalanced the Stavely groups — U16/U17/U18 now skate <strong>8:20–9:30 PM</strong> (was 7:50), sharing the first 30 minutes with the U14/U15 group. Weekend practices are two ice slots with a break — plan to stay. Drive times are one-way estimates from Okotoks.</p>'+
