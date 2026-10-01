@@ -300,13 +300,6 @@ function renderGlance(){
     h+='<div class="gt c-ice"><span class="gk">&#127954; Next ice</span><span class="gv">Schedule complete</span><span class="gs">Waiting on Jesse’s next batch of dates.</span></div>';
   }
 
-  /* League registration — mandatory before the first game */
-  var dr=daysUntil("2026-09-17");
-  var regDue=dr>1?"due Thursday night — "+dr+" days":(dr===1?"due TOMORROW night":(dr===0?"due TONIGHT":"was due Sep 17 — must be done before the first game"));
-  h+='<div class="gt c-road"><span class="gk">&#9888;&#65039; League registration &middot; '+esc(regDue)+'</span>'+
-    '<span class="gv"><a href="'+esc(REG_URL)+'" target="_blank" rel="noopener">Register on RAMP &#8599;</a> &middot; invite code <span class="num">98242</span></span>'+
-    '<span class="gs">Every player (and staff) registers with the league and signs the waiver. First time? Have the birth certificate or passport ready to upload. Details on the Roster tab.</span></div>';
-
   /* Payment */
   var dp=daysUntil("2026-09-01");
   var due=dp>1?"due in "+dp+" days":(dp===1?"due tomorrow":(dp===0?"due today":"was due Sept 1 — check the Money tab"));
