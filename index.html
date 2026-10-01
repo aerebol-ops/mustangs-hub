@@ -168,14 +168,19 @@ var SESSIONS = [
 {id:"s10",d:"2026-09-25",dow:"Fri",rink:"Three Hills",kind:"showcase",label:"Sep 25–27",time:"",gd:"20260925/20260928",venue:"Three Hills Arena",map:"Three Hills Arena, 202 3 Ave N, Three Hills, AB",warn:"League change Sep 22: BOTH Saturday games moved earlier — 8:00 AM vs Riggers HA Grey and 5:30 PM vs Ice Dragons (were 10:15 AM and 7:45 PM). First games: get to the rink EARLY — jerseys, shells and socks are handed out before puck drop. And know the league conduct rules on the Roster tab; fines hit the whole program."},
 {id:"s6", d:"2026-09-28",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20260929T022000Z/20260929T033000Z"},
 {id:"s11",d:"2026-10-03",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:45–12:45 + 2:15–3:45",gd:"20261003T174500Z/20261003T214500Z"},
-{id:"s12",d:"2026-10-04",dow:"Sun",rink:"Stavely",kind:"practice",time:"3:30–4:30 + 4:45–5:45",gd:"20261004T213000Z/20261004T234500Z"},
+{id:"s12",d:"2026-10-04",dow:"Sun",rink:"Lethbridge",venue:"Cavendish Farm Centre",kind:"game",time:"Games 9:00–11:00 AM + 1:45–4:15 PM",gd:"20261004T150000Z/20261004T221500Z",warn:"Changed Oct 1 (Jesse’s Oct/Nov schedule): Sunday is now two U16 GAMES in Lethbridge at Cavendish Farm Centre — the Stavely practice is gone. Opponents aren’t listed."},
+{id:"s58",d:"2026-10-17",dow:"Sat",rink:"Stavely",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20261017T153000Z/20261017T193000Z"},
+{id:"s59",d:"2026-10-24",dow:"Sat",rink:"Stavely",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20261024T153000Z/20261024T193000Z"},
+{id:"s60",d:"2026-10-31",dow:"Sat",rink:"Lethbridge",venue:"VisitLethbridge.com Arena",kind:"practice",time:"1:15–3:30 PM",gd:"20261031T191500Z/20261031T213000Z"},
+{id:"s61",d:"2026-11-08",dow:"Sun",rink:"Stavely",kind:"practice",time:"11:15–12:15 + 1:45–3:15",gd:"20261108T181500Z/20261108T221500Z"},
+{id:"s62",d:"2026-11-29",dow:"Sun",rink:"Stavely",kind:"practice",time:"11:15–12:15 + 1:45–3:15",gd:"20261129T181500Z/20261129T221500Z"},
 {id:"s15",d:"2026-10-05",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261006T022000Z/20261006T033000Z"},
 {id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:"",gd:"20261009/20261012",venue:"Cavendish Farm Centre",map:"Cavendish Farm Centre, 74 Mauretania Rd W, Lethbridge, AB",warn:"League update Oct 1: Friday is back ON — 5:15 PM vs Riggers HA Grey (a crossover game), replacing the Rebels HA game the league pulled. Four games again: plan to be in Lethbridge Friday afternoon."},
 {id:"s16",d:"2026-10-19",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261020T022000Z/20261020T033000Z"},
 {id:"s17",d:"2026-10-26",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261027T022000Z/20261027T033000Z"},
 {id:"s18",d:"2026-11-02",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261103T032000Z/20261103T043000Z"},
 {id:"s19",d:"2026-11-09",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261110T032000Z/20261110T043000Z"},
-{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116",warn:"Heads-up: the league’s showcase table lists the 2011 age group in Three Hills Nov 6–8 as well as Penhold Nov 13–15. Jesse’s poster has U16 in Penhold; we’ll confirm the moment the league posts November games — hold off on Penhold hotels until then."},
+{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116",warn:"Confirmed Oct 1: Jesse’s Oct/Nov schedule lists U16 at PENHOLD this weekend — safe to book hotels. Game times post on the league site about a week out. One wrinkle: the same sheet shows U16 ice in Stavely on Sat Nov 14 (9:30 + 12:30), which can’t both be true — almost certainly a carry-over; checking with Jesse. U16 is OFF the following weekend, Nov 21–22."},
 {id:"s20",d:"2026-11-23",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261124T032000Z/20261124T043000Z"},
 {id:"s21",d:"2026-11-30",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261201T032000Z/20261201T043000Z"},
 {id:"s22",d:"2026-12-07",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261208T032000Z/20261208T043000Z"},
@@ -274,7 +279,7 @@ var RINKS = {
   "Warner":      {km:235, time:"2 h 25", tier:3, venue:"Warner Arena",              map:"Warner Arena, Warner, AB"},
   "Elkford BC":  {km:290, time:"3 h 15", tier:4, venue:"Elkford Arena",             map:"Elkford Arena, Elkford, BC"}
 };
-var KIND = {skate:"Optional skate", practice:"Practice", showcase:"Showcase", skills:"Optional skills skate · $25"};
+var KIND = {skate:"Optional skate", practice:"Practice", game:"Games", showcase:"Showcase", skills:"Optional skills skate · $25"};
 var MONTH = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 var LP100 = 16.8;
 
@@ -632,7 +637,7 @@ renderGlance()+
 '</section>'+
 '<section class="sec view" id="v-rinks"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
   '<thead><tr><th>Town</th><th>Rink</th><th>Distance</th><th>One way</th><th>Round trip</th><th>Pin</th></tr></thead><tbody>'+renderRinks()+'</tbody></table></div>'+
-  '<p class="tiny">Pins open in Google Maps. Lethbridge note: September weeknight skates (Sept 9/16/23) are confirmed at the <strong>Labour Club Arena</strong> and their cards pin there; the Sept 12 practice and the Oct 9–11 showcase are at Logan Boulet, the rink listed above. Winter rule: <a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta</a> before every run south.</p></section>'+
+  '<p class="tiny">Pins open in Google Maps. Lethbridge note: September weeknight skates (Sept 9/16/23) are confirmed at the <strong>Labour Club Arena</strong> and their cards pin there; the Oct 4 games and the Oct 9–11 showcase are at <strong>Cavendish Farm Centre</strong> (74 Mauretania Rd W), and the Oct 31 practice is at the <strong>VisitLethbridge.com Arena</strong> — each card pins its own rink. Winter rule: <a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta</a> before every run south.</p></section>'+
 '<section class="sec view" id="v-fuel"><h2>Fuel — what a drive really costs</h2>'+
   '<p class="muted">Figured at <span class="num">16.8 L/100 km</span> (14 MPG — honest truck economy with four players and their bags) at the Okotoks street price above, refreshed each morning. Split it, or buy the driver’s next tank.</p>'+
   '<div class="scroll"><table><thead><tr><th>Round trip to</th><th>Distance</th><th>Fuel</th><th>Cost</th><th>Split 4 ways</th></tr></thead><tbody>'+renderFuel()+'</tbody></table></div>'+
