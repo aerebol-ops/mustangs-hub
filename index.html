@@ -259,7 +259,11 @@ function calUrl(s){
 var CLAIMS = {}; var CLAIMS_OK = false;
 var PAY = {}; var PAY_OK = false;
 /* Months with a team payment on the books — add entries as Jesse confirms them */
-var PAY_MONTHS = [ {key:"2026-09", label:"September", amt:"$1,000"} ];
+/* Newest month last. due = ISO date. The front-page tile shows the latest month whose due date is within 7 days (or past). */
+var PAY_MONTHS = [
+  {key:"2026-09", label:"September", amt:"$1,000", due:"2026-09-01", dueTxt:"Sept 1"},
+  {key:"2026-10", label:"October",   amt:"Monthly fee", due:"2026-10-01", dueTxt:"Oct 1", note:"Jesse hasn’t published October’s number — pay the monthly amount on your plan. September was $1,000; his card-link note also lists $800 payments."}
+];
 var RINKS = {
   "Stavely":     {km:65,  time:"45 min", tier:1, venue:"Stavely Arena",             map:"Stavely Arena, 5004 51 Ave, Stavely, AB"},
   "Lethbridge":  {km:165, time:"1 h 45", tier:2, venue:"Logan Boulet Arena",        map:"Logan Boulet Arena, 1302 9 Ave N, Lethbridge, AB"},
@@ -300,13 +304,17 @@ function renderGlance(){
     h+='<div class="gt c-ice"><span class="gk">&#127954; Next ice</span><span class="gv">Schedule complete</span><span class="gs">Waiting on Jesse’s next batch of dates.</span></div>';
   }
 
-  /* Payment */
-  var dp=daysUntil("2026-09-01");
-  var due=dp>1?"due in "+dp+" days":(dp===1?"due tomorrow":(dp===0?"due today":"was due Sept 1 — check the Money tab"));
-  var sent=PAY_OK?(Array.isArray(PAY["2026-09"])?PAY["2026-09"].length:0)+" of "+FAMILIES.length+" sent &middot; ":"";
-  h+='<div class="gt c-money"><span class="gk">&#128181; September payment</span>'+
-    '<span class="gv"><span class="num">$1,000</span>/player &middot; '+esc(due)+'</span>'+
-    '<span class="gs">'+sent+'E-transfer to Jesse — tick yours off on the Money tab.</span></div>';
+  /* Payment — latest month that is due (or due within a week) */
+  var pm=PAY_MONTHS[0];
+  for(var pi=0;pi<PAY_MONTHS.length;pi++){ if(daysUntil(PAY_MONTHS[pi].due)<=7) pm=PAY_MONTHS[pi]; }
+  var dp=daysUntil(pm.due);
+  var due=dp>1?"due in "+dp+" days":(dp===1?"due tomorrow":(dp===0?"due today":"was due "+pm.dueTxt+" — check the Money tab"));
+  var pfams=Array.isArray(PAY[pm.key])?PAY[pm.key]:[];
+  var sent=PAY_OK?pfams.length+" of "+FAMILIES.length+" sent &middot; ":"";
+  var pamt=/^\$/.test(pm.amt)?'<span class="num">'+esc(pm.amt)+'</span>/player':esc(pm.amt);
+  h+='<div class="gt c-money"><span class="gk">&#128181; '+esc(pm.label)+' payment</span>'+
+    '<span class="gv">'+pamt+' &middot; '+esc(due)+'</span>'+
+    '<span class="gs">'+sent+'E-transfer to Jesse — no invoice or reminder is coming. Tick yours off on the Money tab.</span></div>';
 
   /* Fuel */
   h+='<div class="gt"><span class="gk">&#9981; Pump price &middot; Okotoks</span>'+
@@ -520,7 +528,7 @@ function renderPay(){
   if(!el) return;
   if(!PAY_OK){ el.innerHTML=""; return; }
   var h="";
-  for(var i=0;i<PAY_MONTHS.length;i++){
+  for(var i=PAY_MONTHS.length-1;i>=0;i--){
     var m=PAY_MONTHS[i];
     var fams=Array.isArray(PAY[m.key])?PAY[m.key]:[];
     var b="";
@@ -530,7 +538,9 @@ function renderPay(){
     }
     h+='<div class="card"><div class="tier t1"></div><div class="cbody">'+
       '<span class="date">'+esc(m.label)+'</span>'+
-      '<span class="chip drive">'+esc(m.amt)+'/player</span>'+
+      '<span class="chip drive">'+(/^\$/.test(m.amt)?esc(m.amt)+'/player':esc(m.amt))+'</span>'+
+      '<span class="chip">due '+esc(m.dueTxt)+'</span>'+
+      (m.note?'<span class="roadtrip">'+esc(m.note)+'</span>':'')+
       '<div class="assign"><span class="who'+(fams.length===FAMILIES.length?' set':'')+'">'+
         (fams.length===FAMILIES.length?'All four in &#127881;':fams.length+' of '+FAMILIES.length+' sent')+
       '</span><span class="togs">'+b+'</span><span class="claimnote" id="pn-'+esc(m.key)+'"></span></div>'+
@@ -662,7 +672,7 @@ renderGlance()+
   '<span class="gs"><a href="https://sshlhockey.ca/registration" target="_blank" rel="noopener"><strong>Register at sshlhockey.ca &#8599;</strong></a> — the link is open for about <strong>3 weeks from Sep 3</strong> (call it ~Sep 24). Okotoks reality check: Raymond is ~2 h each way and games are weeknights — worth a convoy conversation in the group text before anyone commits.</span></div>'+
 '</section>'+
 '<section class="sec view" id="v-money"><h2>Money</h2>'+
-  '<p class="muted"><span class="num">$1,000</span>/player was due <strong>Sept 1</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices, so don’t wait for one.</p>'+
+  '<p class="muted">Fees are <strong>monthly, due on the 1st</strong>, e-transfer to <span class="num">lethbridgemustangs@gmail.com</span> — Jesse sends no invoices and no monthly reminder, so don’t wait for one. <strong>October is due now.</strong></p>'+
   '<div class="gt c-money"><span class="gk">&#128179; Pay by credit card — link is live</span>'+
   '<span class="gs">Jesse’s card link (Square) is open all year: <a href="https://square.link/u/7vuhahcC" target="_blank" rel="noopener"><strong>square.link/u/7vuhahcC &#8599;</strong></a>. You type the amount each time — and add the 3.15% processing fee yourself: a <span class="num">$1,000</span> payment is <span class="num">$1,031.50</span>, an <span class="num">$800</span> payment is <span class="num">$825.20</span>. E-transfer stays fee-free.</span></div>'+
   '<div id="paywrap"></div>'+
