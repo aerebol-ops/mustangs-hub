@@ -1,19 +1,19 @@
 {
- "asOf": "2026-10-11 09:14",
+ "asOf": "2026-10-11 17:03",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
-  "gp": 7,
-  "w": 4,
+  "gp": 8,
+  "w": 5,
   "l": 3,
   "t": 0,
-  "pts": 8,
-  "gf": 44,
-  "ga": 27
+  "pts": 10,
+  "gf": 51,
+  "ga": 31
  },
- "streak": "W1",
- "last5": "WLWLW",
- "rank": 4,
+ "streak": "W2",
+ "last5": "WWLWL",
+ "rank": 3,
  "teams": 5,
  "standingsSource": "computed",
  "standings": [
@@ -28,47 +28,58 @@
    "ga": 22
   },
   {
-   "team": "Stars Hockey AAA Prep",
-   "gp": 7,
+   "team": "Riggers HA Black",
+   "gp": 8,
    "w": 5,
-   "l": 2,
+   "l": 3,
    "t": 0,
    "pts": 10,
-   "gf": 54,
-   "ga": 35
-  },
-  {
-   "team": "ES Lions",
-   "gp": 7,
-   "w": 4,
-   "l": 1,
-   "t": 2,
-   "pts": 10,
-   "gf": 46,
+   "gf": 53,
    "ga": 33
   },
   {
    "team": "Mustangs",
-   "gp": 7,
-   "w": 4,
+   "gp": 8,
+   "w": 5,
    "l": 3,
    "t": 0,
-   "pts": 8,
-   "gf": 44,
-   "ga": 27
+   "pts": 10,
+   "gf": 51,
+   "ga": 31
   },
   {
-   "team": "Riggers HA Black",
-   "gp": 7,
-   "w": 4,
+   "team": "Stars Hockey AAA Prep",
+   "gp": 8,
+   "w": 5,
    "l": 3,
    "t": 0,
-   "pts": 8,
-   "gf": 45,
-   "ga": 29
+   "pts": 10,
+   "gf": 58,
+   "ga": 42
+  },
+  {
+   "team": "ES Lions",
+   "gp": 8,
+   "w": 4,
+   "l": 2,
+   "t": 2,
+   "pts": 10,
+   "gf": 50,
+   "ga": 41
   }
  ],
  "results": [
+  {
+   "id": "2018623",
+   "date": "2026-10-11",
+   "time": "10:15 AM",
+   "opp": "Stars Hockey AAA Prep",
+   "home": false,
+   "gf": 7,
+   "ga": 4,
+   "res": "W",
+   "venue": "Cavendish Farm Centre East"
+  },
   {
    "id": "2018618",
    "date": "2026-10-10",
@@ -147,16 +158,7 @@
    "venue": "Three Hills Arena"
   }
  ],
- "upcoming": [
-  {
-   "id": "2018623",
-   "date": "2026-10-11",
-   "time": "10:15 AM",
-   "opp": "Stars Hockey AAA Prep",
-   "home": false,
-   "venue": "Cavendish Farm Centre East"
-  }
- ],
+ "upcoming": [],
  "teamUrl": "https://phl.academy/team/14149/4200/38962/390129/masterschedule",
  "standingsUrl": "https://phl.academy/division/4200/38962/standings"
 }
