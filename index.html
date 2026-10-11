@@ -131,6 +131,9 @@ p{margin:0}
 .famtog:hover{border-color:var(--ink3)}
 .famtog.on{color:var(--ground);background:var(--good);border-color:var(--good)}
 .famtog:disabled{opacity:.5;cursor:wait}
+.scorehl td{font-weight:700;background:var(--accentWash)}
+.res{font-family:var(--mono);font-weight:700;border-radius:3px;padding:.05rem .4rem;color:#fff}
+.res.W{background:var(--good)}.res.L{background:var(--far)}.res.T{background:var(--warn)}
 .claimnote{font-family:var(--sans);font-size:.75rem;color:var(--ink3)}
 .nav .tab{font-size:.82rem;padding:.5rem .9rem}
 .view[hidden]{display:none}
@@ -264,6 +267,7 @@ function calUrl(s){
 }
 var CLAIMS = {}; var CLAIMS_OK = false;
 var PAY = {}; var PAY_OK = false;
+var SCORE = null;
 /* Months with a team payment on the books — add entries as Jesse confirms them */
 /* Newest month last. due = ISO date. The front-page tile shows the latest month whose due date is within 7 days (or past). */
 var PAY_MONTHS = [
@@ -321,6 +325,13 @@ function renderGlance(){
   h+='<div class="gt c-money"><span class="gk">&#128181; '+esc(pm.label)+' payment</span>'+
     '<span class="gv">'+pamt+' &middot; '+esc(due)+'</span>'+
     '<span class="gs">'+sent+'E-transfer to Jesse — no invoice or reminder is coming. Tick yours off on the Money tab.</span></div>';
+
+  /* Scoreboard */
+  if(SCORE&&SCORE.record){var R=SCORE.record,last=SCORE.results&&SCORE.results[0];
+    h+='<div class="gt '+(last&&last.res==="L"?"c-road":"c-money")+'"><span class="gk">&#127942; Record &middot; '+esc(SCORE.division)+'</span>'+
+      '<span class="gv"><span class="num">'+R.w+'-'+R.l+'-'+R.t+'</span> &middot; '+R.pts+' pts'+(SCORE.rank?' &middot; '+ordinal(SCORE.rank)+' of '+SCORE.teams:'')+'</span>'+
+      '<span class="gs">'+(last?'Last: <strong>'+last.res+' '+last.gf+'&ndash;'+last.ga+'</strong> vs '+esc(last.opp)+' &middot; ':'')+'Every score on the Scoreboard tab.</span></div>';
+  }
 
   /* Fuel */
   h+='<div class="gt"><span class="gk">&#9981; Pump price &middot; Okotoks</span>'+
@@ -554,6 +565,43 @@ function renderPay(){
   }
   el.innerHTML='<div class="cards">'+h+'</div>';
 }
+function ordinal(n){var s=["th","st","nd","rd"],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+function renderScore(){
+  var el=document.getElementById("scorewrap"); if(!el) return;
+  if(!SCORE||!SCORE.record){ el.innerHTML='<p class="muted">The league results haven&rsquo;t loaded. <a href="'+esc(PHL_TEAM_URL)+'" target="_blank" rel="noopener">Open the PHL team page &#8599;</a></p>'; return; }
+  var R=SCORE.record,h='';
+  h+='<div class="glance">'+
+    '<div class="gt c-money"><span class="gk">Record</span><span class="gv"><span class="num">'+R.w+'-'+R.l+'-'+R.t+'</span></span><span class="gs">'+R.gp+' games played'+(SCORE.streak?' &middot; streak '+esc(SCORE.streak):'')+(SCORE.last5?' &middot; last 5: '+esc(SCORE.last5):'')+'</span></div>'+
+    '<div class="gt"><span class="gk">Points</span><span class="gv"><span class="num">'+R.pts+'</span>'+(SCORE.rank?' &middot; '+ordinal(SCORE.rank)+' of '+SCORE.teams:'')+'</span><span class="gs">2 for a win, 1 for a tie</span></div>'+
+    '<div class="gt c-ice"><span class="gk">Goals</span><span class="gv"><span class="num">'+R.gf+'</span> for &middot; <span class="num">'+R.ga+'</span> against</span><span class="gs">'+(R.gf-R.ga>=0?'+':'')+(R.gf-R.ga)+' goal differential</span></div>'+
+  '</div>';
+  if(SCORE.standings&&SCORE.standings.length){
+    h+='<h2 style="margin-top:1.2rem">'+esc(SCORE.division)+' standings</h2><div class="scroll"><table><thead><tr><th>#</th><th>Team</th><th>GP</th><th>W</th><th>L</th><th>T</th><th>PTS</th><th>GF</th><th>GA</th></tr></thead><tbody>';
+    for(var i=0;i<SCORE.standings.length;i++){var t=SCORE.standings[i],me=t.team===SCORE.team;
+      h+='<tr'+(me?' class="scorehl"':'')+'><td class="num">'+(i+1)+'</td><td>'+(me?'&#9733; ':'')+esc(t.team)+'</td><td class="num">'+t.gp+'</td><td class="num">'+t.w+'</td><td class="num">'+t.l+'</td><td class="num">'+t.t+'</td><td class="num"><strong>'+t.pts+'</strong></td><td class="num">'+t.gf+'</td><td class="num">'+t.ga+'</td></tr>';}
+    h+='</tbody></table></div>';
+  }
+  if(SCORE.results&&SCORE.results.length){
+    h+='<h2 style="margin-top:1.2rem">Results</h2><div class="scroll"><table><thead><tr><th>Date</th><th>Opponent</th><th>Score</th><th></th><th>Rink</th></tr></thead><tbody>';
+    for(var j=0;j<SCORE.results.length;j++){var r=SCORE.results[j];
+      h+='<tr><td class="num" style="white-space:nowrap">'+esc(fmtDate(r.date))+'</td><td>'+(r.home?'vs ':'at ')+esc(r.opp)+'</td><td class="num" style="white-space:nowrap"><strong>'+r.gf+'&ndash;'+r.ga+'</strong></td><td><span class="res '+esc(r.res)+'">'+esc(r.res)+'</span></td><td class="tiny">'+esc(r.venue)+'</td></tr>';}
+    h+='</tbody></table></div>';
+  }
+  if(SCORE.upcoming&&SCORE.upcoming.length){
+    h+='<h2 style="margin-top:1.2rem">Posted, not played yet</h2><div class="scroll"><table><thead><tr><th>Date</th><th>Time</th><th>Opponent</th><th>Rink</th></tr></thead><tbody>';
+    for(var k=0;k<SCORE.upcoming.length;k++){var u=SCORE.upcoming[k];
+      h+='<tr><td class="num" style="white-space:nowrap">'+esc(fmtDate(u.date))+'</td><td class="num">'+esc(u.time)+'</td><td>'+(u.home?'vs ':'at ')+esc(u.opp)+'</td><td class="tiny">'+esc(u.venue)+'</td></tr>';}
+    h+='</tbody></table></div>';
+  }
+  h+='<p class="tiny" style="margin-top:.8rem">Pulled from the league&rsquo;s posted box scores '+esc(SCORE.asOf)+' &middot; standings '+(SCORE.standingsSource==="official"?'as posted by the PHL':'computed from the posted finals')+' &middot; <a href="'+esc(SCORE.teamUrl)+'" target="_blank" rel="noopener">team page &#8599;</a> &middot; <a href="'+esc(SCORE.standingsUrl)+'" target="_blank" rel="noopener">league standings &#8599;</a>. Refreshes itself morning and evening; on a showcase weekend the box score lands within a few hours of the final buzzer.</p>';
+  el.innerHTML=h;
+}
+function fetchScore(){
+  fetch("scoreboard.json?v="+Date.now(),{cache:"no-store"}).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }).then(function(d){
+    SCORE=d||null; renderScore();
+    var g=document.getElementById("glancewrap"); if(g) g.outerHTML=renderGlance();
+  })["catch"](function(){ renderScore(); });
+}
 function fetchPay(){
   if(!CLAIMS_API) return;
   fetch(CLAIMS_API+"/pay").then(function(r){
@@ -590,11 +638,12 @@ document.addEventListener("click",function(e){
     if(note) note.textContent="didn’t save — try again";
   });
 });
-document.addEventListener("visibilitychange",function(){ if(!document.hidden){ fetchClaims(); fetchPay(); } });
+document.addEventListener("visibilitychange",function(){ if(!document.hidden){ fetchClaims(); fetchPay(); fetchScore(); } });
 setInterval(fetchClaims, 90000);
 setInterval(fetchPay, 90000);
 fetchClaims();
 fetchPay();
+fetchScore();
 function renderRinks(){
   var order=["Stavely","Three Hills","Lethbridge","Kainai","Penhold","Raymond","Warner","Elkford BC"],h="";
   for(var i=0;i<order.length;i++){var r=RINKS[order[i]];
@@ -636,6 +685,7 @@ renderGlance()+
   '<strong>Tuesdays in Elkford</strong> (the $ pills) are the separate High Altitude Hockey skills program: 9:30–10:30 PM at Elkford Arena, $25 a session or $260 for all 13 — and 3 h 15 away. '+
   '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors): <strong>Wednesdays 6:15 PM, twice a month, all season</strong> — they started Wed Sept 30 with Ryan Fisher. The dates after that haven’t been sent yet.</span></div>'+
 '</section>'+
+'<section class="sec view" id="v-score"><h2>&#127942; Scoreboard &middot; PHL 2011 Elite</h2><div id="scorewrap"><p class="muted">Loading the league results&hellip;</p></div></section>'+
 '<section class="sec view" id="v-rinks"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
   '<thead><tr><th>Town</th><th>Rink</th><th>Distance</th><th>One way</th><th>Round trip</th><th>Pin</th></tr></thead><tbody>'+renderRinks()+'</tbody></table></div>'+
   '<p class="tiny">Pins open in Google Maps. Lethbridge note: September weeknight skates (Sept 9/16/23) are confirmed at the <strong>Labour Club Arena</strong> and their cards pin there; the Oct 4 games and the Oct 9–11 showcase are at <strong>Cavendish Farm Centre</strong> (74 Mauretania Rd W), and the Oct 31 practice is at the <strong>VisitLethbridge.com Arena</strong> — each card pins its own rink. Winter rule: <a href="https://511.alberta.ca" target="_blank" rel="noopener">511 Alberta</a> before every run south.</p></section>'+
@@ -690,6 +740,7 @@ renderGlance()+
 /* ==== Section navigation ==== */
 var VIEWS = [
   {id:"schedule", label:"🗓 Schedule"},
+  {id:"score",    label:"🏆 Scoreboard"},
   {id:"rinks",    label:"📍 Rinks"},
   {id:"fuel",     label:"⛽ Fuel"},
   {id:"training", label:"💪 Training"},

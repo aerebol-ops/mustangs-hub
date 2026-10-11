@@ -1,0 +1,162 @@
+{
+ "asOf": "2026-10-11 09:11",
+ "team": "Mustangs",
+ "division": "2011 Elite",
+ "record": {
+  "gp": 7,
+  "w": 4,
+  "l": 3,
+  "t": 0,
+  "pts": 8,
+  "gf": 44,
+  "ga": 27
+ },
+ "streak": "W1",
+ "last5": "WLWLW",
+ "rank": 4,
+ "teams": 5,
+ "standingsSource": "computed",
+ "standings": [
+  {
+   "team": "North Legacy Warriors",
+   "gp": 8,
+   "w": 8,
+   "l": 0,
+   "t": 0,
+   "pts": 16,
+   "gf": 68,
+   "ga": 22
+  },
+  {
+   "team": "Stars Hockey AAA Prep",
+   "gp": 7,
+   "w": 5,
+   "l": 2,
+   "t": 0,
+   "pts": 10,
+   "gf": 54,
+   "ga": 35
+  },
+  {
+   "team": "ES Lions",
+   "gp": 7,
+   "w": 4,
+   "l": 1,
+   "t": 2,
+   "pts": 10,
+   "gf": 46,
+   "ga": 33
+  },
+  {
+   "team": "Mustangs",
+   "gp": 7,
+   "w": 4,
+   "l": 3,
+   "t": 0,
+   "pts": 8,
+   "gf": 44,
+   "ga": 27
+  },
+  {
+   "team": "Riggers HA Black",
+   "gp": 7,
+   "w": 4,
+   "l": 3,
+   "t": 0,
+   "pts": 8,
+   "gf": 45,
+   "ga": 29
+  }
+ ],
+ "results": [
+  {
+   "id": "2018618",
+   "date": "2026-10-10",
+   "time": "4:00 PM",
+   "opp": "Saskatchewan Nova HC",
+   "home": true,
+   "gf": 12,
+   "ga": 1,
+   "res": "W",
+   "venue": "Cavendish Farm Centre West"
+  },
+  {
+   "id": "2018613",
+   "date": "2026-10-10",
+   "time": "9:00 AM",
+   "opp": "Stars Hockey AAA Prep",
+   "home": true,
+   "gf": 6,
+   "ga": 8,
+   "res": "L",
+   "venue": "Cavendish Farm Centre West"
+  },
+  {
+   "id": "2018609",
+   "date": "2026-10-09",
+   "time": "5:15 PM",
+   "opp": "Riggers HA Grey",
+   "home": false,
+   "gf": 7,
+   "ga": 3,
+   "res": "W",
+   "venue": "Cavendish Farm Centre West"
+  },
+  {
+   "id": "2014422",
+   "date": "2026-09-27",
+   "time": "10:15 AM",
+   "opp": "North Legacy Warriors",
+   "home": true,
+   "gf": 2,
+   "ga": 7,
+   "res": "L",
+   "venue": "Three Hills Arena"
+  },
+  {
+   "id": "2014419",
+   "date": "2026-09-26",
+   "time": "5:30 PM",
+   "opp": "Ice Dragons",
+   "home": true,
+   "gf": 8,
+   "ga": 2,
+   "res": "W",
+   "venue": "Three Hills Arena"
+  },
+  {
+   "id": "2014415",
+   "date": "2026-09-26",
+   "time": "8:00 AM",
+   "opp": "Riggers HA Grey",
+   "home": false,
+   "gf": 7,
+   "ga": 1,
+   "res": "W",
+   "venue": "Three Hills Arena"
+  },
+  {
+   "id": "2014412",
+   "date": "2026-09-25",
+   "time": "5:30 PM",
+   "opp": "Riggers HA Black",
+   "home": true,
+   "gf": 2,
+   "ga": 5,
+   "res": "L",
+   "venue": "Three Hills Arena"
+  }
+ ],
+ "upcoming": [
+  {
+   "id": "2018623",
+   "date": "2026-10-11",
+   "time": "10:15 AM",
+   "opp": "Stars Hockey AAA Prep",
+   "home": false,
+   "venue": "Cavendish Farm Centre East"
+  }
+ ],
+ "teamUrl": "https://phl.academy/team/14149/4200/38962/390129/masterschedule",
+ "standingsUrl": "https://phl.academy/division/4200/38962/standings"
+}
