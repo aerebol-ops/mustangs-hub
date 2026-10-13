@@ -175,8 +175,12 @@ var SESSIONS = [
 {id:"s58",d:"2026-10-17",dow:"Sat",rink:"Stavely",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20261017T153000Z/20261017T193000Z"},
 {id:"s59",d:"2026-10-24",dow:"Sat",rink:"Stavely",kind:"practice",time:"9:30–11:00 + 12:30–1:30",gd:"20261024T153000Z/20261024T193000Z"},
 {id:"s60",d:"2026-10-31",dow:"Sat",rink:"Lethbridge",venue:"VisitLethbridge.com Arena",kind:"practice",time:"1:15–3:30 PM",gd:"20261031T191500Z/20261031T213000Z"},
-{id:"s61",d:"2026-11-08",dow:"Sun",rink:"Stavely",kind:"practice",time:"11:15–12:15 + 1:45–3:15",gd:"20261108T181500Z/20261108T221500Z"},
-{id:"s62",d:"2026-11-29",dow:"Sun",rink:"Stavely",kind:"practice",time:"11:15–12:15 + 1:45–3:15",gd:"20261129T181500Z/20261129T221500Z"},
+{id:"s61",d:"2026-11-08",dow:"Sun",rink:"Kainai",kind:"practice",time:"10:30–11:30 + 1:00–2:15",gd:"20261108T173000Z/20261108T211500Z",warn:"Moved Oct 12 (Jesse’s revised sheet): this one is now at KAINAI, not Stavely — 1 h 50 each way instead of 45 min."},
+{id:"s65",d:"2026-10-15",dow:"Thu",rink:"Raymond",kind:"skate",time:"8:15–9:15 PM",gd:"20261016T021500Z/20261016T031500Z",warn:"One-off this week only: no Stavely Monday Oct 12 and Warner’s ice still isn’t ready for Wed Oct 14, so Jesse booked Raymond for Thursday. U15–U18 group 8:15–9:15 PM."},
+{id:"s66",d:"2026-11-07",dow:"Sat",rink:"Raymond",kind:"practice",time:"3:30–6:00 PM",gd:"20261107T223000Z/20261108T010000Z"},
+{id:"s67",d:"2026-11-28",dow:"Sat",rink:"Stavely",kind:"practice",time:"11:15–12:15 + 1:45–3:15",gd:"20261128T181500Z/20261128T221500Z"},
+{id:"s68",d:"2026-12-05",dow:"Sat",rink:"Stavely",kind:"practice",time:"3:30–4:45 + 5:00–6:15",gd:"20261205T223000Z/20261206T011500Z"},
+{id:"s69",d:"2026-12-19",dow:"Sat",rink:"Stavely",kind:"party",time:"10:00 AM–4:00 PM",gd:"20261219T170000Z/20261219T230000Z",warn:"U15/U16/U17/U18 Christmas party on the ice in Stavely — Jesse’s sheet, details to follow."},
 {id:"s15",d:"2026-10-05",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261006T022000Z/20261006T033000Z"},
 {id:"s13",d:"2026-10-09",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Oct 9–11",time:"",gd:"20261009/20261012",venue:"Cavendish Farm Centre",map:"Cavendish Farm Centre, 74 Mauretania Rd W, Lethbridge, AB",warn:"League update Oct 1: Friday is back ON — 5:15 PM vs Riggers HA Grey (a crossover game), replacing the Rebels HA game the league pulled. Four games again: plan to be in Lethbridge Friday afternoon."},
 {id:"s16",d:"2026-10-19",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261020T022000Z/20261020T033000Z"},
@@ -184,7 +188,7 @@ var SESSIONS = [
 {id:"s18",d:"2026-11-02",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261103T032000Z/20261103T043000Z"},
 {id:"s19",d:"2026-11-09",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261110T032000Z/20261110T043000Z"},
 {id:"s64",d:"2026-12-11",dow:"Fri",rink:"Lethbridge",kind:"showcase",label:"Dec 11–13",time:"",gd:"20261211/20261214",venue:"rink TBC",map:"Lethbridge, AB",warn:"New on the league’s showcase table (Oct 6): the 2011 Elite & Gold showcase is in Lethbridge Dec 11–13. Jesse hasn’t sent it yet and no rink or game times are posted — expect Cavendish Farm Centre again, but don’t count on it. Day-trip range from Okotoks unless Friday runs late."},
-{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116",warn:"Confirmed Oct 1: Jesse’s Oct/Nov schedule lists U16 at PENHOLD this weekend — safe to book hotels. Game times post on the league site about a week out. One wrinkle: the same sheet shows U16 ice in Stavely on Sat Nov 14 (9:30 + 12:30), which can’t both be true — almost certainly a carry-over; checking with Jesse. U16 is OFF the following weekend, Nov 21–22."},
+{id:"s14",d:"2026-11-13",dow:"Fri",rink:"Penhold",kind:"showcase",label:"Nov 13–15",time:"",gd:"20261113/20261116",warn:"Confirmed twice by Jesse (Oct 1 and Oct 12 sheets): U16 is at PENHOLD this weekend — book hotels. Game times post on the league site about a week out. U16 is OFF the following weekend, Nov 21–22."},
 {id:"s20",d:"2026-11-23",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261124T032000Z/20261124T043000Z"},
 {id:"s21",d:"2026-11-30",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261201T032000Z/20261201T043000Z"},
 {id:"s22",d:"2026-12-07",dow:"Mon",rink:"Stavely",kind:"skate",time:"8:20–9:30 PM",gd:"20261208T032000Z/20261208T043000Z"},
@@ -284,7 +288,7 @@ var RINKS = {
   "Warner":      {km:235, time:"2 h 25", tier:3, venue:"Warner Arena",              map:"Warner Arena, Warner, AB"},
   "Elkford BC":  {km:290, time:"3 h 15", tier:4, venue:"Elkford Arena",             map:"Elkford Arena, Elkford, BC"}
 };
-var KIND = {skate:"Optional skate", practice:"Practice", game:"Games", showcase:"Showcase", skills:"Optional skills skate · $25"};
+var KIND = {skate:"Optional skate", practice:"Practice", game:"Games", party:"Team event", showcase:"Showcase", skills:"Optional skills skate · $25"};
 var MONTH = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 var LP100 = 16.8;
 
@@ -683,7 +687,7 @@ renderGlance()+
   '<div class="gt c-road"><span class="gk">&#129365; The long-haul options — on the calendar in red</span>'+
   '<span class="gs"><strong>Wednesdays move to Warner</strong> (7:50–9:00 PM, ~2 h 25 each way) from <strong>Oct 21</strong> (Oct 14 is cancelled: Warner’s ice isn’t ready, and tonight’s one-off Thursday skate in Stavely replaces it) — free Mustangs ice, just a serious drive; holler in the group text if you want to convoy one. '+
   '<strong>Tuesdays in Elkford</strong> (the $ pills) are the separate High Altitude Hockey skills program: 9:30–10:30 PM at Elkford Arena, $25 a session or $260 for all 13 — and 3 h 15 away. '+
-  '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors): <strong>Wednesdays 6:15 PM, twice a month, all season</strong> — they started Wed Sept 30 with Ryan Fisher. The dates after that haven’t been sent yet.</span></div>'+
+  '<strong>Goalie sessions</strong> (free, Stavely, qualified Calgary instructors): <strong>Wednesdays with Ryan Fisher, every other week</strong> (started Sept 30, on again Oct 14) <strong>plus Sunday afternoons 3:30–4:45 with the SAGA goaltending team from Calgary: Oct 18, Nov 1, Nov 8, Nov 22, Dec 6.</strong> Goalies, tell Jesse you’re coming so the instructors can plan: <a href="https://forms.gle/wF5vTMUQ9HNnkAnE9" target="_blank" rel="noopener">headcount form &#8599;</a>.</span></div>'+
 '</section>'+
 '<section class="sec view" id="v-score"><h2>&#127942; Scoreboard &middot; PHL 2011 Elite</h2><div id="scorewrap"><p class="muted">Loading the league results&hellip;</p></div></section>'+
 '<section class="sec view" id="v-rinks"><h2>Rinks from Okotoks</h2><div class="scroll"><table>'+
@@ -716,7 +720,7 @@ renderGlance()+
   '<div class="gt c-ice"><span class="gk">&#127881; Team news — Jesse’s Sept 3 update</span>'+
   '<span class="gs"><strong>Jesse is coaching U16 this season</strong> — “big expectations for this group.” The <strong>roster is finalized</strong>. <strong>Gear:</strong> everyone should have shorts, polo, and gloves by now — anything missing or wrong, reply to Jesse’s email and he’ll sort it; the rest of the player apparel lands this weekend. <strong>Jerseys, shells and socks</strong> get handed out at the rink before the first showcase game — be there <strong>early</strong>. The <strong>team store</strong> (<a href="'+esc(STORE_URL)+'" target="_blank" rel="noopener">order apparel &#8599;</a>, also the red-helmet form) has a few new items and <strong>closes Sept 25</strong>; adding to an order you already placed? Email Thomas at <span class="num">tlastewka.northland@gmail.com</span> and he’ll waive the second shipping charge.</span></div>'+
   '<p class="tiny">Looking for the extra-league option? The <strong>3-on-3 &amp; SSHL house league</strong> has its own tab: <a href="#sshl">🥅 SSHL 3v3</a>.</p>'+
-  '<p class="muted">Team manager &amp; coach: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Still to come from him: October’s payment amount, the remaining goalie session dates, and showcase dates past November. His Oct/Nov practice sheet may still shift as the league rebalances showcases.</p>'+
+  '<p class="muted">Team manager &amp; coach: Jesse — <span class="num">403-915-2051</span> &middot; <span class="num">lethbridgemustangs@gmail.com</span>. Still to come from him: October’s payment amount and showcase dates past December. Heads-up from his Oct 12 note: from November the league groups showcases by skill level, so expect closer games and the odd change of weekend. His Oct/Nov practice sheet may still shift as the league rebalances showcases.</p>'+
 '</section>'+
 '<section class="sec view" id="v-sshl"><h2>SSHL — the extra league</h2>'+
   '<p class="muted">Jesse’s own weeknight house league out of Raymond, now in <strong>year 8</strong> — grades 4–12, mostly local kids, and Mustangs kids are welcome (usually moved up a division or two). Meant to be competitive but fun, and he schedules around the showcases.</p>'+
@@ -860,7 +864,8 @@ var SHOP = {
   "Swag & Fun": [
     {n:"Amazon.ca — hockey swag", d:"Toques, tees, and gifts for the hockey-mad.", u:"https://www.amazon.ca/s?k=hockey+gifts"},
     {n:"Amazon.ca — mini sticks", d:"Knee hockey for the hotel hallway on showcase weekends. You know it’s happening.", u:"https://www.amazon.ca/s?k=mini+hockey+sticks+set"},
-    {n:"Mustangs rink blanket — order form", d:"Jesse’s order form for the Mustangs rink blanket. Cold-rink parents, this one’s for you.", u:"https://pci.jotform.com/form/262645368252058"},
+    {n:"Mustangs hoodies &amp; hats — order form (closes ~Oct 19)", d:"Jesse’s small apparel run: hoodies by Doughnut Co., hats already in hand. Open about a week from Oct 12.", u:"https://forms.gle/TuKoMR8ZQ4KBkqK98"},
+    {n:"Mustangs rink blanket — order form (closed Oct 13)", d:"Jesse’s rink-blanket order form closed Oct 13. Ask him if you missed it.", u:"https://pci.jotform.com/form/262645368252058"},
     {n:"Mustangs team store — closed Sept 25", d:"Official team apparel + the red-helmet order form. Adding to an existing order? Email Thomas (tlastewka.northland@gmail.com) to skip the second shipping charge.", u:"https://lethbridgemustangs.itemorder.com/shop/home/"}
   ]
 };
