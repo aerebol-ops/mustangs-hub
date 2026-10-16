@@ -1,5 +1,5 @@
 {
- "asOf": "2026-10-11 17:08",
+ "asOf": "2026-10-15 21:30",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
@@ -158,7 +158,40 @@
    "venue": "Three Hills Arena"
   }
  ],
- "upcoming": [],
+ "upcoming": [
+  {
+   "id": "2092873",
+   "date": "2026-11-13",
+   "time": "2:15 PM",
+   "opp": "Riggers HA Black",
+   "home": true,
+   "venue": "Penhold Regional Multiplex"
+  },
+  {
+   "id": "2092875",
+   "date": "2026-11-14",
+   "time": "8:00 AM",
+   "opp": "ES Lions",
+   "home": false,
+   "venue": "Penhold Regional Multiplex"
+  },
+  {
+   "id": "2092878",
+   "date": "2026-11-14",
+   "time": "3:00 PM",
+   "opp": "Stars Hockey AAA Prep",
+   "home": true,
+   "venue": "Penhold Regional Multiplex"
+  },
+  {
+   "id": "2092880",
+   "date": "2026-11-15",
+   "time": "8:00 AM",
+   "opp": "North Legacy Warriors",
+   "home": false,
+   "venue": "Penhold Regional Multiplex"
+  }
+ ],
  "teamUrl": "https://phl.academy/team/14149/4200/38962/390129/masterschedule",
  "standingsUrl": "https://phl.academy/division/4200/38962/standings"
 }
