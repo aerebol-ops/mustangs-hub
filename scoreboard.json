@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-05 13:58",
+ "asOf": "2026-11-05 14:00",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
@@ -13,37 +13,15 @@
  },
  "streak": "W2",
  "last5": "WWLWL",
- "rank": 3,
- "teams": 5,
+ "rank": 1,
+ "teams": 3,
  "standingsSource": "computed",
  "divisionTeams": [
-  "North Legacy Warriors",
-  "Riggers HA Black",
   "Mustangs",
   "Stars Hockey AAA Prep",
   "ES Lions"
  ],
  "standings": [
-  {
-   "team": "North Legacy Warriors",
-   "gp": 8,
-   "w": 8,
-   "l": 0,
-   "t": 0,
-   "pts": 16,
-   "gf": 68,
-   "ga": 22
-  },
-  {
-   "team": "Riggers HA Black",
-   "gp": 8,
-   "w": 5,
-   "l": 3,
-   "t": 0,
-   "pts": 10,
-   "gf": 53,
-   "ga": 32
-  },
   {
    "team": "Mustangs",
    "gp": 8,
