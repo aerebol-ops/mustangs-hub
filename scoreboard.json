@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-09 05:25",
+ "asOf": "2026-11-10 10:59",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
@@ -15,7 +15,7 @@
  "last5": "WWLWL",
  "rank": 1,
  "teams": 3,
- "standingsSource": "official",
+ "standingsSource": "computed",
  "divisionTeams": [
   "Mustangs",
   "Stars Hockey AAA Prep",
@@ -175,6 +175,38 @@
    "opp": "North Legacy Warriors",
    "home": false,
    "venue": "Penhold Regional Multiplex"
+  },
+  {
+   "id": "2131150",
+   "date": "2026-12-12",
+   "time": "9:15 AM",
+   "opp": "North Legacy Warriors BLACK",
+   "home": false,
+   "venue": "Cavendish Farm Centre West"
+  },
+  {
+   "id": "2131153",
+   "date": "2026-12-12",
+   "time": "2:00 PM",
+   "opp": "Riggers HA Grey",
+   "home": true,
+   "venue": "Cavendish Farm Centre West"
+  },
+  {
+   "id": "2131157",
+   "date": "2026-12-13",
+   "time": "8:30 AM",
+   "opp": "Ice Dragons",
+   "home": true,
+   "venue": "Cavendish Farm Centre East"
+  },
+  {
+   "id": "2131159",
+   "date": "2026-12-13",
+   "time": "1:15 PM",
+   "opp": "ES Lions",
+   "home": false,
+   "venue": "Cavendish Farm Centre East"
   }
  ],
  "teamUrl": "https://phl.academy/team/14149/4200/38962/390129/masterschedule",
