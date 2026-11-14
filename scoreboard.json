@@ -1,59 +1,70 @@
 {
- "asOf": "2026-11-12 20:30",
+ "asOf": "2026-11-13 20:30",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
-  "gp": 8,
+  "gp": 9,
   "w": 5,
-  "l": 3,
+  "l": 4,
   "t": 0,
   "pts": 10,
   "gf": 51,
-  "ga": 31
+  "ga": 34
  },
- "streak": "W2",
- "last5": "WWLWL",
- "rank": 1,
+ "streak": "L1",
+ "last5": "LWWLW",
+ "rank": 2,
  "teams": 3,
  "standingsSource": "computed",
  "divisionTeams": [
+  "ES Lions",
   "Mustangs",
-  "Stars Hockey AAA Prep",
-  "ES Lions"
+  "Stars Hockey AAA Prep"
  ],
  "standings": [
   {
-   "team": "Mustangs",
-   "gp": 8,
+   "team": "ES Lions",
+   "gp": 9,
    "w": 5,
-   "l": 3,
+   "l": 2,
+   "t": 2,
+   "pts": 12,
+   "gf": 54,
+   "ga": 44
+  },
+  {
+   "team": "Mustangs",
+   "gp": 9,
+   "w": 5,
+   "l": 4,
    "t": 0,
    "pts": 10,
    "gf": 51,
-   "ga": 31
+   "ga": 34
   },
   {
    "team": "Stars Hockey AAA Prep",
-   "gp": 8,
+   "gp": 10,
    "w": 5,
-   "l": 3,
+   "l": 5,
    "t": 0,
    "pts": 10,
-   "gf": 58,
-   "ga": 42
-  },
-  {
-   "team": "ES Lions",
-   "gp": 8,
-   "w": 4,
-   "l": 2,
-   "t": 2,
-   "pts": 10,
-   "gf": 50,
-   "ga": 41
+   "gf": 62,
+   "ga": 54
   }
  ],
  "results": [
+  {
+   "id": "2092873",
+   "date": "2026-11-13",
+   "time": "2:15 PM",
+   "opp": "Riggers HA Black",
+   "home": true,
+   "gf": 0,
+   "ga": 3,
+   "res": "L",
+   "venue": "Penhold Regional Multiplex"
+  },
   {
    "id": "2018623",
    "date": "2026-10-11",
@@ -144,14 +155,6 @@
   }
  ],
  "upcoming": [
-  {
-   "id": "2092873",
-   "date": "2026-11-13",
-   "time": "2:15 PM",
-   "opp": "Riggers HA Black",
-   "home": true,
-   "venue": "Penhold Regional Multiplex"
-  },
   {
    "id": "2092875",
    "date": "2026-11-14",
