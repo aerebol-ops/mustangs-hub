@@ -1,59 +1,81 @@
 {
- "asOf": "2026-11-13 20:30",
+ "asOf": "2026-11-14 20:30",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
-  "gp": 9,
-  "w": 5,
+  "gp": 11,
+  "w": 7,
   "l": 4,
   "t": 0,
-  "pts": 10,
-  "gf": 51,
-  "ga": 34
+  "pts": 14,
+  "gf": 67,
+  "ga": 39
  },
- "streak": "L1",
- "last5": "LWWLW",
- "rank": 2,
+ "streak": "W2",
+ "last5": "WWLWW",
+ "rank": 1,
  "teams": 3,
  "standingsSource": "computed",
  "divisionTeams": [
-  "ES Lions",
   "Mustangs",
+  "ES Lions",
   "Stars Hockey AAA Prep"
  ],
  "standings": [
   {
-   "team": "ES Lions",
-   "gp": 9,
-   "w": 5,
-   "l": 2,
-   "t": 2,
-   "pts": 12,
-   "gf": 54,
-   "ga": 44
-  },
-  {
    "team": "Mustangs",
-   "gp": 9,
-   "w": 5,
+   "gp": 11,
+   "w": 7,
    "l": 4,
    "t": 0,
-   "pts": 10,
-   "gf": 51,
-   "ga": 34
+   "pts": 14,
+   "gf": 67,
+   "ga": 39
+  },
+  {
+   "team": "ES Lions",
+   "gp": 11,
+   "w": 5,
+   "l": 4,
+   "t": 2,
+   "pts": 12,
+   "gf": 57,
+   "ga": 60
   },
   {
    "team": "Stars Hockey AAA Prep",
-   "gp": 10,
+   "gp": 12,
    "w": 5,
-   "l": 5,
+   "l": 7,
    "t": 0,
    "pts": 10,
-   "gf": 62,
-   "ga": 54
+   "gf": 64,
+   "ga": 70
   }
  ],
  "results": [
+  {
+   "id": "2092878",
+   "date": "2026-11-14",
+   "time": "3:00 PM",
+   "opp": "Stars Hockey AAA Prep",
+   "home": true,
+   "gf": 7,
+   "ga": 2,
+   "res": "W",
+   "venue": "Penhold Regional Multiplex"
+  },
+  {
+   "id": "2092875",
+   "date": "2026-11-14",
+   "time": "8:00 AM",
+   "opp": "ES Lions",
+   "home": false,
+   "gf": 9,
+   "ga": 3,
+   "res": "W",
+   "venue": "Penhold Regional Multiplex"
+  },
   {
    "id": "2092873",
    "date": "2026-11-13",
@@ -155,22 +177,6 @@
   }
  ],
  "upcoming": [
-  {
-   "id": "2092875",
-   "date": "2026-11-14",
-   "time": "8:00 AM",
-   "opp": "ES Lions",
-   "home": false,
-   "venue": "Penhold Regional Multiplex"
-  },
-  {
-   "id": "2092878",
-   "date": "2026-11-14",
-   "time": "3:00 PM",
-   "opp": "Stars Hockey AAA Prep",
-   "home": true,
-   "venue": "Penhold Regional Multiplex"
-  },
   {
    "id": "2092880",
    "date": "2026-11-15",
