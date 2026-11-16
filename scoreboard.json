@@ -1,18 +1,18 @@
 {
- "asOf": "2026-11-14 20:30",
+ "asOf": "2026-11-15 20:30",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
-  "gp": 11,
+  "gp": 12,
   "w": 7,
-  "l": 4,
+  "l": 5,
   "t": 0,
   "pts": 14,
-  "gf": 67,
-  "ga": 39
+  "gf": 69,
+  "ga": 45
  },
- "streak": "W2",
- "last5": "WWLWW",
+ "streak": "L1",
+ "last5": "LWWLW",
  "rank": 1,
  "teams": 3,
  "standingsSource": "computed",
@@ -24,23 +24,23 @@
  "standings": [
   {
    "team": "Mustangs",
-   "gp": 11,
+   "gp": 12,
    "w": 7,
-   "l": 4,
+   "l": 5,
    "t": 0,
    "pts": 14,
-   "gf": 67,
-   "ga": 39
+   "gf": 69,
+   "ga": 45
   },
   {
    "team": "ES Lions",
-   "gp": 11,
+   "gp": 12,
    "w": 5,
-   "l": 4,
+   "l": 5,
    "t": 2,
    "pts": 12,
-   "gf": 57,
-   "ga": 60
+   "gf": 60,
+   "ga": 64
   },
   {
    "team": "Stars Hockey AAA Prep",
@@ -54,6 +54,17 @@
   }
  ],
  "results": [
+  {
+   "id": "2092880",
+   "date": "2026-11-15",
+   "time": "8:00 AM",
+   "opp": "North Legacy Warriors",
+   "home": false,
+   "gf": 2,
+   "ga": 6,
+   "res": "L",
+   "venue": "Penhold Regional Multiplex"
+  },
   {
    "id": "2092878",
    "date": "2026-11-14",
@@ -177,14 +188,6 @@
   }
  ],
  "upcoming": [
-  {
-   "id": "2092880",
-   "date": "2026-11-15",
-   "time": "8:00 AM",
-   "opp": "North Legacy Warriors",
-   "home": false,
-   "venue": "Penhold Regional Multiplex"
-  },
   {
    "id": "2131150",
    "date": "2026-12-12",
