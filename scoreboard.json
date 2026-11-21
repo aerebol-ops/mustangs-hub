@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-15 20:30",
+ "asOf": "2026-11-21 05:26",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
@@ -15,7 +15,7 @@
  "last5": "LWWLW",
  "rank": 1,
  "teams": 3,
- "standingsSource": "computed",
+ "standingsSource": "official",
  "divisionTeams": [
   "Mustangs",
   "ES Lions",
