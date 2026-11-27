@@ -1,5 +1,5 @@
 {
- "asOf": "2026-11-26 21:24",
+ "asOf": "2026-11-27 05:27",
  "team": "Mustangs",
  "division": "2011 Elite",
  "record": {
@@ -34,13 +34,13 @@
   },
   {
    "team": "ES Lions",
-   "gp": 11,
+   "gp": 12,
    "w": 5,
    "l": 5,
-   "t": 1,
-   "pts": 11,
-   "gf": 54,
-   "ga": 58
+   "t": 2,
+   "pts": 12,
+   "gf": 60,
+   "ga": 64
   },
   {
    "team": "Stars Hockey AAA Prep",
